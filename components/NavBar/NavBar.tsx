@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+      marginBottom: theme.spacing(4),
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -26,7 +27,7 @@ const NavBar: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar>
+      <AppBar position="static">
         <Toolbar>
           <IconButton
             edge="start"
