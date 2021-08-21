@@ -1,7 +1,13 @@
 import React from 'react';
+import Container from '@material-ui/core/Container';
+import ProfileCard from '@/components/ProfileCard';
 
-const App: React.FC = () => {
-  return <div>Foobar!</div>;
-}
+const Index: React.FC = () => {
+  return (
+    <Container>
+      <ProfileCard />
+    </Container>
+  );
+};
 
-export default App;
+export default Index;
