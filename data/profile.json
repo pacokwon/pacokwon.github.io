@@ -1,0 +1,13 @@
+{
+  "background": "/image/profile-background.png",
+  "image": "https://github.com/pacokwon.png",
+  "name": "Haechan Kwon",
+  "nickname": "pacokwon",
+  "description": [
+    "Undergraduate student at KAIST CS",
+    "Interested in Web, Programming Languages, Neovim, and tooling in general",
+    "I'd like to learn to contribute to open source!"
+  ],
+  "github": "https://github.com/pacokwon",
+  "email": "haechank@gmail.com"
+}
