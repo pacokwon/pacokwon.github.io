@@ -9,5 +9,24 @@
     "plugin:@typescript-eslint/recommended",
     "next",
     "prettier"
-  ]
+  ],
+  "rules": {
+    "prettier/prettier": 2,
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "args": "all",
+        "argsIgnorePattern": "^_",
+        "vars": "all",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
