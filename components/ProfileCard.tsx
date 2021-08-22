@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import NextLink from 'next/link';
-import Image from 'next/image';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import EmailIcon from '@material-ui/icons/Email';
+import background from '@/public/image/profile-background.png';
 
 import profile from '@/data/profile.json';
 
@@ -21,6 +21,9 @@ const useStyles = makeStyles(() =>
     mediaContainer: {
       position: 'relative',
       marginBottom: '50px',
+    },
+    background: {
+      width: '100%',
     },
     profileDiv: {
       position: 'absolute',
@@ -39,7 +42,6 @@ const useStyles = makeStyles(() =>
     },
     profileImg: {
       borderRadius: '50%',
-      border: '1px solid black',
     },
     content: {
       display: 'flex',
@@ -68,19 +70,16 @@ const ProfileCard: React.FC = () => {
   return (
     <Card className={classes.root}>
       <div className={classes.mediaContainer}>
-        <Image
-          src={profile.background}
+        <img
+          className={classes.background}
+          src={background}
           alt="Profile Background"
-          width={3}
-          height={1}
-          layout="responsive"
-          objectFit="cover"
         />
         <div className={classes.profileDiv}>
-          <Image
+          <img
             className={classes.profileImg}
             src={profile.image}
-            alt="Profile"
+            alt="Profile Image"
             width={160}
             height={160}
           />

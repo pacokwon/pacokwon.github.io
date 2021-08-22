@@ -22,7 +22,8 @@
         "varsIgnorePattern": "^_"
       }
     ],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "@next/next/no-img-element": "off"
   },
   "settings": {
     "react": {
