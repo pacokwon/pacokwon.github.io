@@ -7,7 +7,6 @@ const postsPath = 'posts';
 export type PostId = { id: string };
 export type PostCtx = { params: PostId };
 export function getAllPostIds(): PostCtx[] {
-  console.log(fs.readdirSync('.'));
   const filenames = fs.readdirSync(postsPath);
 
   return filenames.map(filename => ({
