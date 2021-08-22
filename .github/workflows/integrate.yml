@@ -19,11 +19,13 @@ jobs:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install and Build
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.17.5'
 
-      - run: npm install
-      - run: npm run build
-      - run: npm run export
+      - run: yarn
+      - run: yarn run build
+      - run: yarn run export
 
       - name: Add .nojekyll file
         run: touch ./out/.nojekyll
