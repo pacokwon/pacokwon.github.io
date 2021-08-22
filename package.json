@@ -19,7 +19,11 @@
     "next": "^11.1.0",
     "next-optimized-images": "^2.6.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "rehype-react": "^7.0.0",
+    "remark-parse": "^10.0.0",
+    "remark-rehype": "^9.0.0",
+    "unified": "^10.1.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^11.1.0",

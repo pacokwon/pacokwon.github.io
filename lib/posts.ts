@@ -17,15 +17,20 @@ export function getAllPostIds(): PostCtx[] {
   }));
 }
 
-export type PostData = { [key: string]: any };
+export type PostData = {
+  id: string;
+  content: string;
+  [key: string]: any;
+};
 export function getPostData(id: string): PostData {
   const fullPath = path.join(postsPath, `${id}.md`);
   const contents = fs.readFileSync(fullPath, 'utf8');
 
-  const { data } = matter(contents);
+  const { content, data } = matter(contents);
 
   return {
     id,
+    content,
     ...data,
   };
 }

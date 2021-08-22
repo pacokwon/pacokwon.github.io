@@ -2,6 +2,15 @@ import React from 'react';
 import type { GetStaticPathsResult, GetStaticPropsResult } from 'next';
 import { getAllPostIds, getPostData, PostCtx, PostId } from '@/lib/posts';
 import type { PostData } from '@/lib/posts';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeReact from 'rehype-react';
+
+const processor = unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeReact, { createElement: React.createElement });
 
 const Post: React.FC<PropsResult> = ({ postData }) => {
   return (
@@ -11,16 +20,14 @@ const Post: React.FC<PropsResult> = ({ postData }) => {
       {postData.id}
       <br />
       {postData.date}
+      {processor.processSync(postData.content).result}
     </>
   );
 };
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult<PostId>> {
   const paths = getAllPostIds();
-  return {
-    paths,
-    fallback: false,
-  };
+  return { paths, fallback: false };
 }
 
 type PropsResult = {
@@ -31,11 +38,7 @@ export async function getStaticProps({
 }: PostCtx): Promise<GetStaticPropsResult<PropsResult>> {
   const postData = getPostData(params.id);
 
-  return {
-    props: {
-      postData,
-    },
-  };
+  return { props: { postData } };
 }
 
 export default Post;
