@@ -5,11 +5,13 @@ import type { PostData } from '@/lib/posts';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
+import rehypeHighlight from 'rehype-highlight';
 import rehypeReact from 'rehype-react';
 
 const processor = unified()
   .use(remarkParse)
   .use(remarkRehype)
+  .use(rehypeHighlight)
   .use(rehypeReact, { createElement: React.createElement });
 
 const Post: React.FC<PropsResult> = ({ postData }) => {
