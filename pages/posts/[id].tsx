@@ -8,6 +8,22 @@ import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeReact from 'rehype-react';
 
+export async function getStaticPaths(): Promise<GetStaticPathsResult<PostId>> {
+  const paths = getAllPostIds();
+  return { paths, fallback: false };
+}
+
+type PropsResult = {
+  postData: PostData;
+};
+export async function getStaticProps({
+  params,
+}: PostCtx): Promise<GetStaticPropsResult<PropsResult>> {
+  const postData = getPostData(params.id);
+
+  return { props: { postData } };
+}
+
 const processor = unified()
   .use(remarkParse)
   .use(remarkRehype)
@@ -26,21 +42,5 @@ const Post: React.FC<PropsResult> = ({ postData }) => {
     </>
   );
 };
-
-export async function getStaticPaths(): Promise<GetStaticPathsResult<PostId>> {
-  const paths = getAllPostIds();
-  return { paths, fallback: false };
-}
-
-type PropsResult = {
-  postData: PostData;
-};
-export async function getStaticProps({
-  params,
-}: PostCtx): Promise<GetStaticPropsResult<PropsResult>> {
-  const postData = getPostData(params.id);
-
-  return { props: { postData } };
-}
 
 export default Post;
