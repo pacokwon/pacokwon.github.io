@@ -8,6 +8,7 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeReact from 'rehype-react';
+import Code from '@/components/Code';
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult<PostId>> {
   const ids = await getPostIds();
@@ -29,7 +30,12 @@ const processor = unified()
   .use(remarkParse)
   .use(remarkRehype)
   .use(rehypeHighlight)
-  .use(rehypeReact, { createElement: React.createElement });
+  .use(rehypeReact, {
+    createElement: React.createElement,
+    components: {
+      code: Code,
+    },
+  });
 
 const Post: React.FC<Props> = ({ post }) => {
   return (
