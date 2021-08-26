@@ -1,4 +1,5 @@
 import React from 'react';
+import Container from '@material-ui/core/Container';
 import type { GetStaticPathsResult, GetStaticPropsResult } from 'next';
 import { getPostIds, getPostData, PostCtx, PostId } from '@/lib/posts';
 import type { PostData } from '@/lib/posts';
@@ -32,14 +33,11 @@ const processor = unified()
 
 const Post: React.FC<Props> = ({ post }) => {
   return (
-    <>
-      {post.title}
-      <br />
-      {post.id}
-      <br />
+    <Container>
+      <h1>{post.title}</h1>
       {post.date}
       {processor.processSync(post.content).result}
-    </>
+    </Container>
   );
 };
 
