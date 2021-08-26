@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
           />
           <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/base16/gruvbox-dark-hard.min.css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css"
           />
         </Head>
         <body>
