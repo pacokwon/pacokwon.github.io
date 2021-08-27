@@ -24,6 +24,15 @@ const useStyle = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       gap: theme.spacing(2),
     },
+    card: {
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
+      }),
+      '&:hover': {
+        transform: 'translateY(-4px)',
+      },
+    },
   })
 );
 
@@ -34,7 +43,7 @@ const PostIndex: React.FC<Props> = ({ posts }) => {
     <Container>
       <div className={classes.cardList}>
         {posts.map(post => (
-          <PostCard key={post.id} post={post} />
+          <PostCard className={classes.card} key={post.id} post={post} />
         ))}
       </div>
     </Container>

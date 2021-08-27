@@ -41,7 +41,7 @@ const Post: React.FC<Props> = ({ post }) => {
   return (
     <Container>
       <h1>{post.title}</h1>
-      {post.date}
+      Written in: {post.date}
       {processor.processSync(post.content).result}
     </Container>
   );
