@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 type Props = React.HTMLAttributes<HTMLElement>;
 
-const useStyle = makeStyles(() =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       borderRadius: '8px',
@@ -13,7 +13,7 @@ const useStyle = makeStyles(() =>
 );
 
 const Code: React.FC<Props> = ({ children, className }) => {
-  const classes = useStyle();
+  const classes = useStyles();
   const root = clsx(classes.root, className);
   return <code className={root}>{children}</code>;
 };

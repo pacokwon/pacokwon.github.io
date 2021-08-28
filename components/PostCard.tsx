@@ -7,7 +7,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-const useStyle = makeStyles((_: Theme) =>
+const useStyles = makeStyles((_: Theme) =>
   createStyles({
     root: {
       cursor: 'pointer',
@@ -21,7 +21,7 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
 
 const PostCard: React.FC<Props> = ({ post, className }) => {
   const router = useRouter();
-  const classes = useStyle();
+  const classes = useStyles();
 
   const path = `/posts/${post.id}`;
   const navigate = () => router.push(path);

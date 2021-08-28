@@ -17,7 +17,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   return { props: { posts } };
 }
 
-const useStyle = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     cardList: {
       display: 'flex',
@@ -37,7 +37,7 @@ const useStyle = makeStyles((theme: Theme) =>
 );
 
 const PostIndex: React.FC<Props> = ({ posts }) => {
-  const classes = useStyle();
+  const classes = useStyles();
 
   return (
     <Container>
