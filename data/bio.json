@@ -1,0 +1,53 @@
+{
+  "timeline": [
+    {
+      "duration": {
+        "start": "2013.03",
+        "end": "2016.02"
+      },
+      "description": "Seoil Middle School"
+    },
+    {
+      "duration": {
+        "start": "2016.03",
+        "end": "2019.02"
+      },
+      "description": "Korean Minjok Leadership Academy"
+    },
+    {
+      "duration": {
+        "start": "2019.03",
+        "end": "Current"
+      },
+      "description": "Computer Science Major at KAIST"
+    },
+    {
+      "duration": {
+        "start": "2019.06",
+        "end": "2019.08"
+      },
+      "description": "Frontend Developer Internship at Lablup. Inc"
+    },
+    {
+      "duration": {
+        "start": "2020.12",
+        "end": "2021.02"
+      },
+      "description": "Backend Developer Internship at Frientrip. Inc"
+    },
+    {
+      "duration": {
+        "start": "2021.06",
+        "end": "2021.08"
+      },
+      "description": "Student Researcher at KAIST Programming Language Research Group"
+    },
+    {
+      "duration": {
+        "start": "2021.10",
+        "end": "Current"
+      },
+      "description": "Software Developer at Republic of Korea Navy"
+    }
+  ]
+}

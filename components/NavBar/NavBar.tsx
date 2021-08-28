@@ -32,6 +32,17 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+type LinkProps = {
+  href: string;
+};
+const Link: React.FC<LinkProps> = ({ children, href }) => {
+  return (
+    <NextLink href={href} passHref>
+      <MuiLink color="inherit">{children}</MuiLink>
+    </NextLink>
+  );
+};
+
 const NavBar: React.FC = () => {
   const classes = useStyles();
 
@@ -44,11 +55,12 @@ const NavBar: React.FC = () => {
               <Typography variant="h5">Paco Kwon</Typography>
             </MuiLink>
           </NextLink>
-          <NextLink href="/posts" passHref>
-            <MuiLink color="inherit">
-              <Typography variant="body1">Posts</Typography>
-            </MuiLink>
-          </NextLink>
+          <Link href="/bio">
+            <Typography variant="body1">Bio</Typography>
+          </Link>
+          <Link href="/posts">
+            <Typography variant="body1">Posts</Typography>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
