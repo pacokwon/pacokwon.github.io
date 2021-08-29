@@ -1,14 +1,16 @@
 import React from 'react';
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
 import type { GetStaticPathsResult, GetStaticPropsResult } from 'next';
-import { getPostIds, getPostData, PostCtx, PostId } from '@/lib/posts';
-import type { PostData } from '@/lib/posts';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeReact from 'rehype-react';
 import Code from '@/components/Code';
+import { getPostIds, getPostData, PostCtx, PostId } from '@/lib/posts';
+import type { PostData } from '@/lib/posts';
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult<PostId>> {
   const ids = await getPostIds();
@@ -39,10 +41,14 @@ const processor = unified()
 
 const Post: React.FC<Props> = ({ post }) => {
   return (
-    <Container>
-      <h1>{post.title}</h1>
-      Written in: {post.date}
-      {processor.processSync(post.content).result}
+    <Container maxWidth="md">
+      <Paper>
+        <Box px={5} pt={2} pb={4}>
+          <h1>{post.title}</h1>
+          Written in: {post.date}
+          {processor.processSync(post.content).result}
+        </Box>
+      </Paper>
     </Container>
   );
 };
