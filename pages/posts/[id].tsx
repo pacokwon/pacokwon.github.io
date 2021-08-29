@@ -42,7 +42,7 @@ const processor = unified()
 const Post: React.FC<Props> = ({ post }) => {
   return (
     <Container maxWidth="md">
-      <Paper>
+      <Paper variant="outlined">
         <Box px={5} pt={2} pb={4}>
           <h1>{post.title}</h1>
           Written in: {post.date}
