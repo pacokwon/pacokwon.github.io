@@ -1,9 +1,10 @@
 import React from 'react';
 import type { GetStaticPropsResult } from 'next';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import PostCard from '@/components/PostCard';
 import { getPostIds, getPostData, PostData } from '@/lib/posts';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import BreakpointMasonry from '@/components/BreakpointMasonry';
 
 const POST_LIMIT = 30;
 
@@ -41,11 +42,11 @@ const PostIndex: React.FC<Props> = ({ posts }) => {
 
   return (
     <Container>
-      <div className={classes.cardList}>
+      <BreakpointMasonry>
         {posts.map(post => (
           <PostCard className={classes.card} key={post.id} post={post} />
         ))}
-      </div>
+      </BreakpointMasonry>
     </Container>
   );
 };
