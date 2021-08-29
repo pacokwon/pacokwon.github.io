@@ -29,7 +29,7 @@ export type PostData = {
 type PostMetadataRaw = {
   title?: string;
   date?: string;
-  tags?: string;
+  tags?: string[];
 };
 
 export async function getPostData(id: string): Promise<PostData> {
@@ -51,9 +51,7 @@ function parseMetadata(meta: PostMetadataRaw) {
 
   const dateObj = new Date(meta.date);
   const date = isNaN(dateObj.getTime()) ? null : meta.date;
-
-  // comma separated tags
-  const tags = meta.tags?.split(',') ?? [];
+  const tags = meta.tags ?? [];
 
   return { ...meta, title, date, tags };
 }
