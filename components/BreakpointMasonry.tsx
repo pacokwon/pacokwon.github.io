@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+// referred to from: https://github.com/mui-org/material-ui/issues/17000#issuecomment-639319327
 const BreakpointMasonry: React.FC = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
