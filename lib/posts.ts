@@ -9,7 +9,9 @@ export type PostCtx = { params: PostId };
 
 // get up to `limit` number of post ids.
 export async function getPostIds(limit?: number): Promise<string[]> {
-  const all = await fs.readdir(postsPath);
+  const all = await fs
+    .readdir(postsPath)
+    .then(filenames => filenames.sort((a, b) => (a > b ? -1 : 1)));
 
   // filter if limit is imposed
   const filenames =
@@ -28,7 +30,6 @@ export type PostData = {
 
 type PostMetadataRaw = {
   title?: string;
-  date?: string;
   tags?: string[];
 };
 
@@ -37,7 +38,7 @@ export async function getPostData(id: string): Promise<PostData> {
   const contents = await fs.readFile(fullPath, 'utf8');
 
   const { content, data } = matter(contents);
-  const metadata = parseMetadata(data);
+  const metadata = parseMetadata(id, data);
 
   return {
     id,
@@ -46,11 +47,20 @@ export async function getPostData(id: string): Promise<PostData> {
   };
 }
 
-function parseMetadata(meta: PostMetadataRaw) {
+function parseDate(date: string) {
+  if (date.indexOf('-') !== 8) return null;
+
+  const year = date.substring(0, 4);
+  const month = date.substring(4, 6);
+  const day = date.substring(6, 8);
+
+  return `${year}-${month}-${day}`;
+}
+
+function parseMetadata(id: string, meta: PostMetadataRaw) {
   const title = meta.title ?? 'Untitled';
 
-  const dateObj = new Date(meta.date);
-  const date = isNaN(dateObj.getTime()) ? null : meta.date;
+  const date = parseDate(id);
   const tags = meta.tags ?? [];
 
   return { ...meta, title, date, tags };
