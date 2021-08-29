@@ -1,16 +1,24 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import { PostData } from '@/lib/posts';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import teal from '@material-ui/core/colors/teal';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { PostData } from '@/lib/posts';
 
 const useStyles = makeStyles((_: Theme) =>
   createStyles({
     root: {
       cursor: 'pointer',
+    },
+    title: {
+      fontWeight: 'bold',
+    },
+    content: {
+      color: teal[400],
+      fontWeight: 'bold',
     },
   })
 );
@@ -30,8 +38,10 @@ const PostCard: React.FC<Props> = ({ post, className }) => {
 
   return (
     <Card className={root} onClick={navigate}>
-      <CardHeader title={post.title}></CardHeader>
-      <CardContent>{post.date}</CardContent>
+      <CardHeader classes={{ title: classes.title }} title={post.title} />
+      <CardContent>
+        <span className={classes.content}>{post.date}</span>
+      </CardContent>
     </Card>
   );
 };
