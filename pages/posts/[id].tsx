@@ -61,6 +61,9 @@ const useStyles = makeStyles((theme: Theme) =>
       '& p': {
         margin: theme.spacing(2, 0),
       },
+      '& ul, & li': {
+        listStylePosition: 'inside',
+      },
     },
     chip: {
       background: teal[200],
