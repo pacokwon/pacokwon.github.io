@@ -8,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import EmailIcon from '@material-ui/icons/Email';
+import teal from '@material-ui/core/colors/teal';
 import background from '@/public/image/profile-background.png';
 
 import profile from '@/data/profile.json';
@@ -55,6 +56,9 @@ const useStyles = makeStyles(() =>
       display: 'flex',
       justifyContent: 'center',
     },
+    nickname: {
+      color: teal[400],
+    },
     github: {
       color: '#211F1F',
     },
@@ -87,7 +91,12 @@ const ProfileCard: React.FC = () => {
       </div>
       <CardContent className={classes.content}>
         <Typography variant="h4">{profile.name}</Typography>
-        <Typography variant="subtitle2" gutterBottom>
+        <Typography
+          classes={{ colorPrimary: classes.nickname }}
+          color="primary"
+          variant="subtitle2"
+          gutterBottom
+        >
           {profile.nickname}
         </Typography>
         <Typography
