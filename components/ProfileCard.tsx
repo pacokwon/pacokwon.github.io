@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import NextLink from 'next/link';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,10 +10,9 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import EmailIcon from '@material-ui/icons/Email';
 import teal from '@material-ui/core/colors/teal';
 import background from '@/public/image/profile-background.png';
-
 import profile from '@/data/profile.json';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       maxWidth: 900,
@@ -25,24 +24,42 @@ const useStyles = makeStyles(() =>
     },
     background: {
       width: '100%',
+      objectFit: 'cover',
+      [theme.breakpoints.down('sm')]: {
+        height: '160px',
+      },
     },
     profileDiv: {
       position: 'absolute',
-      // a little more higher than the middle
-      top: 'calc(100% - 120px)',
-      // absolute middle
-      left: 'calc(50% - 80px)',
-      // line-height and font-size make the height a little larger
-      height: '160px',
       // we want padding, but we also want to keep the content height as it is
       boxSizing: 'content-box',
       // if we want colored borders, we can set the background color of this div
       backgroundColor: 'white',
       padding: '5px',
       borderRadius: '50%',
+      [theme.breakpoints.down('sm')]: {
+        // image width and height are 60px here
+        height: '120px',
+        top: 'calc(100% - 90px)',
+        left: 'calc(50% - 60px)',
+      },
+      [theme.breakpoints.up('sm')]: {
+        // image width and height are 160px here
+        height: '160px',
+        top: 'calc(100% - 120px)',
+        left: 'calc(50% - 80px)',
+      },
     },
     profileImg: {
       borderRadius: '50%',
+      [theme.breakpoints.down('sm')]: {
+        // image width and height are 60px here
+        height: '120px',
+      },
+      [theme.breakpoints.up('sm')]: {
+        // image width and height are 160px here
+        height: '160px',
+      },
     },
     content: {
       display: 'flex',
@@ -84,8 +101,6 @@ const ProfileCard: React.FC = () => {
             className={classes.profileImg}
             src={profile.image}
             alt="Profile Image"
-            width={160}
-            height={160}
           />
         </div>
       </div>
