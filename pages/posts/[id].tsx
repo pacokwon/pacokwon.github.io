@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import teal from '@material-ui/core/colors/teal';
-import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
@@ -44,6 +43,17 @@ const processor = unified()
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    containerRoot: {
+      [theme.breakpoints.down('xs')]: {
+        padding: theme.spacing(0),
+      },
+    },
+    paper: {
+      [theme.breakpoints.down('xs')]: {
+        padding: theme.spacing(2, 2, 4),
+      },
+      padding: theme.spacing(2, 5, 4),
+    },
     tags: {
       display: 'flex',
       gap: theme.spacing(1),
@@ -75,9 +85,9 @@ const Post: React.FC<Props> = ({ post }) => {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="md">
-      <Paper variant="outlined">
-        <Box className={classes.content} px={5} pt={2} pb={4}>
+    <Container classes={{ root: classes.containerRoot }} maxWidth="md">
+      <Paper className={classes.paper} variant="outlined">
+        <div className={classes.content}>
           <h1>{post.title}</h1>
           <div className={classes.date}>{post.date}</div>
           <div className={classes.tags}>
@@ -92,7 +102,7 @@ const Post: React.FC<Props> = ({ post }) => {
             ))}
           </div>
           {processor.processSync(post.content).result}
-        </Box>
+        </div>
       </Paper>
     </Container>
   );
