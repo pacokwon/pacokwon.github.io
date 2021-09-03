@@ -13,6 +13,7 @@ import rehypeReact from 'rehype-react';
 import Code from '@/components/Code';
 import { getPostIds, getPostData, PostCtx, PostId } from '@/lib/posts';
 import type { PostData } from '@/lib/posts';
+import { options } from '@/lib/languages';
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult<PostId>> {
   const ids = await getPostIds();
@@ -33,7 +34,7 @@ export async function getStaticProps({
 const processor = unified()
   .use(remarkParse)
   .use(remarkRehype)
-  .use(rehypeHighlight)
+  .use(rehypeHighlight, options)
   .use(rehypeReact, {
     createElement: React.createElement,
     components: {
