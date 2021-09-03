@@ -44,22 +44,22 @@ const processor = unified()
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    heading: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: theme.spacing(1),
-      '& > h1': {
-        marginRight: theme.spacing(2),
-      },
-    },
     tags: {
       display: 'flex',
       gap: theme.spacing(1),
       marginBottom: theme.spacing(2),
     },
+    date: {
+      fontWeight: 'bold',
+      marginBottom: theme.spacing(2),
+    },
     content: {
+      '& h1, & h2, & h3': {
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(1),
+      },
       '& p': {
-        margin: theme.spacing(2, 0),
+        margin: theme.spacing(1, 0),
       },
       '& ul, & li': {
         listStylePosition: 'inside',
@@ -78,10 +78,8 @@ const Post: React.FC<Props> = ({ post }) => {
     <Container maxWidth="md">
       <Paper variant="outlined">
         <Box className={classes.content} px={5} pt={2} pb={4}>
-          <div className={classes.heading}>
-            <Box component="h1">{post.title}</Box>
-            <span>{post.date}</span>
-          </div>
+          <h1>{post.title}</h1>
+          <div className={classes.date}>{post.date}</div>
           <div className={classes.tags}>
             {post.tags.map(tag => (
               <Chip
