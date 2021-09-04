@@ -3,6 +3,7 @@ import type { GetStaticPropsResult } from 'next';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import PostCard from '@/components/PostCard';
+import Meta from '@/components/Meta';
 import { getPostIds, getPostData, PostData } from '@/lib/posts';
 import BreakpointMasonry from '@/components/BreakpointMasonry';
 
@@ -41,13 +42,16 @@ const PostIndex: React.FC<Props> = ({ posts }) => {
   const classes = useStyles();
 
   return (
-    <Container>
-      <BreakpointMasonry>
-        {posts.map(post => (
-          <PostCard className={classes.card} key={post.id} post={post} />
-        ))}
-      </BreakpointMasonry>
-    </Container>
+    <>
+      <Meta title="Paco Kwon's Blog Posts" />
+      <Container>
+        <BreakpointMasonry>
+          {posts.map(post => (
+            <PostCard className={classes.card} key={post.id} post={post} />
+          ))}
+        </BreakpointMasonry>
+      </Container>
+    </>
   );
 };
 

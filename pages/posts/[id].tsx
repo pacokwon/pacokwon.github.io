@@ -11,6 +11,7 @@ import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeReact from 'rehype-react';
 import Code from '@/components/Code';
+import Meta from '@/components/Meta';
 import { getPostIds, getPostData, PostCtx, PostId } from '@/lib/posts';
 import type { PostData } from '@/lib/posts';
 import { options } from '@/lib/languages';
@@ -86,26 +87,29 @@ const Post: React.FC<Props> = ({ post }) => {
   const classes = useStyles();
 
   return (
-    <Container classes={{ root: classes.containerRoot }} maxWidth="md">
-      <Paper className={classes.paper} variant="outlined">
-        <div className={classes.content}>
-          <h1>{post.title}</h1>
-          <div className={classes.date}>{post.date}</div>
-          <div className={classes.tags}>
-            {post.tags.map(tag => (
-              <Chip
-                classes={{ colorPrimary: classes.chip }}
-                key={tag}
-                color="primary"
-                label={tag}
-                size="small"
-              />
-            ))}
+    <>
+      <Meta title={post.title} />
+      <Container classes={{ root: classes.containerRoot }} maxWidth="md">
+        <Paper className={classes.paper} variant="outlined">
+          <div className={classes.content}>
+            <h1>{post.title}</h1>
+            <div className={classes.date}>{post.date}</div>
+            <div className={classes.tags}>
+              {post.tags.map(tag => (
+                <Chip
+                  classes={{ colorPrimary: classes.chip }}
+                  key={tag}
+                  color="primary"
+                  label={tag}
+                  size="small"
+                />
+              ))}
+            </div>
+            {processor.processSync(post.content).result}
           </div>
-          {processor.processSync(post.content).result}
-        </div>
-      </Paper>
-    </Container>
+        </Paper>
+      </Container>
+    </>
   );
 };
 
