@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import teal from '@material-ui/core/colors/teal';
-import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
