@@ -24,7 +24,7 @@ const App: React.FC<AppProps> = props => {
   return (
     <>
       <Head>
-        <title>Next.js Page</title>
+        <title>Paco Kwon</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
