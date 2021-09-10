@@ -9,6 +9,6 @@ Rust로 뭔가는 만들어보고 싶은데 마침 에뮬레이터도 만들어�
 
 ## TODO
 
-- Design CPU Struct
-- Implement Opcodes
-- Choose graphics library & integrate with project
+- [ ] Design CPU Struct
+- [ ] Implement Opcodes
+- [ ] Choose graphics library & integrate with project

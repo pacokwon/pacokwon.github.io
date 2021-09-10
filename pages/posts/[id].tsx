@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import type { GetStaticPathsResult, GetStaticPropsResult } from 'next';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeReact from 'rehype-react';
@@ -34,6 +35,7 @@ export async function getStaticProps({
 
 const processor = unified()
   .use(remarkParse)
+  .use(remarkGfm)
   .use(remarkRehype)
   .use(rehypeHighlight, options)
   .use(rehypeReact, {
