@@ -3,6 +3,7 @@ title: 'Understanding the esModuleInterop option in tsconfig.json'
 tags:
   - typescript
   - quicknote
+  - english
 ---
 
 Why is it that different patterns of imports are shown across typescript examples?
