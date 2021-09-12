@@ -34,6 +34,7 @@ runStateT S {getStateT = f} = f
 0부터 시작하는 id를 생성하는 함수가 있다고 하자. 이러한 상황에서는 ST를 다음과 같이 표현하여 id를 뽑아낼 수 있을 것이다.
 
 ```haskell
+-- Plain.hs
 next :: StateT Int Int
 next = S $ \n -> (n, n + 1)
 
@@ -78,6 +79,7 @@ bind sa f = S $ \s ->
 이 함수만 있어도 composition이 더 깔끔해진다. 위에 있는 `main` 함수를 리팩토링해보자.
 
 ```haskell
+-- Bind.hs
 next :: StateT Int Int
 next = S $ \n -> (n, n + 1)
 
@@ -103,7 +105,6 @@ main = fst $ runStateT (
 이 `bind` 라는 함수는 `Monad` 타입클래스에 `(>>=)` 라는 함수의 형태로 존재한다. `StateT` 를 `Monad` 타입클래스의 인스턴스로 만들면 `do` notation의 syntactic sugar 또한 사용할 수 있게 된다. 다만 `Monad` 타입클래스의 인스턴스로 만들기 위해서는 그 superclass인 `Applicative` 까지 구현을 해야 하고, `Applicative` 의 superclass인 `Functor` 까지 구현해야 한다. 구현 코드는 다음과 같이 작성할 수 있다.
 
 ```haskell
--- Main.hs
 import Control.Applicative
 
 -- a type that contains a state transformer
@@ -158,6 +159,7 @@ main = fst $ runStateT (
 `bind` 호출이 없으니 조금 더 간결해졌다. 마지막으로, `StateT` monad를 사용하는 코드를 분리하여 리팩토링을 해보자.
 
 ```haskell
+-- Main.hs
 next :: StateT Int Int
 next = S $ \n -> (n, n + 1)
 
@@ -217,15 +219,16 @@ mlabel (Node l r) = do
 실 꿰매듯 state를 운반하는 코드는 더이상 보이지 않는다. 이 함수는 이렇게 사용할 수 있을 것이다.
 
 ```haskell
+-- Tree.hs
 testTree :: Tree String
 testTree = Node (Leaf "foo") (Node (Leaf "bar") (Leaf "baz"))
 
 main :: IO ()
 main = do
-    let labeled = fst $ runStateT (mlabel testTree) 0
-    print labeled
+  let labeled = fst $ runStateT (mlabel testTree) 0
+  print labeled
 ```
 
 (`runStateT` 랑 0이 불편하면 다른 함수로 만들어두면 된다...여기선 생략한다)
 
-이로써 순수 함수형 언어인 haskell에서 monad를 통해 state를 깔끔하게 처리하는 방법을 알아보았다! 글을 쓰며 나 역시 많이 배운 것 같다.
+이로써 순수 함수형 언어인 haskell에서 monad를 통해 state를 깔끔하게 처리하는 방법을 알아보았다! 글을 쓰며 나 역시 많이 배운 것 같다. 이 게시글에서 사용한 코드는 [이 레포](https://github.com/pacokwon/simple-statet-monad-demo)에 업로드되어있다!
