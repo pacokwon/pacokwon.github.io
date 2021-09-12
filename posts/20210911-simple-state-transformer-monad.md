@@ -2,7 +2,6 @@
 title: 'Simple State Transformer Monads in Haskell with Examples'
 tags:
   - haskell
-  - quicknote
   - ko
 ---
 
