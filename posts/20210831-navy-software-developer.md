@@ -4,7 +4,7 @@ tags:
   - general
   - diary
   - military
-  - korean
+  - ko
 ---
 
 블하 (블로그 하이라는 뜻)

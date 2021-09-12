@@ -2,7 +2,7 @@
 title: 'Building a Personal Blog in Next.js'
 tags:
   - nextjs
-  - english
+  - en
 ---
 
 (This post will be in english. I haven't used english properly in a long time, I might as well start using it in posts like this)

@@ -3,7 +3,7 @@ title: 'Simple State Transformer Monads in Haskell with Examples'
 tags:
   - haskell
   - quicknote
-  - korean
+  - ko
 ---
 
 _This post is based on [this video](https://www.youtube.com/watch?v=WYysg5Nf7AU) from Graham Hutton's playlist on advanced functional programming. I tried to write this post without rewatching the video, to deliver my own understanding of the concept._

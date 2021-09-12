@@ -4,7 +4,7 @@ tags:
   - vim
   - neovim
   - quicknote
-  - english
+  - en
 ---
 
 Just until stumbling upon some random video on youtube about spellchecking in Vim, I didn't know such capability even existed in Vim. Turns out that you can, and it can be utilized in markdown files, commit messages and etc. This post is a demonstration of how you can enable and utilize spellchecking in Vim.
