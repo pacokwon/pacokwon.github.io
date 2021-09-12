@@ -14,6 +14,13 @@ const theme = createTheme({
           padding: 0,
           margin: 0,
         },
+        html: {
+          overflowX: 'hidden',
+        },
+        body: {
+          overflowX: 'hidden',
+          position: 'relative',
+        },
       },
     },
   },
