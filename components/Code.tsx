@@ -10,6 +10,7 @@ const useStyles = makeStyles(() =>
   createStyles({
     block: {
       borderRadius: '8px',
+      fontWeight: 600,
     },
     inline: {
       color: teal[400],
