@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       '& p': {
         margin: theme.spacing(1, 0),
+        fontSize: 'var(--fs-300)',
       },
       '& ul, & li': {
         listStylePosition: 'inside',
