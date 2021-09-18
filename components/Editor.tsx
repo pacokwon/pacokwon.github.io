@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
         marginBottom: theme.spacing(2),
       },
     },
-    title: {
+    filename: {
       width: '100%',
     },
     editor: {
@@ -26,40 +26,38 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-// TODO: tag support. load support
+// TODO: load support
 const Editor: React.FC = () => {
-  const [title, setTitle] = useState('');
+  const [filename, setFilename] = useState<string>('');
   const ref = useRef<ToastEditor>(null);
   const classes = useStyles();
 
-  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
+  const handleFilenameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilename(event.target.value);
   };
 
   const onClick = () => {
-    if (ref.current === null || title === '') return;
+    if (ref.current === null || filename === '') return;
 
-    const meta = `---\ntitle: '${title}'\n---`;
     const content = ref.current.getInstance().getMarkdown();
-
-    const file = `data:,${meta}${content}`;
+    const file = `data:,${content}`;
 
     const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-    const filename = `${date}-${title.toLowerCase().split(' ').join('-')}.md`;
+    const name = `${date}-${filename}.md`;
 
     const atag = document.createElement('a');
     atag.href = file;
-    atag.download = filename;
+    atag.download = name;
     atag.click();
   };
 
   return (
     <div className={classes.root}>
       <TextField
-        className={classes.title}
-        label="Title"
-        value={title}
-        onChange={handleTitleChange}
+        className={classes.filename}
+        label="Filename"
+        value={filename}
+        onChange={handleFilenameChange}
       />
       <ToastEditor ref={ref} usageStatistics={false} previewStyle="vertical" />
       <Button
