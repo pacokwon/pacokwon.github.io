@@ -53,6 +53,7 @@ const Link: React.FC<LinkProps> = ({ children, href }) => {
 
 const NavBar: React.FC = () => {
   const classes = useStyles();
+  const isDev = process.env.NODE_ENV === 'development';
 
   return (
     <div className={classes.root}>
@@ -79,6 +80,11 @@ const NavBar: React.FC = () => {
           <Link href="/posts">
             <Typography variant="body1">Posts</Typography>
           </Link>
+          {isDev && (
+            <Link href="/editor">
+              <Typography variant="body1">Editor</Typography>
+            </Link>
+          )}
         </Toolbar>
       </AppBar>
     </div>
