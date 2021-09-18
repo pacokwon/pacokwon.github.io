@@ -3,42 +3,9 @@ import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '@/lib/theme';
 import Layout from '@/components/Layout';
-import { breakpointValues } from '@/lib/breakpoints';
-
-const breakpoints = createBreakpoints(breakpointValues);
-
-const theme = createTheme({
-  breakpoints,
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        '*': {
-          padding: 0,
-          margin: 0,
-        },
-        html: {
-          overflowX: 'hidden',
-        },
-        body: {
-          overflowX: 'hidden',
-          position: 'relative',
-        },
-        ':root': {
-          '--fs-800': '3rem',
-          '--fs-700': '2rem',
-          '--fs-600': '1.5rem',
-          '--fs-500': '1.25rem',
-          '--fs-400': '1.125rem',
-          '--fs-300': '1rem',
-          '--fs-200': '0.8rem',
-        },
-      },
-    },
-  },
-});
 
 const App: React.FC<AppProps> = props => {
   const { Component, pageProps } = props;

@@ -1,36 +1,22 @@
 import React, { useState, useRef } from 'react';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor as ToastEditor } from '@toast-ui/react-editor';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      '& > *': {
-        marginBottom: theme.spacing(2),
-      },
-    },
-    filename: {
-      width: '100%',
-    },
-    editor: {
-      marginBottom: theme.spacing(2),
-    },
-    submit: {
-      alignSelf: 'flex-end',
-    },
-  })
-);
+const Root = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  '& > *': {
+    marginBottom: theme.spacing(2),
+  },
+}));
 
 // TODO: load support
 const Editor: React.FC = () => {
   const [filename, setFilename] = useState<string>('');
   const ref = useRef<ToastEditor>(null);
-  const classes = useStyles();
 
   const handleFilenameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilename(event.target.value);
@@ -52,23 +38,24 @@ const Editor: React.FC = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <Root>
       <TextField
-        className={classes.filename}
+        variant="standard"
         label="Filename"
         value={filename}
         onChange={handleFilenameChange}
+        sx={{ width: '100%', mb: 2 }}
       />
       <ToastEditor ref={ref} usageStatistics={false} previewStyle="vertical" />
       <Button
-        className={classes.submit}
         variant="contained"
         color="primary"
         onClick={onClick}
+        sx={{ alignSelf: 'flex-end' }}
       >
         Save
       </Button>
-    </div>
+    </Root>
   );
 };
 

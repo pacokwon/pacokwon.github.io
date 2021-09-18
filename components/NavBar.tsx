@@ -1,73 +1,59 @@
 import React from 'react';
 import NextLink from 'next/link';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import MuiLink from '@material-ui/core/Link';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import teal from '@material-ui/core/colors/teal';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      marginBottom: theme.spacing(4),
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    appbar: {
-      boxShadow: 'none',
-      backgroundColor: theme.palette.background.default,
-      color: 'black',
-    },
-    toolbar: {
-      padding: `0 ${theme.spacing(4)}px`,
-      '& > *': {
-        marginRight: theme.spacing(2),
-      },
-    },
-    main: {
-      color: teal[400],
-      fontWeight: 'bold',
-    },
-    mainUnderline: {
-      color: teal[400],
-    },
-    leftmost: {
-      marginRight: theme.spacing(4),
-    },
-  })
-);
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import MuiAppBar from '@mui/material/AppBar';
+import MuiLink from '@mui/material/Link';
+import { styled } from '@mui/material/styles';
+import { teal } from '@mui/material/colors';
 
 type LinkProps = {
   href: string;
 };
-const Link: React.FC<LinkProps> = ({ children, href }) => {
-  return (
-    <NextLink href={href} passHref>
-      <MuiLink color="inherit">{children}</MuiLink>
-    </NextLink>
-  );
-};
+const Link: React.FC<LinkProps> = ({ children, href }) => (
+  <NextLink href={href} passHref>
+    <MuiLink sx={{ mr: 2 }} color="inherit">
+      {children}
+    </MuiLink>
+  </NextLink>
+);
+
+const Root = styled('div')(({ theme }) => ({
+  flexGrow: 1,
+  marginBottom: theme.spacing(4),
+}));
+
+const AppBar = styled(MuiAppBar)(({ theme }) => ({
+  '&.MuiAppBar-colorPrimary': {
+    boxShadow: 'none',
+    backgroundColor: theme.palette.grey[50],
+    color: 'black',
+  },
+}));
 
 const NavBar: React.FC = () => {
-  const classes = useStyles();
   const isDev = process.env.NODE_ENV === 'development';
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static" classes={{ colorPrimary: classes.appbar }}>
-        <Toolbar className={classes.toolbar}>
+    <Root>
+      <AppBar position="static" color="primary">
+        <Toolbar sx={{ px: 4 }} disableGutters={true}>
           <NextLink href="/" passHref>
             <MuiLink
-              classes={{ underlineHover: classes.mainUnderline }}
-              className={classes.leftmost}
-              color="inherit"
+              sx={{
+                marginRight: 4,
+                '.MuiLink-underlineHover': {
+                  color: teal[400],
+                },
+              }}
             >
               <Typography
-                classes={{ colorPrimary: classes.main }}
-                color="primary"
+                sx={{
+                  '&.MuiTypography-root': {
+                    color: teal[400],
+                    fontWeight: 'bold',
+                  },
+                }}
                 variant="h5"
               >
                 Paco Kwon
@@ -87,7 +73,7 @@ const NavBar: React.FC = () => {
           )}
         </Toolbar>
       </AppBar>
-    </div>
+    </Root>
   );
 };
 

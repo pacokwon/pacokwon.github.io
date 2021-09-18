@@ -1,18 +1,22 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import teal from '@material-ui/core/colors/teal';
-import Chip from '@material-ui/core/Chip';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
+import MuiChip from '@mui/material/Chip';
+import MuiContainer from '@mui/material/Container';
+import MuiPaper from '@mui/material/Paper';
+import { teal } from '@mui/material/colors';
+import { styled } from '@mui/material/styles';
+
 import type { GetStaticPathsResult, GetStaticPropsResult } from 'next';
+
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeReact from 'rehype-react';
+
 import Code from '@/components/Code';
 import Meta from '@/components/Meta';
+
 import { getPostIds, getPostData, PostCtx, PostId } from '@/lib/posts';
 import type { PostData } from '@/lib/posts';
 import { options } from '@/lib/languages';
@@ -45,71 +49,65 @@ const processor = unified()
     },
   });
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    containerRoot: {
-      [theme.breakpoints.down('xs')]: {
-        padding: theme.spacing(0),
-      },
+const Paper = styled(MuiPaper)(({ theme }) => ({
+  [theme.breakpoints.down('xs')]: {
+    padding: theme.spacing(2, 2, 4),
+  },
+  padding: theme.spacing(2, 5, 4),
+}));
+
+const Container = styled(MuiContainer)(({ theme }) => ({
+  '&.MuiContainer-root': {
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(0),
     },
-    paper: {
-      [theme.breakpoints.down('xs')]: {
-        padding: theme.spacing(2, 2, 4),
-      },
-      padding: theme.spacing(2, 5, 4),
-    },
-    tags: {
-      display: 'flex',
-      gap: theme.spacing(1),
-      marginBottom: theme.spacing(2),
-    },
-    date: {
-      fontWeight: 'bold',
-      marginBottom: theme.spacing(2),
-    },
-    content: {
-      '& h1, & h2, & h3': {
-        marginTop: theme.spacing(3),
-        marginBottom: theme.spacing(1),
-      },
-      '& p': {
-        margin: theme.spacing(1, 0),
-        fontSize: 'var(--fs-300)',
-      },
-      '& ul, & li': {
-        listStylePosition: 'inside',
-      },
-    },
-    chip: {
-      background: teal[200],
-    },
-  })
-);
+  },
+}));
+
+const Chip = styled(MuiChip)({
+  '&.MuiChip-colorPrimary': {
+    background: teal[200],
+  },
+});
+
+const PostContent = styled('div')(({ theme }) => ({
+  '& h1, & h2, & h3': {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(1),
+  },
+  '& p': {
+    margin: theme.spacing(1, 0),
+    fontSize: 'var(--fs-300)',
+  },
+}));
+
+const PostDate = styled('div')(({ theme }) => ({
+  fontWeight: 'bold',
+  marginBottom: theme.spacing(2),
+}));
+
+const PostTags = styled('div')(({ theme }) => ({
+  display: 'flex',
+  gap: theme.spacing(1),
+  marginBottom: theme.spacing(2),
+}));
 
 const Post: React.FC<Props> = ({ post }) => {
-  const classes = useStyles();
-
   return (
     <>
       <Meta title={post.title} />
-      <Container classes={{ root: classes.containerRoot }} maxWidth="md">
-        <Paper className={classes.paper} variant="outlined">
-          <div className={classes.content}>
+      <Container maxWidth="md">
+        <Paper variant="outlined">
+          <PostContent>
             <h1>{post.title}</h1>
-            <div className={classes.date}>{post.date}</div>
-            <div className={classes.tags}>
+            <PostDate>{post.date}</PostDate>
+            <PostTags>
               {post.tags.map(tag => (
-                <Chip
-                  classes={{ colorPrimary: classes.chip }}
-                  key={tag}
-                  color="primary"
-                  label={tag}
-                  size="small"
-                />
+                <Chip key={tag} color="primary" label={tag} size="small" />
               ))}
-            </div>
+            </PostTags>
             {processor.processSync(post.content).result}
-          </div>
+          </PostContent>
         </Paper>
       </Container>
     </>
