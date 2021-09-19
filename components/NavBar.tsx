@@ -42,7 +42,7 @@ const NavBar: React.FC = () => {
             <MuiLink
               sx={{
                 marginRight: 4,
-                '.MuiLink-underlineHover': {
+                '&.MuiLink-root, &.MuiLink-underlineHover': {
                   color: teal[400],
                 },
               }}
