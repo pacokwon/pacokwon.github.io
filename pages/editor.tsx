@@ -1,6 +1,6 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-import Container from '@material-ui/core/Container';
+import Container from '@mui/material/Container';
 
 const Editor = dynamic(() => import('@/components/Editor'), { ssr: false });
 

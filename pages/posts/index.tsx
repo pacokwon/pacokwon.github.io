@@ -32,19 +32,17 @@ const TransitionPostCard = styled(PostCard)(({ theme }) => ({
   },
 }));
 
-const PostIndex: React.FC<Props> = ({ posts }) => {
-  return (
-    <>
-      <Meta title="Paco Kwon's Blog Posts" />
-      <Container>
-        <BreakpointMasonry>
-          {posts.map(post => (
-            <TransitionPostCard key={post.id} post={post} />
-          ))}
-        </BreakpointMasonry>
-      </Container>
-    </>
-  );
-};
+const PostIndex: React.FC<Props> = ({ posts }) => (
+  <>
+    <Meta title="Paco Kwon's Blog Posts" />
+    <Container>
+      <BreakpointMasonry>
+        {posts.map(post => (
+          <TransitionPostCard key={post.id} post={post} />
+        ))}
+      </BreakpointMasonry>
+    </Container>
+  </>
+);
 
 export default PostIndex;

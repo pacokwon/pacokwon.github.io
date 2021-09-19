@@ -79,6 +79,9 @@ const PostContent = styled('div')(({ theme }) => ({
     margin: theme.spacing(1, 0),
     fontSize: 'var(--fs-300)',
   },
+  '& ul, & li': {
+    listStylePosition: 'inside',
+  },
 }));
 
 const PostDate = styled('div')(({ theme }) => ({
