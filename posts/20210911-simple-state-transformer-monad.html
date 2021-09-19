@@ -3,9 +3,8 @@
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-688XJFWYJL', { page_path: window.location.pathname });
-            </script><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><meta charSet="utf-8"/><meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/><title>Simple State Transformer Monads in Haskell with Examples</title><meta property="og:title" content="Simple State Transformer Monads in Haskell with Examples"/><meta property="og:site_name" content="Paco Kwon&#x27;s Blog"/><meta name="next-head-count" content="5"/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-a54b4f32bdc1ef890ddd.js"></script><script src="/_next/static/chunks/webpack-474b21629ffd5920d319.js" defer=""></script><script src="/_next/static/chunks/framework-c93ed74a065331c4bd75.js" defer=""></script><script src="/_next/static/chunks/main-222191e14496d29481e0.js" defer=""></script><script src="/_next/static/chunks/pages/_app-c3822ad9e3d947d4fae7.js" defer=""></script><script src="/_next/static/chunks/706-723f67c9545f80afe3b2.js" defer=""></script><script src="/_next/static/chunks/130-b0d467421d8bdcb51a71.js" defer=""></script><script src="/_next/static/chunks/797-f266acce2e52ecaa3351.js" defer=""></script><script src="/_next/static/chunks/pages/posts/%5Bid%5D-4ec8e5d7fb44f4f647f7.js" defer=""></script><script src="/_next/static/NX5tuFHneWndgT5mVN4hn/_buildManifest.js" defer=""></script><script src="/_next/static/NX5tuFHneWndgT5mVN4hn/_ssgManifest.js" defer=""></script><style id="jss-server-side">html {
+            </script><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><meta charSet="utf-8"/><meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/><title>Simple State Transformer Monads in Haskell with Examples</title><meta property="og:title" content="Simple State Transformer Monads in Haskell with Examples"/><meta property="og:site_name" content="Paco Kwon&#x27;s Blog"/><meta name="next-head-count" content="5"/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-a54b4f32bdc1ef890ddd.js"></script><script src="/_next/static/chunks/webpack-c1da4111838505860c41.js" defer=""></script><script src="/_next/static/chunks/framework-c93ed74a065331c4bd75.js" defer=""></script><script src="/_next/static/chunks/main-222191e14496d29481e0.js" defer=""></script><script src="/_next/static/chunks/pages/_app-c2a8b39f4c819139684c.js" defer=""></script><script src="/_next/static/chunks/573-26f65e058e6a4a6a223e.js" defer=""></script><script src="/_next/static/chunks/926-c59a902ebe7ce9b0b52f.js" defer=""></script><script src="/_next/static/chunks/228-ea18ff962f65866d718d.js" defer=""></script><script src="/_next/static/chunks/pages/posts/%5Bid%5D-f3b48c6ec79282f0efad.js" defer=""></script><script src="/_next/static/aiw1KCiov48hOGnGfGDdp/_buildManifest.js" defer=""></script><script src="/_next/static/aiw1KCiov48hOGnGfGDdp/_ssgManifest.js" defer=""></script><style id="jss-server-side">html {
   box-sizing: border-box;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,9 +17,7 @@ strong, b {
 body {
   color: rgba(0, 0, 0, 0.87);
   margin: 0;
-  position: relative;
   font-size: 0.875rem;
-  overflow-x: hidden;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
   line-height: 1.43;
@@ -34,724 +31,22 @@ body {
 }
 body::backdrop {
   background-color: #fafafa;
-}
-* {
-  margin: 0;
-  padding: 0;
-}
-:root {
-  --fs-200: 0.8rem;
-  --fs-300: 1rem;
-  --fs-400: 1.125rem;
-  --fs-500: 1.25rem;
-  --fs-600: 1.5rem;
-  --fs-700: 2rem;
-  --fs-800: 3rem;
-}
-
-.jss8 {
-  margin-bottom: 40px;
-}
-.MuiPaper-root {
-  color: rgba(0, 0, 0, 0.87);
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  background-color: #fff;
-}
-.MuiPaper-rounded {
-  border-radius: 4px;
-}
-.MuiPaper-outlined {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-}
-.MuiPaper-elevation0 {
-  box-shadow: none;
-}
-.MuiPaper-elevation1 {
-  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation2 {
-  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation3 {
-  box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation4 {
-  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation5 {
-  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation6 {
-  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation7 {
-  box-shadow: 0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation8 {
-  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation9 {
-  box-shadow: 0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation10 {
-  box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation11 {
-  box-shadow: 0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation12 {
-  box-shadow: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation13 {
-  box-shadow: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation14 {
-  box-shadow: 0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation15 {
-  box-shadow: 0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation16 {
-  box-shadow: 0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation17 {
-  box-shadow: 0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation18 {
-  box-shadow: 0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation19 {
-  box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation20 {
-  box-shadow: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation21 {
-  box-shadow: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation22 {
-  box-shadow: 0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation23 {
-  box-shadow: 0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12);
-}
-.MuiPaper-elevation24 {
-  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
-}
-.MuiAppBar-root {
-  width: 100%;
-  display: flex;
-  z-index: 1100;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  flex-direction: column;
-}
-.MuiAppBar-positionFixed {
-  top: 0;
-  left: auto;
-  right: 0;
-  position: fixed;
-}
-@media print {
-  .MuiAppBar-positionFixed {
-    position: absolute;
-  }
-}
-  .MuiAppBar-positionAbsolute {
-    top: 0;
-    left: auto;
-    right: 0;
-    position: absolute;
-  }
-  .MuiAppBar-positionSticky {
-    top: 0;
-    left: auto;
-    right: 0;
-    position: sticky;
-  }
-  .MuiAppBar-positionStatic {
-    position: static;
-  }
-  .MuiAppBar-positionRelative {
-    position: relative;
-  }
-  .MuiAppBar-colorDefault {
-    color: rgba(0, 0, 0, 0.87);
-    background-color: #f5f5f5;
-  }
-  .MuiAppBar-colorPrimary {
-    color: #fff;
-    background-color: #3f51b5;
-  }
-  .MuiAppBar-colorSecondary {
-    color: #fff;
-    background-color: #f50057;
-  }
-  .MuiAppBar-colorInherit {
-    color: inherit;
-  }
-  .MuiAppBar-colorTransparent {
-    color: inherit;
-    background-color: transparent;
-  }
-  .MuiToolbar-root {
-    display: flex;
-    position: relative;
-    align-items: center;
-  }
-  .MuiToolbar-gutters {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-@media (min-width:600px) {
-  .MuiToolbar-gutters {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-}
-  .MuiToolbar-regular {
-    min-height: 56px;
-  }
-@media (min-width:0px) and (orientation: landscape) {
-  .MuiToolbar-regular {
-    min-height: 48px;
-  }
-}
-@media (min-width:600px) {
-  .MuiToolbar-regular {
-    min-height: 64px;
-  }
-}
-  .MuiToolbar-dense {
-    min-height: 48px;
-  }
-  .MuiTypography-root {
-    margin: 0;
-  }
-  .MuiTypography-body2 {
-    font-size: 0.875rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 400;
-    line-height: 1.43;
-    letter-spacing: 0.01071em;
-  }
-  .MuiTypography-body1 {
-    font-size: 1rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0.00938em;
-  }
-  .MuiTypography-caption {
-    font-size: 0.75rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 400;
-    line-height: 1.66;
-    letter-spacing: 0.03333em;
-  }
-  .MuiTypography-button {
-    font-size: 0.875rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 500;
-    line-height: 1.75;
-    letter-spacing: 0.02857em;
-    text-transform: uppercase;
-  }
-  .MuiTypography-h1 {
-    font-size: 6rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 300;
-    line-height: 1.167;
-    letter-spacing: -0.01562em;
-  }
-  .MuiTypography-h2 {
-    font-size: 3.75rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 300;
-    line-height: 1.2;
-    letter-spacing: -0.00833em;
-  }
-  .MuiTypography-h3 {
-    font-size: 3rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 400;
-    line-height: 1.167;
-    letter-spacing: 0em;
-  }
-  .MuiTypography-h4 {
-    font-size: 2.125rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 400;
-    line-height: 1.235;
-    letter-spacing: 0.00735em;
-  }
-  .MuiTypography-h5 {
-    font-size: 1.5rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 400;
-    line-height: 1.334;
-    letter-spacing: 0em;
-  }
-  .MuiTypography-h6 {
-    font-size: 1.25rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 500;
-    line-height: 1.6;
-    letter-spacing: 0.0075em;
-  }
-  .MuiTypography-subtitle1 {
-    font-size: 1rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 400;
-    line-height: 1.75;
-    letter-spacing: 0.00938em;
-  }
-  .MuiTypography-subtitle2 {
-    font-size: 0.875rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 500;
-    line-height: 1.57;
-    letter-spacing: 0.00714em;
-  }
-  .MuiTypography-overline {
-    font-size: 0.75rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 400;
-    line-height: 2.66;
-    letter-spacing: 0.08333em;
-    text-transform: uppercase;
-  }
-  .MuiTypography-srOnly {
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-  }
-  .MuiTypography-alignLeft {
-    text-align: left;
-  }
-  .MuiTypography-alignCenter {
-    text-align: center;
-  }
-  .MuiTypography-alignRight {
-    text-align: right;
-  }
-  .MuiTypography-alignJustify {
-    text-align: justify;
-  }
-  .MuiTypography-noWrap {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  .MuiTypography-gutterBottom {
-    margin-bottom: 0.35em;
-  }
-  .MuiTypography-paragraph {
-    margin-bottom: 16px;
-  }
-  .MuiTypography-colorInherit {
-    color: inherit;
-  }
-  .MuiTypography-colorPrimary {
-    color: #3f51b5;
-  }
-  .MuiTypography-colorSecondary {
-    color: #f50057;
-  }
-  .MuiTypography-colorTextPrimary {
-    color: rgba(0, 0, 0, 0.87);
-  }
-  .MuiTypography-colorTextSecondary {
-    color: rgba(0, 0, 0, 0.54);
-  }
-  .MuiTypography-colorError {
-    color: #f44336;
-  }
-  .MuiTypography-displayInline {
-    display: inline;
-  }
-  .MuiTypography-displayBlock {
-    display: block;
-  }
-  .MuiLink-underlineNone {
-    text-decoration: none;
-  }
-  .MuiLink-underlineHover {
-    text-decoration: none;
-  }
-  .MuiLink-underlineHover:hover {
-    text-decoration: underline;
-  }
-  .MuiLink-underlineAlways {
-    text-decoration: underline;
-  }
-  .MuiLink-button {
-    border: 0;
-    cursor: pointer;
-    margin: 0;
-    outline: 0;
-    padding: 0;
-    position: relative;
-    user-select: none;
-    border-radius: 0;
-    vertical-align: middle;
-    -moz-appearance: none;
-    background-color: transparent;
-    -webkit-appearance: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .MuiLink-button::-moz-focus-inner {
-    border-style: none;
-  }
-  .MuiLink-button.Mui-focusVisible {
-    outline: auto;
-  }
-  .jss1 {
-    flex-grow: 1;
-    margin-bottom: 32px;
-  }
-  .jss2 {
-    margin-right: 16px;
-  }
-  .jss3 {
-    color: black;
-    box-shadow: none;
-    background-color: #fafafa;
-  }
-  .jss4 {
-    padding: 0 32px;
-  }
-  .jss4 > * {
-    margin-right: 16px;
-  }
-  .jss5 {
-    color: #26a69a;
-    font-weight: bold;
-  }
-  .jss6 {
-    color: #26a69a;
-  }
-  .jss7 {
-    margin-right: 32px;
-  }
-  .MuiContainer-root {
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-@media (min-width:600px) {
-  .MuiContainer-root {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-}
-  .MuiContainer-disableGutters {
-    padding-left: 0;
-    padding-right: 0;
-  }
-@media (min-width:600px) {
-  .MuiContainer-fixed {
-    max-width: 600px;
-  }
-}
-@media (min-width:960px) {
-  .MuiContainer-fixed {
-    max-width: 960px;
-  }
-}
-@media (min-width:1280px) {
-  .MuiContainer-fixed {
-    max-width: 1280px;
-  }
-}
-@media (min-width:1920px) {
-  .MuiContainer-fixed {
-    max-width: 1920px;
-  }
-}
-@media (min-width:0px) {
-  .MuiContainer-maxWidthXs {
-    max-width: 444px;
-  }
-}
-@media (min-width:600px) {
-  .MuiContainer-maxWidthSm {
-    max-width: 600px;
-  }
-}
-@media (min-width:960px) {
-  .MuiContainer-maxWidthMd {
-    max-width: 960px;
-  }
-}
-@media (min-width:1280px) {
-  .MuiContainer-maxWidthLg {
-    max-width: 1280px;
-  }
-}
-@media (min-width:1920px) {
-  .MuiContainer-maxWidthXl {
-    max-width: 1920px;
-  }
-}
-  .MuiChip-root {
-    color: rgba(0, 0, 0, 0.87);
-    border: none;
-    cursor: default;
-    height: 32px;
-    display: inline-flex;
-    outline: 0;
-    padding: 0;
-    font-size: 0.8125rem;
-    box-sizing: border-box;
-    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    align-items: center;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    white-space: nowrap;
-    border-radius: 16px;
-    vertical-align: middle;
-    justify-content: center;
-    text-decoration: none;
-    background-color: #e0e0e0;
-  }
-  .MuiChip-root.Mui-disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  .MuiChip-root .MuiChip-avatar {
-    color: #616161;
-    width: 24px;
-    height: 24px;
-    font-size: 0.75rem;
-    margin-left: 5px;
-    margin-right: -6px;
-  }
-  .MuiChip-root .MuiChip-avatarColorPrimary {
-    color: #fff;
-    background-color: #303f9f;
-  }
-  .MuiChip-root .MuiChip-avatarColorSecondary {
-    color: #fff;
-    background-color: #c51162;
-  }
-  .MuiChip-root .MuiChip-avatarSmall {
-    width: 18px;
-    height: 18px;
-    font-size: 0.625rem;
-    margin-left: 4px;
-    margin-right: -4px;
-  }
-  .MuiChip-sizeSmall {
-    height: 24px;
-  }
-  .MuiChip-colorPrimary {
-    color: #fff;
-    background-color: #3f51b5;
-  }
-  .MuiChip-colorSecondary {
-    color: #fff;
-    background-color: #f50057;
-  }
-  .MuiChip-clickable {
-    cursor: pointer;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .MuiChip-clickable:hover, .MuiChip-clickable:focus {
-    background-color: rgb(206, 206, 206);
-  }
-  .MuiChip-clickable:active {
-    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
-  }
-  .MuiChip-clickableColorPrimary:hover, .MuiChip-clickableColorPrimary:focus {
-    background-color: rgb(78, 94, 186);
-  }
-  .MuiChip-clickableColorSecondary:hover, .MuiChip-clickableColorSecondary:focus {
-    background-color: rgb(245, 20, 100);
-  }
-  .MuiChip-deletable:focus {
-    background-color: rgb(206, 206, 206);
-  }
-  .MuiChip-deletableColorPrimary:focus {
-    background-color: rgb(101, 115, 195);
-  }
-  .MuiChip-deletableColorSecondary:focus {
-    background-color: rgb(247, 51, 120);
-  }
-  .MuiChip-outlined {
-    border: 1px solid rgba(0, 0, 0, 0.23);
-    background-color: transparent;
-  }
-  .MuiChip-clickable.MuiChip-outlined:hover, .MuiChip-clickable.MuiChip-outlined:focus, .MuiChip-deletable.MuiChip-outlined:focus {
-    background-color: rgba(0, 0, 0, 0.04);
-  }
-  .MuiChip-outlined .MuiChip-avatar {
-    margin-left: 4px;
-  }
-  .MuiChip-outlined .MuiChip-avatarSmall {
-    margin-left: 2px;
-  }
-  .MuiChip-outlined .MuiChip-icon {
-    margin-left: 4px;
-  }
-  .MuiChip-outlined .MuiChip-iconSmall {
-    margin-left: 2px;
-  }
-  .MuiChip-outlined .MuiChip-deleteIcon {
-    margin-right: 5px;
-  }
-  .MuiChip-outlined .MuiChip-deleteIconSmall {
-    margin-right: 3px;
-  }
-  .MuiChip-outlinedPrimary {
-    color: #3f51b5;
-    border: 1px solid #3f51b5;
-  }
-  .MuiChip-clickable.MuiChip-outlinedPrimary:hover, .MuiChip-clickable.MuiChip-outlinedPrimary:focus, .MuiChip-deletable.MuiChip-outlinedPrimary:focus {
-    background-color: rgba(63, 81, 181, 0.04);
-  }
-  .MuiChip-outlinedSecondary {
-    color: #f50057;
-    border: 1px solid #f50057;
-  }
-  .MuiChip-clickable.MuiChip-outlinedSecondary:hover, .MuiChip-clickable.MuiChip-outlinedSecondary:focus, .MuiChip-deletable.MuiChip-outlinedSecondary:focus {
-    background-color: rgba(245, 0, 87, 0.04);
-  }
-  .MuiChip-icon {
-    color: #616161;
-    margin-left: 5px;
-    margin-right: -6px;
-  }
-  .MuiChip-iconSmall {
-    width: 18px;
-    height: 18px;
-    margin-left: 4px;
-    margin-right: -4px;
-  }
-  .MuiChip-iconColorPrimary {
-    color: inherit;
-  }
-  .MuiChip-iconColorSecondary {
-    color: inherit;
-  }
-  .MuiChip-label {
-    overflow: hidden;
-    white-space: nowrap;
-    padding-left: 12px;
-    padding-right: 12px;
-    text-overflow: ellipsis;
-  }
-  .MuiChip-labelSmall {
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-  .MuiChip-deleteIcon {
-    color: rgba(0, 0, 0, 0.26);
-    width: 22px;
-    cursor: pointer;
-    height: 22px;
-    margin: 0 5px 0 -6px;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .MuiChip-deleteIcon:hover {
-    color: rgba(0, 0, 0, 0.4);
-  }
-  .MuiChip-deleteIconSmall {
-    width: 16px;
-    height: 16px;
-    margin-left: -4px;
-    margin-right: 4px;
-  }
-  .MuiChip-deleteIconColorPrimary {
-    color: rgba(255, 255, 255, 0.7);
-  }
-  .MuiChip-deleteIconColorPrimary:hover, .MuiChip-deleteIconColorPrimary:active {
-    color: #fff;
-  }
-  .MuiChip-deleteIconColorSecondary {
-    color: rgba(255, 255, 255, 0.7);
-  }
-  .MuiChip-deleteIconColorSecondary:hover, .MuiChip-deleteIconColorSecondary:active {
-    color: #fff;
-  }
-  .MuiChip-deleteIconOutlinedColorPrimary {
-    color: rgba(63, 81, 181, 0.7);
-  }
-  .MuiChip-deleteIconOutlinedColorPrimary:hover, .MuiChip-deleteIconOutlinedColorPrimary:active {
-    color: #3f51b5;
-  }
-  .MuiChip-deleteIconOutlinedColorSecondary {
-    color: rgba(245, 0, 87, 0.7);
-  }
-  .MuiChip-deleteIconOutlinedColorSecondary:hover, .MuiChip-deleteIconOutlinedColorSecondary:active {
-    color: #f50057;
-  }
-  .jss15 {
-    font-weight: 600;
-    border-radius: 8px;
-  }
-  .jss16 {
-    color: #26a69a;
-    background: #fafafa;
-    font-weight: bold;
-    border-radius: 4px;
-  }
-@media (max-width:599.95px) {
-  .jss9 {
-    padding: 0;
-  }
-}
-  .jss10 {
-    padding: 16px 40px 32px;
-  }
-@media (max-width:599.95px) {
-  .jss10 {
-    padding: 16px 16px 32px;
-  }
-}
-  .jss11 {
-    gap: 8px;
-    display: flex;
-    margin-bottom: 16px;
-  }
-  .jss12 {
-    font-weight: bold;
-    margin-bottom: 16px;
-  }
-  .jss13 h1, .jss13 h2, .jss13 h3 {
-    margin-top: 24px;
-    margin-bottom: 8px;
-  }
-  .jss13 p {
-    margin: 8px 0px;
-    font-size: var(--fs-300);
-  }
-  .jss13 ul, .jss13 li {
-    list-style-position: inside;
-  }
-  .jss14 {
-    background: #80cbc4;
-  }</style><style data-href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fBBc-.woff) format('woff')}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxM.woff) format('woff')}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fBBc-.woff) format('woff')}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfBBc-.woff) format('woff')}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fCRc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fABc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fCBc4AMP6lbBP.woff2) format('woff2');unicode-range:U+1F00-1FFF}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fBxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0370-03FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fCxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9,U+20AB}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fChc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fBBc4AMP6lQ.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu72xKKTU1Kvnz.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu5mxKKTU1Kvnz.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu7mxKKTU1Kvnz.woff2) format('woff2');unicode-range:U+1F00-1FFF}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4WxKKTU1Kvnz.woff2) format('woff2');unicode-range:U+0370-03FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu7WxKKTU1Kvnz.woff2) format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9,U+20AB}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu7GxKKTU1Kvnz.woff2) format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fCRc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fABc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fCBc4AMP6lbBP.woff2) format('woff2');unicode-range:U+1F00-1FFF}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fBxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0370-03FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fCxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9,U+20AB}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fChc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfCRc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfABc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfCBc4AMP6lbBP.woff2) format('woff2');unicode-range:U+1F00-1FFF}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfBxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0370-03FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfCxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9,U+20AB}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfChc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfBBc4AMP6lQ.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style></head><body><div id="__next"><div class="jss1"><header class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary jss3 MuiPaper-elevation4"><div class="MuiToolbar-root MuiToolbar-regular jss4 MuiToolbar-gutters"><a class="MuiTypography-root MuiLink-root MuiLink-underlineHover jss6 jss7 MuiTypography-colorInherit" href="/"><h5 class="MuiTypography-root MuiTypography-h5 MuiTypography-colorPrimary jss5">Paco Kwon</h5></a><a class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorInherit" href="/bio"><p class="MuiTypography-root MuiTypography-body1">Bio</p></a><a class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorInherit" href="/posts"><p class="MuiTypography-root MuiTypography-body1">Posts</p></a></div></header></div><main><div class="MuiBox-root jss8"><div class="MuiContainer-root jss9 MuiContainer-maxWidthMd"><div class="MuiPaper-root jss10 MuiPaper-outlined MuiPaper-rounded"><div class="jss13"><h1>Simple State Transformer Monads in Haskell with Examples</h1><div class="jss12">2021-09-11</div><div class="jss11"><div class="MuiChip-root MuiChip-colorPrimary jss14 MuiChip-sizeSmall"><span class="MuiChip-label MuiChip-labelSmall">haskell</span></div><div class="MuiChip-root MuiChip-colorPrimary jss14 MuiChip-sizeSmall"><span class="MuiChip-label MuiChip-labelSmall">ko</span></div></div><div><p><em>This post is based on <a href="https://www.youtube.com/watch?v=WYysg5Nf7AU">this video</a> from Graham Hutton&#x27;s playlist on advanced functional programming. I tried to write this post without rewatching the video, to deliver my own understanding of the concept.</em></p>
-<h2>Defining <code class="jss16">StateT</code></h2>
+}</style><style data-href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fBBc-.woff) format('woff')}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxM.woff) format('woff')}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fBBc-.woff) format('woff')}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfBBc-.woff) format('woff')}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fCRc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fABc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fCBc4AMP6lbBP.woff2) format('woff2');unicode-range:U+1F00-1FFF}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fBxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0370-03FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fCxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9,U+20AB}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fChc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmSU5fBBc4AMP6lQ.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu72xKKTU1Kvnz.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu5mxKKTU1Kvnz.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu7mxKKTU1Kvnz.woff2) format('woff2');unicode-range:U+1F00-1FFF}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4WxKKTU1Kvnz.woff2) format('woff2');unicode-range:U+0370-03FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu7WxKKTU1Kvnz.woff2) format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9,U+20AB}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu7GxKKTU1Kvnz.woff2) format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fCRc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fABc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fCBc4AMP6lbBP.woff2) format('woff2');unicode-range:U+1F00-1FFF}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fBxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0370-03FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fCxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9,U+20AB}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fChc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfCRc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfABc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfCBc4AMP6lbBP.woff2) format('woff2');unicode-range:U+1F00-1FFF}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfBxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0370-03FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfCxc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9,U+20AB}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfChc4AMP6lbBP.woff2) format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmWUlfBBc4AMP6lQ.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style></head><body><div id="__next"><style data-emotion="css 5liw95">.css-5liw95{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;margin-bottom:32px;}</style><div class="css-5liw95"><style data-emotion="css 1qfvvjb">.css-1qfvvjb.MuiAppBar-colorPrimary{box-shadow:none;background-color:#fafafa;color:black;}</style><style data-emotion="css 1tgtywj">.css-1tgtywj{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;box-sizing:border-box;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;position:static;background-color:#1976d2;color:#fff;}.css-1tgtywj.MuiAppBar-colorPrimary{box-shadow:none;background-color:#fafafa;color:black;}</style><style data-emotion="css 16f5hay">.css-16f5hay{background-color:#fff;color:rgba(0, 0, 0, 0.87);-webkit-transition:box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;box-shadow:0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;box-sizing:border-box;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;position:static;background-color:#1976d2;color:#fff;}.css-16f5hay.MuiAppBar-colorPrimary{box-shadow:none;background-color:#fafafa;color:black;}</style><header class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-16f5hay"><style data-emotion="css ssygbp">.css-ssygbp{position:relative;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;min-height:56px;padding-left:32px;padding-right:32px;}@media (min-width:0px) and (orientation: landscape){.css-ssygbp{min-height:48px;}}@media (min-width:600px){.css-ssygbp{min-height:64px;}}</style><div class="MuiToolbar-root MuiToolbar-regular css-ssygbp"><style data-emotion="css 1tw7hg4">.css-1tw7hg4{-webkit-text-decoration:underline;text-decoration:underline;text-decoration-color:rgba(25, 118, 210, 0.4);margin-right:32px;}.css-1tw7hg4:hover{text-decoration-color:inherit;}.css-1tw7hg4 .MuiLink-underlineHover{color:#26a69a;}</style><style data-emotion="css 17ycrte">.css-17ycrte{margin:0;color:#1976d2;-webkit-text-decoration:underline;text-decoration:underline;text-decoration-color:rgba(25, 118, 210, 0.4);margin-right:32px;}.css-17ycrte:hover{text-decoration-color:inherit;}.css-17ycrte .MuiLink-underlineHover{color:#26a69a;}</style><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-17ycrte" href="/"><style data-emotion="css eebyhy">.css-eebyhy{margin:0;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:400;font-size:1.5rem;line-height:1.334;letter-spacing:0em;}.css-eebyhy.MuiTypography-root{color:#26a69a;font-weight:700;}</style><h5 class="MuiTypography-root MuiTypography-h5 css-eebyhy">Paco Kwon</h5></a><style data-emotion="css 1np8qgg">.css-1np8qgg{-webkit-text-decoration:underline;text-decoration:underline;margin-right:16px;}.css-1np8qgg:hover{text-decoration-color:inherit;}</style><style data-emotion="css 1ue6o7g">.css-1ue6o7g{margin:0;color:inherit;-webkit-text-decoration:underline;text-decoration:underline;margin-right:16px;}.css-1ue6o7g:hover{text-decoration-color:inherit;}</style><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ue6o7g" href="/bio"><style data-emotion="css 9l3uo3">.css-9l3uo3{margin:0;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:400;font-size:1rem;line-height:1.5;letter-spacing:0.00938em;}</style><p class="MuiTypography-root MuiTypography-body1 css-9l3uo3">Bio</p></a><a class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ue6o7g" href="/posts"><p class="MuiTypography-root MuiTypography-body1 css-9l3uo3">Posts</p></a></div></header></div><main><style data-emotion="css 10ib5jr">.css-10ib5jr{margin-bottom:40px;}</style><div class="MuiBox-root css-10ib5jr"><style data-emotion="css 12zrqu9">@media (max-width:-0.05px){.css-12zrqu9.MuiContainer-root{padding:0px;}}</style><style data-emotion="css 1q413bn">.css-1q413bn{width:100%;margin-left:auto;box-sizing:border-box;margin-right:auto;display:block;padding-left:16px;padding-right:16px;}@media (min-width:600px){.css-1q413bn{padding-left:24px;padding-right:24px;}}@media (min-width:960px){.css-1q413bn{max-width:960px;}}@media (max-width:-0.05px){.css-1q413bn.MuiContainer-root{padding:0px;}}</style><div class="MuiContainer-root MuiContainer-maxWidthMd css-1q413bn"><style data-emotion="css 13lz7rn">.css-13lz7rn{padding:16px 40px 32px;}@media (max-width:-0.05px){.css-13lz7rn{padding:16px 16px 32px;}}</style><style data-emotion="css 1clqz0a">.css-1clqz0a{background-color:#fff;color:rgba(0, 0, 0, 0.87);-webkit-transition:box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;border-radius:4px;border:1px solid rgba(0, 0, 0, 0.12);padding:16px 40px 32px;}@media (max-width:-0.05px){.css-1clqz0a{padding:16px 16px 32px;}}</style><div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded css-1clqz0a"><style data-emotion="css clo2uy">.css-clo2uy h1,.css-clo2uy h2,.css-clo2uy h3{margin-top:24px;margin-bottom:8px;}.css-clo2uy p{margin:8px 0px;font-size:var(--fs-300);}</style><div class="css-clo2uy"><h1>Simple State Transformer Monads in Haskell with Examples</h1><style data-emotion="css 400xyc">.css-400xyc{font-weight:bold;margin-bottom:16px;}</style><div class="css-400xyc">2021-09-11</div><style data-emotion="css 186wd1t">.css-186wd1t{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;gap:8px;margin-bottom:16px;}</style><div class="css-186wd1t"><style data-emotion="css 191dw58">.css-191dw58.MuiChip-colorPrimary{background:#80cbc4;}</style><style data-emotion="css m6y1z9">.css-m6y1z9{font-family:"Roboto","Helvetica","Arial",sans-serif;font-size:0.8125rem;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:24px;color:#fff;background-color:#1976d2;border-radius:16px;white-space:nowrap;-webkit-transition:background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;cursor:default;outline:0;-webkit-text-decoration:none;text-decoration:none;border:0;padding:0;vertical-align:middle;box-sizing:border-box;}.css-m6y1z9.Mui-disabled{opacity:0.38;pointer-events:none;}.css-m6y1z9 .MuiChip-avatar{margin-left:5px;margin-right:-6px;width:24px;height:24px;color:#616161;font-size:0.75rem;}.css-m6y1z9 .MuiChip-avatarColorPrimary{color:#fff;background-color:#1565c0;}.css-m6y1z9 .MuiChip-avatarColorSecondary{color:#fff;background-color:#7b1fa2;}.css-m6y1z9 .MuiChip-avatarSmall{margin-left:4px;margin-right:-4px;width:18px;height:18px;font-size:0.625rem;}.css-m6y1z9 .MuiChip-icon{color:inherit;margin-left:4px;margin-right:-4px;font-size:18px;}.css-m6y1z9 .MuiChip-deleteIcon{-webkit-tap-highlight-color:transparent;color:rgba(255, 255, 255, 0.7);font-size:16px;cursor:pointer;margin:0 5px 0 -6px;margin-right:4px;margin-left:-4px;}.css-m6y1z9 .MuiChip-deleteIcon:hover{color:rgba(0, 0, 0, 0.4);}.css-m6y1z9 .MuiChip-deleteIcon:hover,.css-m6y1z9 .MuiChip-deleteIcon:active{color:#fff;}.css-m6y1z9.MuiChip-colorPrimary{background:#80cbc4;}</style><div class="MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorPrimary MuiChip-filledPrimary css-m6y1z9"><style data-emotion="css 1pjtbja">.css-1pjtbja{overflow:hidden;text-overflow:ellipsis;padding-left:8px;padding-right:8px;white-space:nowrap;}</style><span class="MuiChip-label MuiChip-labelSmall css-1pjtbja">haskell</span></div><div class="MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorPrimary MuiChip-filledPrimary css-m6y1z9"><span class="MuiChip-label MuiChip-labelSmall css-1pjtbja">ko</span></div></div><div><p><em>This post is based on <a href="https://www.youtube.com/watch?v=WYysg5Nf7AU">this video</a> from Graham Hutton&#x27;s playlist on advanced functional programming. I tried to write this post without rewatching the video, to deliver my own understanding of the concept.</em></p>
+<h2>Defining <style data-emotion="css 4s91rz">.css-4s91rz{color:#26a69a;background:#fafafa;border-radius:4px;font-weight:bold;}</style><code type="inline" class="css-4s91rz">StateT</code></h2>
 <p>State를 표현하는 어떤 값이 있을 때, 이 state를 변경시키는 어떤 black box가 있다고 하자. 그 black box는 이렇게 표현할 수 있을 것 같다.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-title">black_box</span> :: a -&gt; a <span class="hljs-comment">-- where a denotes the state&#x27;s type</span>
+<pre><style data-emotion="css a9q0i4">.css-a9q0i4{border-radius:8px;font-weight:600;}</style><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-title">black_box</span> :: a -&gt; a <span class="hljs-comment">-- where a denotes the state&#x27;s type</span>
 </code></pre>
 <p>이때 black box에서 input으로 들어온 state를 이용해 어떤 값을 계산한다고 가정한다면, 현재 함수의 타입 정보로는 해당 결과를 잘 표현하기 어렵다. 따라서 output을 두 개 돌려주는 다음과 같은 타입이 더 편리하다.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-title">black_box</span> :: a -&gt; (b, a) <span class="hljs-comment">-- where a denotes the state&#x27;s type, and b the return value&#x27;s type</span>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-title">black_box</span> :: a -&gt; (b, a) <span class="hljs-comment">-- where a denotes the state&#x27;s type, and b the return value&#x27;s type</span>
 </code></pre>
-<p>이러한 black box를 <code class="jss16">state transformer (StateT)</code> 이라고 부르기로 하고, 그에 해당하는 새로운 타입을 다음과 같이 작성해보자. Record에 대해 매번 pattern match를 하는 것을 방지하기 위해, <code class="jss16">StateT</code>와 state 값이 주어졌을 때, transformer를 호출해주는 helper 또한 정의하자.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-class"><span class="hljs-keyword">newtype</span> <span class="hljs-type">StateT</span> a b = <span class="hljs-type">S</span> {<span class="hljs-title">getStateT</span> :: <span class="hljs-title">a</span> -&gt; (<span class="hljs-title">b</span>, <span class="hljs-title">a</span>)}</span>
+<p>이러한 black box를 <code type="inline" class="css-4s91rz">state transformer (StateT)</code> 이라고 부르기로 하고, 그에 해당하는 새로운 타입을 다음과 같이 작성해보자. Record에 대해 매번 pattern match를 하는 것을 방지하기 위해, <code type="inline" class="css-4s91rz">StateT</code>와 state 값이 주어졌을 때, transformer를 호출해주는 helper 또한 정의하자.</p>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-class"><span class="hljs-keyword">newtype</span> <span class="hljs-type">StateT</span> a b = <span class="hljs-type">S</span> {<span class="hljs-title">getStateT</span> :: <span class="hljs-title">a</span> -&gt; (<span class="hljs-title">b</span>, <span class="hljs-title">a</span>)}</span>
 
 <span class="hljs-title">runStateT</span> :: <span class="hljs-type">StateT</span> a b -&gt; a -&gt; (b, a)
 <span class="hljs-title">runStateT</span> <span class="hljs-type">S</span> {getStateT = f} = f
 </code></pre>
 <p>0부터 시작하는 id를 생성하는 함수가 있다고 하자. 이러한 상황에서는 ST를 다음과 같이 표현하여 id를 뽑아낼 수 있을 것이다.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-comment">-- Plain.hs</span>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-comment">-- Plain.hs</span>
 <span class="hljs-title">next</span> :: <span class="hljs-type">StateT</span> <span class="hljs-type">Int</span> <span class="hljs-type">Int</span>
 <span class="hljs-title">next</span> = <span class="hljs-type">S</span> $ \n -&gt; (n, n + <span class="hljs-number">1</span>)
 
@@ -766,22 +61,22 @@ body::backdrop {
     print id&#x27;&#x27;      <span class="hljs-comment">-- 2</span>
     print n&#x27;&#x27;       <span class="hljs-comment">-- 3</span>
 </code></pre>
-<p><code class="jss16">next</code> 라는 state transformer를 사용하면 id를 하나 생성하고 state를 하나 증가시키는 것을 확인할 수 있다. 따라서 <code class="jss16">id</code>, <code class="jss16">id&#x27;</code>, <code class="jss16">id&#x27;&#x27;</code>등 <code class="jss16">next</code> ST에 새로운 state를 input으로 넣어 생성한 id들은 각각 0, 1, 2, 3의 값을 가지게 된다.</p>
-<h2>기존 방식의 문제점과 <code class="jss16">bind</code> 함수</h2>
-<p>위 코드에서 문제점이 있다고 할 수 있는 부분은 composition이 불편하다는 점이다. <code class="jss16">runStateT</code> 는 새로운 state를 만들어 내기 때문에, 이 함수를 여러 번 호출해야 하는 상황에서는 최신 state를 잘 넘겨주도록 유의해야 한다. 이를 위해 매번 pattern match를 해야 하고, 매번 state를 explicit하게 넘겨주어야 한다. 흐름 상으로만 보면 반복되는 코드인데 필요는 하기 때문에 일종의 boilerplate인 것이다. 이는 코드를 작성할 때 error prone하고, 읽을 때도 불필요한 디테일이다. 다음과 같은 문제점을 monad를 통해 해결해보자!</p>
-<p>먼저 <code class="jss16">bind</code> 함수를 정의해보자. <code class="jss16">bind</code> 의 타입은 다음과 같다.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-title">bind</span> :: m a -&gt; (a -&gt; m b) -&gt; m b
+<p><code type="inline" class="css-4s91rz">next</code> 라는 state transformer를 사용하면 id를 하나 생성하고 state를 하나 증가시키는 것을 확인할 수 있다. 따라서 <code type="inline" class="css-4s91rz">id</code>, <code type="inline" class="css-4s91rz">id&#x27;</code>, <code type="inline" class="css-4s91rz">id&#x27;&#x27;</code>등 <code type="inline" class="css-4s91rz">next</code> ST에 새로운 state를 input으로 넣어 생성한 id들은 각각 0, 1, 2, 3의 값을 가지게 된다.</p>
+<h2>기존 방식의 문제점과 <code type="inline" class="css-4s91rz">bind</code> 함수</h2>
+<p>위 코드에서 문제점이 있다고 할 수 있는 부분은 composition이 불편하다는 점이다. <code type="inline" class="css-4s91rz">runStateT</code> 는 새로운 state를 만들어 내기 때문에, 이 함수를 여러 번 호출해야 하는 상황에서는 최신 state를 잘 넘겨주도록 유의해야 한다. 이를 위해 매번 pattern match를 해야 하고, 매번 state를 explicit하게 넘겨주어야 한다. 흐름 상으로만 보면 반복되는 코드인데 필요는 하기 때문에 일종의 boilerplate인 것이다. 이는 코드를 작성할 때 error prone하고, 읽을 때도 불필요한 디테일이다. 다음과 같은 문제점을 monad를 통해 해결해보자!</p>
+<p>먼저 <code type="inline" class="css-4s91rz">bind</code> 함수를 정의해보자. <code type="inline" class="css-4s91rz">bind</code> 의 타입은 다음과 같다.</p>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-title">bind</span> :: m a -&gt; (a -&gt; m b) -&gt; m b
 </code></pre>
-<p>이때 <code class="jss16">m</code> 은 type constructor으로, 현재 상황의 경우 <code class="jss16">StateT s</code> 에 해당한다.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-title">bind</span> :: <span class="hljs-type">StateT</span> s a -&gt; (a -&gt; <span class="hljs-type">StateT</span> s b) -&gt; <span class="hljs-type">StateT</span> s b
+<p>이때 <code type="inline" class="css-4s91rz">m</code> 은 type constructor으로, 현재 상황의 경우 <code type="inline" class="css-4s91rz">StateT s</code> 에 해당한다.</p>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-title">bind</span> :: <span class="hljs-type">StateT</span> s a -&gt; (a -&gt; <span class="hljs-type">StateT</span> s b) -&gt; <span class="hljs-type">StateT</span> s b
 </code></pre>
 <p>state transformation을 두 번 시행함으로써 구현할 수 있다.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-title">bind</span> :: <span class="hljs-type">StateT</span> s a -&gt; (a -&gt; <span class="hljs-type">StateT</span> s b) -&gt; <span class="hljs-type">StateT</span> s b
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-title">bind</span> :: <span class="hljs-type">StateT</span> s a -&gt; (a -&gt; <span class="hljs-type">StateT</span> s b) -&gt; <span class="hljs-type">StateT</span> s b
 <span class="hljs-title">bind</span> sa f = <span class="hljs-type">S</span> $ \s -&gt;
   <span class="hljs-keyword">let</span> (a, s&#x27;) = runStateT sa s <span class="hljs-keyword">in</span> runStateT (f a) s&#x27;
 </code></pre>
-<p>이 함수만 있어도 composition이 더 깔끔해진다. 위에 있는 <code class="jss16">main</code> 함수를 리팩토링해보자.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-comment">-- Bind.hs</span>
+<p>이 함수만 있어도 composition이 더 깔끔해진다. 위에 있는 <code type="inline" class="css-4s91rz">main</code> 함수를 리팩토링해보자.</p>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-comment">-- Bind.hs</span>
 <span class="hljs-title">next</span> :: <span class="hljs-type">StateT</span> <span class="hljs-type">Int</span> <span class="hljs-type">Int</span>
 <span class="hljs-title">next</span> = <span class="hljs-type">S</span> $ \n -&gt; (n, n + <span class="hljs-number">1</span>)
 
@@ -800,9 +95,9 @@ body::backdrop {
   <span class="hljs-number">0</span>
 </code></pre>
 <p>(표준 출력을 위한 IO 조작 코드가 있는데...무시하고 보자)</p>
-<p><code class="jss16">runStateT</code> 의 첫 번째 인자로 넘겨진 <code class="jss16">StateT</code> 코드와, 위에 있는 리팩토링 이전 코드를 비교했을 때, trivial한 state 관리 코드가 아예 사라진 것을 확인할 수 있다. composition을 위해 매번 새로운 state를 다음 호출에 넘겨주던 패턴을 <code class="jss16">bind</code> 라는 함수 안에 넣어두었기 때문에 핵심 코드가 더욱 중점적으로 드러나게 되었다.</p>
-<p>이 <code class="jss16">bind</code> 라는 함수는 <code class="jss16">Monad</code> 타입클래스에 <code class="jss16">(&gt;&gt;=)</code> 라는 함수의 형태로 존재한다. <code class="jss16">StateT</code> 를 <code class="jss16">Monad</code> 타입클래스의 인스턴스로 만들면 <code class="jss16">do</code> notation의 syntactic sugar 또한 사용할 수 있게 된다. 다만 <code class="jss16">Monad</code> 타입클래스의 인스턴스로 만들기 위해서는 그 superclass인 <code class="jss16">Applicative</code> 까지 구현을 해야 하고, <code class="jss16">Applicative</code> 의 superclass인 <code class="jss16">Functor</code> 까지 구현해야 한다. 구현 코드는 다음과 같이 작성할 수 있다.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-keyword">import</span> Control.Applicative
+<p><code type="inline" class="css-4s91rz">runStateT</code> 의 첫 번째 인자로 넘겨진 <code type="inline" class="css-4s91rz">StateT</code> 코드와, 위에 있는 리팩토링 이전 코드를 비교했을 때, trivial한 state 관리 코드가 아예 사라진 것을 확인할 수 있다. composition을 위해 매번 새로운 state를 다음 호출에 넘겨주던 패턴을 <code type="inline" class="css-4s91rz">bind</code> 라는 함수 안에 넣어두었기 때문에 핵심 코드가 더욱 중점적으로 드러나게 되었다.</p>
+<p>이 <code type="inline" class="css-4s91rz">bind</code> 라는 함수는 <code type="inline" class="css-4s91rz">Monad</code> 타입클래스에 <code type="inline" class="css-4s91rz">(&gt;&gt;=)</code> 라는 함수의 형태로 존재한다. <code type="inline" class="css-4s91rz">StateT</code> 를 <code type="inline" class="css-4s91rz">Monad</code> 타입클래스의 인스턴스로 만들면 <code type="inline" class="css-4s91rz">do</code> notation의 syntactic sugar 또한 사용할 수 있게 된다. 다만 <code type="inline" class="css-4s91rz">Monad</code> 타입클래스의 인스턴스로 만들기 위해서는 그 superclass인 <code type="inline" class="css-4s91rz">Applicative</code> 까지 구현을 해야 하고, <code type="inline" class="css-4s91rz">Applicative</code> 의 superclass인 <code type="inline" class="css-4s91rz">Functor</code> 까지 구현해야 한다. 구현 코드는 다음과 같이 작성할 수 있다.</p>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-keyword">import</span> Control.Applicative
 
 <span class="hljs-comment">-- a type that contains a state transformer</span>
 <span class="hljs-comment">-- the state transformer accepts a state, and returns a state with some return value</span>
@@ -829,8 +124,8 @@ body::backdrop {
   (<span class="hljs-type">S</span> f) &gt;&gt;= t = <span class="hljs-type">S</span> $ \s -&gt;
     <span class="hljs-keyword">let</span> (a, s&#x27;) = f s <span class="hljs-keyword">in</span> runStateT (t a) s&#x27;
 </code></pre>
-<p>이제 <code class="jss16">do</code> notation을 이용해 코드를 2차로 리팩토링해보자.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-title">next</span> :: <span class="hljs-type">StateT</span> <span class="hljs-type">Int</span> <span class="hljs-type">Int</span>
+<p>이제 <code type="inline" class="css-4s91rz">do</code> notation을 이용해 코드를 2차로 리팩토링해보자.</p>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-title">next</span> :: <span class="hljs-type">StateT</span> <span class="hljs-type">Int</span> <span class="hljs-type">Int</span>
 <span class="hljs-title">next</span> = <span class="hljs-type">S</span> $ \n -&gt; (n, n + <span class="hljs-number">1</span>)
 
 <span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
@@ -849,8 +144,8 @@ body::backdrop {
   )
   <span class="hljs-number">0</span>
 </code></pre>
-<p><code class="jss16">bind</code> 호출이 없으니 조금 더 간결해졌다. 마지막으로, <code class="jss16">StateT</code> monad를 사용하는 코드를 분리하여 리팩토링을 해보자.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-comment">-- Main.hs</span>
+<p><code type="inline" class="css-4s91rz">bind</code> 호출이 없으니 조금 더 간결해졌다. 마지막으로, <code type="inline" class="css-4s91rz">StateT</code> monad를 사용하는 코드를 분리하여 리팩토링을 해보자.</p>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-comment">-- Main.hs</span>
 <span class="hljs-title">next</span> :: <span class="hljs-type">StateT</span> <span class="hljs-type">Int</span> <span class="hljs-type">Int</span>
 <span class="hljs-title">next</span> = <span class="hljs-type">S</span> $ \n -&gt; (n, n + <span class="hljs-number">1</span>)
 
@@ -874,18 +169,18 @@ body::backdrop {
 <p>특히 처음에 비하면 코드가 훨씬 간결해진 것을 확인할 수 있다.</p>
 <h2>Tree Labeling</h2>
 <p>해당 monad를 또 다른 예시에 적용해보자. 이는 위에 언급된 동영상에 있는 예시이기도 하다.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Tree</span> a = <span class="hljs-type">Leaf</span> a | <span class="hljs-type">Node</span> (<span class="hljs-type">Tree</span> <span class="hljs-title">a</span>) (<span class="hljs-type">Tree</span> <span class="hljs-title">a</span>) <span class="hljs-keyword">deriving</span> <span class="hljs-type">Show</span></span>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Tree</span> a = <span class="hljs-type">Leaf</span> a | <span class="hljs-type">Node</span> (<span class="hljs-type">Tree</span> <span class="hljs-title">a</span>) (<span class="hljs-type">Tree</span> <span class="hljs-title">a</span>) <span class="hljs-keyword">deriving</span> <span class="hljs-type">Show</span></span>
 </code></pre>
-<p>다음과 같은 트리 자료구조가 있을 때, 각각 leaf마다 숫자 id를 붙여 <code class="jss16">label</code>하는 함수를 작성해보자. 먼저 monad 없이 매뉴얼하게 작성해보자.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-title">label</span> :: <span class="hljs-type">Tree</span> a -&gt; <span class="hljs-type">Int</span> -&gt; (<span class="hljs-type">Tree</span> <span class="hljs-type">Int</span>, <span class="hljs-type">Int</span>)
+<p>다음과 같은 트리 자료구조가 있을 때, 각각 leaf마다 숫자 id를 붙여 <code type="inline" class="css-4s91rz">label</code>하는 함수를 작성해보자. 먼저 monad 없이 매뉴얼하게 작성해보자.</p>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-title">label</span> :: <span class="hljs-type">Tree</span> a -&gt; <span class="hljs-type">Int</span> -&gt; (<span class="hljs-type">Tree</span> <span class="hljs-type">Int</span>, <span class="hljs-type">Int</span>)
 <span class="hljs-title">label</span> (<span class="hljs-type">Leaf</span> v) n = (<span class="hljs-type">Leaf</span> n, n + <span class="hljs-number">1</span>)
 <span class="hljs-title">label</span> (<span class="hljs-type">Node</span> l r) n = (<span class="hljs-type">Node</span> l&#x27; r&#x27;, n&#x27;&#x27;)
   <span class="hljs-keyword">where</span>
     (l&#x27;, n&#x27;) = label l n
     (r&#x27;, n&#x27;&#x27;) = label r n&#x27;
 </code></pre>
-<p>이 함수는 state를 관리한다. 그 다음에 사용할 id인 <code class="jss16">n</code>이다. 함수를 pure하게 유지하기 위해서는 바늘구멍에 실 궤매듯이 이 state를 계속 들고 다녀야 한다.그럼 위에서 만든 <code class="jss16">StateT</code> 를 이용하여 같은 코드를 작성해보자.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-title">mlabel</span> :: <span class="hljs-type">Tree</span> a -&gt; <span class="hljs-type">StateT</span> <span class="hljs-type">Int</span> (<span class="hljs-type">Tree</span> <span class="hljs-type">Int</span>)
+<p>이 함수는 state를 관리한다. 그 다음에 사용할 id인 <code type="inline" class="css-4s91rz">n</code>이다. 함수를 pure하게 유지하기 위해서는 바늘구멍에 실 궤매듯이 이 state를 계속 들고 다녀야 한다.그럼 위에서 만든 <code type="inline" class="css-4s91rz">StateT</code> 를 이용하여 같은 코드를 작성해보자.</p>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-title">mlabel</span> :: <span class="hljs-type">Tree</span> a -&gt; <span class="hljs-type">StateT</span> <span class="hljs-type">Int</span> (<span class="hljs-type">Tree</span> <span class="hljs-type">Int</span>)
 <span class="hljs-title">mlabel</span> (<span class="hljs-type">Leaf</span> v) = <span class="hljs-keyword">do</span>
   n &lt;- next
   return (<span class="hljs-type">Leaf</span> n)
@@ -896,7 +191,7 @@ body::backdrop {
   return (<span class="hljs-type">Node</span> l&#x27; r&#x27;)
 </code></pre>
 <p>실 꿰매듯 state를 운반하는 코드는 더이상 보이지 않는다. 이 함수는 이렇게 사용할 수 있을 것이다.</p>
-<pre><code class="jss15 hljs language-haskell"><span class="hljs-comment">-- Tree.hs</span>
+<pre><code type="block" class="hljs language-haskell css-a9q0i4"><span class="hljs-comment">-- Tree.hs</span>
 <span class="hljs-title">testTree</span> :: <span class="hljs-type">Tree</span> <span class="hljs-type">String</span>
 <span class="hljs-title">testTree</span> = <span class="hljs-type">Node</span> (<span class="hljs-type">Leaf</span> <span class="hljs-string">&quot;foo&quot;</span>) (<span class="hljs-type">Node</span> (<span class="hljs-type">Leaf</span> <span class="hljs-string">&quot;bar&quot;</span>) (<span class="hljs-type">Leaf</span> <span class="hljs-string">&quot;baz&quot;</span>))
 
@@ -905,5 +200,5 @@ body::backdrop {
   <span class="hljs-keyword">let</span> labeled = fst $ runStateT (mlabel testTree) <span class="hljs-number">0</span>
   print labeled
 </code></pre>
-<p>(<code class="jss16">runStateT</code> 랑 0이 불편하면 다른 함수로 만들어두면 된다...여기선 생략한다)</p>
-<p>이로써 순수 함수형 언어인 haskell에서 monad를 통해 state를 깔끔하게 처리하는 방법을 알아보았다! 글을 쓰며 나 역시 많이 배운 것 같다. 이 게시글에서 사용한 코드는 <a href="https://github.com/pacokwon/simple-statet-monad-demo">이 레포</a>에 업로드되어있다!</p></div></div></div></div></div></main></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"id":"20210911-simple-state-transformer-monad","content":"\n_This post is based on [this video](https://www.youtube.com/watch?v=WYysg5Nf7AU) from Graham Hutton's playlist on advanced functional programming. I tried to write this post without rewatching the video, to deliver my own understanding of the concept._\n\n## Defining `StateT`\n\nState를 표현하는 어떤 값이 있을 때, 이 state를 변경시키는 어떤 black box가 있다고 하자. 그 black box는 이렇게 표현할 수 있을 것 같다.\n\n```haskell\nblack_box :: a -\u003e a -- where a denotes the state's type\n```\n\n이때 black box에서 input으로 들어온 state를 이용해 어떤 값을 계산한다고 가정한다면, 현재 함수의 타입 정보로는 해당 결과를 잘 표현하기 어렵다. 따라서 output을 두 개 돌려주는 다음과 같은 타입이 더 편리하다.\n\n```haskell\nblack_box :: a -\u003e (b, a) -- where a denotes the state's type, and b the return value's type\n```\n\n이러한 black box를 `state transformer (StateT)` 이라고 부르기로 하고, 그에 해당하는 새로운 타입을 다음과 같이 작성해보자. Record에 대해 매번 pattern match를 하는 것을 방지하기 위해, `StateT`와 state 값이 주어졌을 때, transformer를 호출해주는 helper 또한 정의하자.\n\n```haskell\nnewtype StateT a b = S {getStateT :: a -\u003e (b, a)}\n\nrunStateT :: StateT a b -\u003e a -\u003e (b, a)\nrunStateT S {getStateT = f} = f\n```\n\n0부터 시작하는 id를 생성하는 함수가 있다고 하자. 이러한 상황에서는 ST를 다음과 같이 표현하여 id를 뽑아낼 수 있을 것이다.\n\n```haskell\n-- Plain.hs\nnext :: StateT Int Int\nnext = S $ \\n -\u003e (n, n + 1)\n\nmain :: IO ()\nmain = do\n    let n0 = 0\n    let (id, n)     = runStateT next n0\n    let (id', n')   = runStateT next n\n    let (id'', n'') = runStateT next n'\n    print id        -- 0\n    print id'       -- 1\n    print id''      -- 2\n    print n''       -- 3\n```\n\n`next` 라는 state transformer를 사용하면 id를 하나 생성하고 state를 하나 증가시키는 것을 확인할 수 있다. 따라서 `id`, `id'`, `id''`등 `next` ST에 새로운 state를 input으로 넣어 생성한 id들은 각각 0, 1, 2, 3의 값을 가지게 된다.\n\n## 기존 방식의 문제점과 `bind` 함수\n\n위 코드에서 문제점이 있다고 할 수 있는 부분은 composition이 불편하다는 점이다. `runStateT` 는 새로운 state를 만들어 내기 때문에, 이 함수를 여러 번 호출해야 하는 상황에서는 최신 state를 잘 넘겨주도록 유의해야 한다. 이를 위해 매번 pattern match를 해야 하고, 매번 state를 explicit하게 넘겨주어야 한다. 흐름 상으로만 보면 반복되는 코드인데 필요는 하기 때문에 일종의 boilerplate인 것이다. 이는 코드를 작성할 때 error prone하고, 읽을 때도 불필요한 디테일이다. 다음과 같은 문제점을 monad를 통해 해결해보자!\n\n먼저 `bind` 함수를 정의해보자. `bind` 의 타입은 다음과 같다.\n\n```haskell\nbind :: m a -\u003e (a -\u003e m b) -\u003e m b\n```\n\n이때 `m` 은 type constructor으로, 현재 상황의 경우 `StateT s` 에 해당한다.\n\n```haskell\nbind :: StateT s a -\u003e (a -\u003e StateT s b) -\u003e StateT s b\n```\n\nstate transformation을 두 번 시행함으로써 구현할 수 있다.\n\n```haskell\nbind :: StateT s a -\u003e (a -\u003e StateT s b) -\u003e StateT s b\nbind sa f = S $ \\s -\u003e\n  let (a, s') = runStateT sa s in runStateT (f a) s'\n```\n\n이 함수만 있어도 composition이 더 깔끔해진다. 위에 있는 `main` 함수를 리팩토링해보자.\n\n```haskell\n-- Bind.hs\nnext :: StateT Int Int\nnext = S $ \\n -\u003e (n, n + 1)\n\nmain :: IO ()\nmain = fst $ runStateT (\n    next `bind` \\id -\u003e\n    next `bind` \\id' -\u003e\n    next `bind` \\id'' -\u003e\n    S $ \\s -\u003e (\n      do\n        print id\n        print id'\n        print id'',\n      s\n    ))\n  0\n```\n\n(표준 출력을 위한 IO 조작 코드가 있는데...무시하고 보자)\n\n`runStateT` 의 첫 번째 인자로 넘겨진 `StateT` 코드와, 위에 있는 리팩토링 이전 코드를 비교했을 때, trivial한 state 관리 코드가 아예 사라진 것을 확인할 수 있다. composition을 위해 매번 새로운 state를 다음 호출에 넘겨주던 패턴을 `bind` 라는 함수 안에 넣어두었기 때문에 핵심 코드가 더욱 중점적으로 드러나게 되었다.\n\n이 `bind` 라는 함수는 `Monad` 타입클래스에 `(\u003e\u003e=)` 라는 함수의 형태로 존재한다. `StateT` 를 `Monad` 타입클래스의 인스턴스로 만들면 `do` notation의 syntactic sugar 또한 사용할 수 있게 된다. 다만 `Monad` 타입클래스의 인스턴스로 만들기 위해서는 그 superclass인 `Applicative` 까지 구현을 해야 하고, `Applicative` 의 superclass인 `Functor` 까지 구현해야 한다. 구현 코드는 다음과 같이 작성할 수 있다.\n\n```haskell\nimport Control.Applicative\n\n-- a type that contains a state transformer\n-- the state transformer accepts a state, and returns a state with some return value\nnewtype StateT a b = S {getStateT :: a -\u003e (b, a)}\n\nrunStateT :: StateT a b -\u003e a -\u003e (b, a)\nrunStateT S {getStateT = f} = f\n\ninstance Functor (StateT a) where\n  -- fmap :: (a -\u003e b) -\u003e StateT s a -\u003e StateT s b\n  fmap f (S transform) = S (\\s -\u003e let (r, s') = transform s in (f r, s'))\n\ninstance Applicative (StateT a) where\n  -- pure :: a -\u003e StateT s a\n  pure x = S $ \\s -\u003e (x, s)\n\n  -- (\u003c*\u003e) :: StateT s (a-\u003eb) -\u003e StateT s a -\u003e StateT s b\n  sf \u003c*\u003e sa = S $ \\s -\u003e\n    let (f', s') = runStateT sf s\n     in runStateT (f' `fmap` sa) s'\n\ninstance Monad (StateT a) where\n  -- (\u003e\u003e=) :: StateT s a -\u003e (a -\u003e StateT s b) -\u003e StateT s b\n  (S f) \u003e\u003e= t = S $ \\s -\u003e\n    let (a, s') = f s in runStateT (t a) s'\n```\n\n이제 `do` notation을 이용해 코드를 2차로 리팩토링해보자.\n\n```haskell\nnext :: StateT Int Int\nnext = S $ \\n -\u003e (n, n + 1)\n\nmain :: IO ()\nmain = fst $ runStateT (\n  do\n    id \u003c- next\n    id' \u003c- next\n    id'' \u003c- next\n    S $ \\s -\u003e\n      ( do\n          print id\n          print id'\n          print id'',\n        s\n      )\n  )\n  0\n```\n\n`bind` 호출이 없으니 조금 더 간결해졌다. 마지막으로, `StateT` monad를 사용하는 코드를 분리하여 리팩토링을 해보자.\n\n```haskell\n-- Main.hs\nnext :: StateT Int Int\nnext = S $ \\n -\u003e (n, n + 1)\n\nnextThree :: StateT Int (Int, Int, Int)\nnextThree = do\n  id \u003c- next\n  id' \u003c- next\n  id'' \u003c- next\n  return (id, id', id'')\n\ngetThreeIds :: Int -\u003e (Int, Int, Int)\ngetThreeIds start = fst $ runStateT nextThree start\n\nmain :: IO ()\nmain = do\n  let (id, id', id'') = getThreeIds 0\n  print id\n  print id'\n  print id''\n```\n\n특히 처음에 비하면 코드가 훨씬 간결해진 것을 확인할 수 있다.\n\n## Tree Labeling\n\n해당 monad를 또 다른 예시에 적용해보자. 이는 위에 언급된 동영상에 있는 예시이기도 하다.\n\n```haskell\ndata Tree a = Leaf a | Node (Tree a) (Tree a) deriving Show\n```\n\n다음과 같은 트리 자료구조가 있을 때, 각각 leaf마다 숫자 id를 붙여 `label`하는 함수를 작성해보자. 먼저 monad 없이 매뉴얼하게 작성해보자.\n\n```haskell\nlabel :: Tree a -\u003e Int -\u003e (Tree Int, Int)\nlabel (Leaf v) n = (Leaf n, n + 1)\nlabel (Node l r) n = (Node l' r', n'')\n  where\n    (l', n') = label l n\n    (r', n'') = label r n'\n```\n\n이 함수는 state를 관리한다. 그 다음에 사용할 id인 `n`이다. 함수를 pure하게 유지하기 위해서는 바늘구멍에 실 궤매듯이 이 state를 계속 들고 다녀야 한다.그럼 위에서 만든 `StateT` 를 이용하여 같은 코드를 작성해보자.\n\n```haskell\nmlabel :: Tree a -\u003e StateT Int (Tree Int)\nmlabel (Leaf v) = do\n  n \u003c- next\n  return (Leaf n)\n\nmlabel (Node l r) = do\n  l' \u003c- mlabel l\n  r' \u003c- mlabel r\n  return (Node l' r')\n```\n\n실 꿰매듯 state를 운반하는 코드는 더이상 보이지 않는다. 이 함수는 이렇게 사용할 수 있을 것이다.\n\n```haskell\n-- Tree.hs\ntestTree :: Tree String\ntestTree = Node (Leaf \"foo\") (Node (Leaf \"bar\") (Leaf \"baz\"))\n\nmain :: IO ()\nmain = do\n  let labeled = fst $ runStateT (mlabel testTree) 0\n  print labeled\n```\n\n(`runStateT` 랑 0이 불편하면 다른 함수로 만들어두면 된다...여기선 생략한다)\n\n이로써 순수 함수형 언어인 haskell에서 monad를 통해 state를 깔끔하게 처리하는 방법을 알아보았다! 글을 쓰며 나 역시 많이 배운 것 같다. 이 게시글에서 사용한 코드는 [이 레포](https://github.com/pacokwon/simple-statet-monad-demo)에 업로드되어있다!\n","title":"Simple State Transformer Monads in Haskell with Examples","tags":["haskell","ko"],"date":"2021-09-11"}},"__N_SSG":true},"page":"/posts/[id]","query":{"id":"20210911-simple-state-transformer-monad"},"buildId":"NX5tuFHneWndgT5mVN4hn","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
+<p>(<code type="inline" class="css-4s91rz">runStateT</code> 랑 0이 불편하면 다른 함수로 만들어두면 된다...여기선 생략한다)</p>
+<p>이로써 순수 함수형 언어인 haskell에서 monad를 통해 state를 깔끔하게 처리하는 방법을 알아보았다! 글을 쓰며 나 역시 많이 배운 것 같다. 이 게시글에서 사용한 코드는 <a href="https://github.com/pacokwon/simple-statet-monad-demo">이 레포</a>에 업로드되어있다!</p></div></div></div></div></div></main></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"id":"20210911-simple-state-transformer-monad","content":"\n_This post is based on [this video](https://www.youtube.com/watch?v=WYysg5Nf7AU) from Graham Hutton's playlist on advanced functional programming. I tried to write this post without rewatching the video, to deliver my own understanding of the concept._\n\n## Defining `StateT`\n\nState를 표현하는 어떤 값이 있을 때, 이 state를 변경시키는 어떤 black box가 있다고 하자. 그 black box는 이렇게 표현할 수 있을 것 같다.\n\n```haskell\nblack_box :: a -\u003e a -- where a denotes the state's type\n```\n\n이때 black box에서 input으로 들어온 state를 이용해 어떤 값을 계산한다고 가정한다면, 현재 함수의 타입 정보로는 해당 결과를 잘 표현하기 어렵다. 따라서 output을 두 개 돌려주는 다음과 같은 타입이 더 편리하다.\n\n```haskell\nblack_box :: a -\u003e (b, a) -- where a denotes the state's type, and b the return value's type\n```\n\n이러한 black box를 `state transformer (StateT)` 이라고 부르기로 하고, 그에 해당하는 새로운 타입을 다음과 같이 작성해보자. Record에 대해 매번 pattern match를 하는 것을 방지하기 위해, `StateT`와 state 값이 주어졌을 때, transformer를 호출해주는 helper 또한 정의하자.\n\n```haskell\nnewtype StateT a b = S {getStateT :: a -\u003e (b, a)}\n\nrunStateT :: StateT a b -\u003e a -\u003e (b, a)\nrunStateT S {getStateT = f} = f\n```\n\n0부터 시작하는 id를 생성하는 함수가 있다고 하자. 이러한 상황에서는 ST를 다음과 같이 표현하여 id를 뽑아낼 수 있을 것이다.\n\n```haskell\n-- Plain.hs\nnext :: StateT Int Int\nnext = S $ \\n -\u003e (n, n + 1)\n\nmain :: IO ()\nmain = do\n    let n0 = 0\n    let (id, n)     = runStateT next n0\n    let (id', n')   = runStateT next n\n    let (id'', n'') = runStateT next n'\n    print id        -- 0\n    print id'       -- 1\n    print id''      -- 2\n    print n''       -- 3\n```\n\n`next` 라는 state transformer를 사용하면 id를 하나 생성하고 state를 하나 증가시키는 것을 확인할 수 있다. 따라서 `id`, `id'`, `id''`등 `next` ST에 새로운 state를 input으로 넣어 생성한 id들은 각각 0, 1, 2, 3의 값을 가지게 된다.\n\n## 기존 방식의 문제점과 `bind` 함수\n\n위 코드에서 문제점이 있다고 할 수 있는 부분은 composition이 불편하다는 점이다. `runStateT` 는 새로운 state를 만들어 내기 때문에, 이 함수를 여러 번 호출해야 하는 상황에서는 최신 state를 잘 넘겨주도록 유의해야 한다. 이를 위해 매번 pattern match를 해야 하고, 매번 state를 explicit하게 넘겨주어야 한다. 흐름 상으로만 보면 반복되는 코드인데 필요는 하기 때문에 일종의 boilerplate인 것이다. 이는 코드를 작성할 때 error prone하고, 읽을 때도 불필요한 디테일이다. 다음과 같은 문제점을 monad를 통해 해결해보자!\n\n먼저 `bind` 함수를 정의해보자. `bind` 의 타입은 다음과 같다.\n\n```haskell\nbind :: m a -\u003e (a -\u003e m b) -\u003e m b\n```\n\n이때 `m` 은 type constructor으로, 현재 상황의 경우 `StateT s` 에 해당한다.\n\n```haskell\nbind :: StateT s a -\u003e (a -\u003e StateT s b) -\u003e StateT s b\n```\n\nstate transformation을 두 번 시행함으로써 구현할 수 있다.\n\n```haskell\nbind :: StateT s a -\u003e (a -\u003e StateT s b) -\u003e StateT s b\nbind sa f = S $ \\s -\u003e\n  let (a, s') = runStateT sa s in runStateT (f a) s'\n```\n\n이 함수만 있어도 composition이 더 깔끔해진다. 위에 있는 `main` 함수를 리팩토링해보자.\n\n```haskell\n-- Bind.hs\nnext :: StateT Int Int\nnext = S $ \\n -\u003e (n, n + 1)\n\nmain :: IO ()\nmain = fst $ runStateT (\n    next `bind` \\id -\u003e\n    next `bind` \\id' -\u003e\n    next `bind` \\id'' -\u003e\n    S $ \\s -\u003e (\n      do\n        print id\n        print id'\n        print id'',\n      s\n    ))\n  0\n```\n\n(표준 출력을 위한 IO 조작 코드가 있는데...무시하고 보자)\n\n`runStateT` 의 첫 번째 인자로 넘겨진 `StateT` 코드와, 위에 있는 리팩토링 이전 코드를 비교했을 때, trivial한 state 관리 코드가 아예 사라진 것을 확인할 수 있다. composition을 위해 매번 새로운 state를 다음 호출에 넘겨주던 패턴을 `bind` 라는 함수 안에 넣어두었기 때문에 핵심 코드가 더욱 중점적으로 드러나게 되었다.\n\n이 `bind` 라는 함수는 `Monad` 타입클래스에 `(\u003e\u003e=)` 라는 함수의 형태로 존재한다. `StateT` 를 `Monad` 타입클래스의 인스턴스로 만들면 `do` notation의 syntactic sugar 또한 사용할 수 있게 된다. 다만 `Monad` 타입클래스의 인스턴스로 만들기 위해서는 그 superclass인 `Applicative` 까지 구현을 해야 하고, `Applicative` 의 superclass인 `Functor` 까지 구현해야 한다. 구현 코드는 다음과 같이 작성할 수 있다.\n\n```haskell\nimport Control.Applicative\n\n-- a type that contains a state transformer\n-- the state transformer accepts a state, and returns a state with some return value\nnewtype StateT a b = S {getStateT :: a -\u003e (b, a)}\n\nrunStateT :: StateT a b -\u003e a -\u003e (b, a)\nrunStateT S {getStateT = f} = f\n\ninstance Functor (StateT a) where\n  -- fmap :: (a -\u003e b) -\u003e StateT s a -\u003e StateT s b\n  fmap f (S transform) = S (\\s -\u003e let (r, s') = transform s in (f r, s'))\n\ninstance Applicative (StateT a) where\n  -- pure :: a -\u003e StateT s a\n  pure x = S $ \\s -\u003e (x, s)\n\n  -- (\u003c*\u003e) :: StateT s (a-\u003eb) -\u003e StateT s a -\u003e StateT s b\n  sf \u003c*\u003e sa = S $ \\s -\u003e\n    let (f', s') = runStateT sf s\n     in runStateT (f' `fmap` sa) s'\n\ninstance Monad (StateT a) where\n  -- (\u003e\u003e=) :: StateT s a -\u003e (a -\u003e StateT s b) -\u003e StateT s b\n  (S f) \u003e\u003e= t = S $ \\s -\u003e\n    let (a, s') = f s in runStateT (t a) s'\n```\n\n이제 `do` notation을 이용해 코드를 2차로 리팩토링해보자.\n\n```haskell\nnext :: StateT Int Int\nnext = S $ \\n -\u003e (n, n + 1)\n\nmain :: IO ()\nmain = fst $ runStateT (\n  do\n    id \u003c- next\n    id' \u003c- next\n    id'' \u003c- next\n    S $ \\s -\u003e\n      ( do\n          print id\n          print id'\n          print id'',\n        s\n      )\n  )\n  0\n```\n\n`bind` 호출이 없으니 조금 더 간결해졌다. 마지막으로, `StateT` monad를 사용하는 코드를 분리하여 리팩토링을 해보자.\n\n```haskell\n-- Main.hs\nnext :: StateT Int Int\nnext = S $ \\n -\u003e (n, n + 1)\n\nnextThree :: StateT Int (Int, Int, Int)\nnextThree = do\n  id \u003c- next\n  id' \u003c- next\n  id'' \u003c- next\n  return (id, id', id'')\n\ngetThreeIds :: Int -\u003e (Int, Int, Int)\ngetThreeIds start = fst $ runStateT nextThree start\n\nmain :: IO ()\nmain = do\n  let (id, id', id'') = getThreeIds 0\n  print id\n  print id'\n  print id''\n```\n\n특히 처음에 비하면 코드가 훨씬 간결해진 것을 확인할 수 있다.\n\n## Tree Labeling\n\n해당 monad를 또 다른 예시에 적용해보자. 이는 위에 언급된 동영상에 있는 예시이기도 하다.\n\n```haskell\ndata Tree a = Leaf a | Node (Tree a) (Tree a) deriving Show\n```\n\n다음과 같은 트리 자료구조가 있을 때, 각각 leaf마다 숫자 id를 붙여 `label`하는 함수를 작성해보자. 먼저 monad 없이 매뉴얼하게 작성해보자.\n\n```haskell\nlabel :: Tree a -\u003e Int -\u003e (Tree Int, Int)\nlabel (Leaf v) n = (Leaf n, n + 1)\nlabel (Node l r) n = (Node l' r', n'')\n  where\n    (l', n') = label l n\n    (r', n'') = label r n'\n```\n\n이 함수는 state를 관리한다. 그 다음에 사용할 id인 `n`이다. 함수를 pure하게 유지하기 위해서는 바늘구멍에 실 궤매듯이 이 state를 계속 들고 다녀야 한다.그럼 위에서 만든 `StateT` 를 이용하여 같은 코드를 작성해보자.\n\n```haskell\nmlabel :: Tree a -\u003e StateT Int (Tree Int)\nmlabel (Leaf v) = do\n  n \u003c- next\n  return (Leaf n)\n\nmlabel (Node l r) = do\n  l' \u003c- mlabel l\n  r' \u003c- mlabel r\n  return (Node l' r')\n```\n\n실 꿰매듯 state를 운반하는 코드는 더이상 보이지 않는다. 이 함수는 이렇게 사용할 수 있을 것이다.\n\n```haskell\n-- Tree.hs\ntestTree :: Tree String\ntestTree = Node (Leaf \"foo\") (Node (Leaf \"bar\") (Leaf \"baz\"))\n\nmain :: IO ()\nmain = do\n  let labeled = fst $ runStateT (mlabel testTree) 0\n  print labeled\n```\n\n(`runStateT` 랑 0이 불편하면 다른 함수로 만들어두면 된다...여기선 생략한다)\n\n이로써 순수 함수형 언어인 haskell에서 monad를 통해 state를 깔끔하게 처리하는 방법을 알아보았다! 글을 쓰며 나 역시 많이 배운 것 같다. 이 게시글에서 사용한 코드는 [이 레포](https://github.com/pacokwon/simple-statet-monad-demo)에 업로드되어있다!\n","title":"Simple State Transformer Monads in Haskell with Examples","tags":["haskell","ko"],"date":"2021-09-11"}},"__N_SSG":true},"page":"/posts/[id]","query":{"id":"20210911-simple-state-transformer-monad"},"buildId":"aiw1KCiov48hOGnGfGDdp","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
