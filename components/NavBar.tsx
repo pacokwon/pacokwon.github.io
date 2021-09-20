@@ -23,13 +23,13 @@ const Root = styled('div')(({ theme }) => ({
   marginBottom: theme.spacing(4),
 }));
 
-const AppBar = styled(MuiAppBar)(({ theme }) => ({
+const AppBar = styled(MuiAppBar)({
   '&.MuiAppBar-colorPrimary': {
     boxShadow: 'none',
-    backgroundColor: theme.palette.grey[50],
+    backgroundColor: 'white',
     color: 'black',
   },
-}));
+});
 
 const NavBar: React.FC = () => {
   const isDev = process.env.NODE_ENV === 'development';
