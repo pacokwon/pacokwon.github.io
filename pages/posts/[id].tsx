@@ -50,15 +50,15 @@ const processor = unified()
   });
 
 const Paper = styled(MuiPaper)(({ theme }) => ({
-  [theme.breakpoints.down('xs')]: {
-    padding: theme.spacing(2, 2, 4),
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(1, 2, 4),
   },
   padding: theme.spacing(2, 5, 4),
 }));
 
 const Container = styled(MuiContainer)(({ theme }) => ({
   '&.MuiContainer-root': {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(0),
     },
   },

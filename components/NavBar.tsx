@@ -1,6 +1,6 @@
 import React from 'react';
 import NextLink from 'next/link';
-import Toolbar from '@mui/material/Toolbar';
+import MuiToolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import MuiAppBar from '@mui/material/AppBar';
 import MuiLink from '@mui/material/Link';
@@ -23,6 +23,15 @@ const Root = styled('div')(({ theme }) => ({
   marginBottom: theme.spacing(4),
 }));
 
+const Toolbar = styled(MuiToolbar)(({ theme }) => ({
+  '&.MuiToolbar-root': {
+    padding: theme.spacing(0, 4),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(0, 2),
+    },
+  },
+}));
+
 const AppBar = styled(MuiAppBar)({
   '&.MuiAppBar-colorPrimary': {
     boxShadow: 'none',
@@ -37,7 +46,7 @@ const NavBar: React.FC = () => {
   return (
     <Root>
       <AppBar position="static" color="primary">
-        <Toolbar sx={{ px: 4 }} disableGutters={true}>
+        <Toolbar disableGutters={true}>
           <NextLink href="/" passHref>
             <MuiLink
               sx={{
