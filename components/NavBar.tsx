@@ -12,7 +12,7 @@ type LinkProps = {
 };
 const Link: React.FC<LinkProps> = ({ children, href }) => (
   <NextLink href={href} passHref>
-    <MuiLink sx={{ mr: 2 }} color="inherit">
+    <MuiLink sx={{ mr: 2 }} underline="hover" color="inherit">
       {children}
     </MuiLink>
   </NextLink>
@@ -53,20 +53,13 @@ const NavBar: React.FC = () => {
                 marginRight: 4,
                 '&.MuiLink-root, &.MuiLink-underlineHover': {
                   color: teal[400],
+                  fontWeight: 'bold',
                 },
               }}
+              underline="hover"
+              variant="h5"
             >
-              <Typography
-                sx={{
-                  '&.MuiTypography-root': {
-                    color: teal[400],
-                    fontWeight: 'bold',
-                  },
-                }}
-                variant="h5"
-              >
-                Paco Kwon
-              </Typography>
+              Paco Kwon
             </MuiLink>
           </NextLink>
           <Link href="/bio">
