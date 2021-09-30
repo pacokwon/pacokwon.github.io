@@ -26,7 +26,9 @@ const BioRow = styled('div')(({ theme }) => ({
 const Index: React.FC = () => {
   return (
     <RootContainer>
-      <Typography variant="h4">Bio</Typography>
+      <Typography sx={{ mb: 2 }} variant="h4">
+        Bio
+      </Typography>
       <div>
         {bio.timeline.map(({ duration, description }, idx) => (
           <BioRow key={idx}>
