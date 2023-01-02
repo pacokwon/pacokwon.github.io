@@ -21,15 +21,16 @@ import { getPostIds, getPostData, PostCtx, PostId } from '@/lib/posts';
 import type { PostData } from '@/lib/posts';
 import { options } from '@/lib/languages';
 
+type Props = {
+  post: PostData;
+};
+
 export async function getStaticPaths(): Promise<GetStaticPathsResult<PostId>> {
   const ids = await getPostIds();
   const paths = ids.map(id => ({ params: { id } }));
   return { paths, fallback: false };
 }
 
-type Props = {
-  post: PostData;
-};
 export async function getStaticProps({
   params,
 }: PostCtx): Promise<GetStaticPropsResult<Props>> {
