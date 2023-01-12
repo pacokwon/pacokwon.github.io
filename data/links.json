@@ -1,6 +1,13 @@
 {
   "Compiler": [
     {
+      "alias": "Writing a Static Analyzer in Rust",
+      "date": "2023-01-12",
+      "description": "",
+      "link": "https://michael-f-bryan.github.io/static-analyser-in-rust/book/lib.html",
+      "uuid": "6e82e14129f94e948e44e80b146f01c3"
+    },
+    {
       "alias": "Writing a Toy Compiler in Go and LLVM",
       "date": "2023-01-08",
       "description": "",
