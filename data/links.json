@@ -72,6 +72,13 @@
   ],
   "Programming Languages": [
     {
+      "alias": "Steven Shaw’s List on PLT",
+      "date": "2023-01-22",
+      "description": "",
+      "link": "https://steshaw.org/plt/",
+      "uuid": "eaf9ea108a9f467c8decd0e986e9d301"
+    },
+    {
       "alias": "List of Programming Language Resources",
       "date": "2023-01-08",
       "description": "Max Bernstein's comprehensive list of PL resources",
