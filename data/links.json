@@ -77,6 +77,15 @@
       "uuid": "8f0bfde7ffe8403bba875a455af90003"
     }
   ],
+  "Haskell": [
+    {
+      "alias": "Learn Haskell by Building a Blog Generator",
+      "date": "2023-01-24",
+      "description": "",
+      "link": "https://lhbg-book.link/",
+      "uuid": "df084352b4184a16b0b6e9cb23ab9c03"
+    }
+  ],
   "Programming Languages": [
     {
       "alias": "Steven Shaw’s List on PLT",
