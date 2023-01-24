@@ -1,6 +1,13 @@
 {
   "Compiler": [
     {
+      "alias": "The PL Zoo",
+      "date": "2023-01-24",
+      "description": "A collection of implementations of miniature programming languages which demonstrates various techniques used in implementation of programming languages",
+      "link": "http://plzoo.andrej.com/",
+      "uuid": "fdfe5babe307489ea8ccafb7cc675cd5"
+    },
+    {
       "alias": "Writing a Static Analyzer in Rust",
       "date": "2023-01-12",
       "description": "",
