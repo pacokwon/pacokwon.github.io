@@ -97,6 +97,13 @@
   ],
   "Programming Languages": [
     {
+      "alias": "Demo Implementation of the Hindley-Milner Type Inference Algorithm",
+      "date": "2023-02-01",
+      "description": "",
+      "link": "https://veera.app/type_inference.html",
+      "uuid": "593cd66d3d504c08914707a4826aaf69"
+    },
+    {
       "alias": "Steven Shaw’s List on PLT",
       "date": "2023-01-22",
       "description": "",
