@@ -86,6 +86,15 @@
       "uuid": "df084352b4184a16b0b6e9cb23ab9c03"
     }
   ],
+  "Lisp": [
+    {
+      "alias": "A History of Lisp Parentheses",
+      "date": "2023-02-01",
+      "description": "",
+      "link": "https://github.com/shaunlebron/history-of-lisp-parens",
+      "uuid": "681812c01eb8433e9bc8943cb41e7e8c"
+    }
+  ],
   "Programming Languages": [
     {
       "alias": "Steven Shaw’s List on PLT",
