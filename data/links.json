@@ -97,13 +97,6 @@
   ],
   "Programming Languages": [
     {
-      "alias": "Tail calls and they’re implemented",
-      "date": "2023-02-02",
-      "description": "",
-      "link": "https://leaningtech.com/fantastic-tail-calls-and-how-to-implement-them/",
-      "uuid": "b907f8c617354743bf791484bbb90a47"
-    },
-    {
       "alias": "Demo Implementation of the Hindley-Milner Type Inference Algorithm",
       "date": "2023-02-01",
       "description": "",
