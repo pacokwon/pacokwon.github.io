@@ -1,13 +1,6 @@
 {
   "Compiler": [
     {
-      "alias": "Tail Calls and How They’re Implemented",
-      "date": "2023-02-02",
-      "description": "",
-      "link": "https://leaningtech.com/fantastic-tail-calls-and-how-to-implement-them/",
-      "uuid": "51f930f642ad4f72ae6442a02903a1a0"
-    },
-    {
       "alias": "The PL Zoo",
       "date": "2023-01-24",
       "description": "A collection of implementations of miniature programming languages which demonstrates various techniques used in implementation of programming languages",
