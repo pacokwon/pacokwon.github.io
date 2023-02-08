@@ -120,6 +120,13 @@
   ],
   "Public Books": [
     {
+      "alias": "Crafting Interpreters",
+      "date": "2023-02-08",
+      "description": "",
+      "link": "https://craftinginterpreters.com/contents.html",
+      "uuid": "ddf894c9a5e7402bb0d970fd08d790c6"
+    },
+    {
       "alias": "Programming Languages: Application and Interpretation",
       "date": "2023-02-08",
       "description": "",
