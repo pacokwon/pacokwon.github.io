@@ -118,6 +118,15 @@
       "uuid": "39ea23345c6644e3b63f6127a34fe3a7"
     }
   ],
+  "Public Books": [
+    {
+      "alias": "Programming Languages: Application and Interpretation",
+      "date": "2023-02-08",
+      "description": "",
+      "link": "https://cs.brown.edu/courses/cs173/2012/book/index.html",
+      "uuid": "c9507aabe63c4d2986c80bc0876d99ac"
+    }
+  ],
   "Systems": [
     {
       "alias": "Writing a Game on Bare Hardware",
