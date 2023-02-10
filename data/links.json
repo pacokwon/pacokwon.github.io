@@ -97,6 +97,13 @@
   ],
   "Programming Languages": [
     {
+      "alias": "A practitioner’s guide to reading programming languages papers",
+      "date": "2023-02-10",
+      "description": "",
+      "link": "https://blog.acolyer.org/2018/01/26/a-practitioners-guide-to-reading-programming-languages-papers/",
+      "uuid": "348d91f740194ab0bbbb5ba8c0a9a370"
+    },
+    {
       "alias": "Demo Implementation of the Hindley-Milner Type Inference Algorithm",
       "date": "2023-02-01",
       "description": "",
