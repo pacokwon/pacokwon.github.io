@@ -1,6 +1,13 @@
 {
   "Compiler": [
     {
+      "alias": "A BF JIT Compiler",
+      "date": "2023-02-15",
+      "description": "Implementation only / “this code is deep magic”",
+      "link": "http://maplant.com/jit_bf.html",
+      "uuid": "7f7d3ac5557c442c9a0a33506584a477"
+    },
+    {
       "alias": "Writing a Simple Garbage Collector in C",
       "date": "2023-02-15",
       "description": "",
