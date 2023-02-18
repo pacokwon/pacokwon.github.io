@@ -75,6 +75,15 @@
       "uuid": "e90b9920bde54b408ce91868de2e2146"
     }
   ],
+  "Functional Programming": [
+    {
+      "alias": "John Carmack on C++ and FP",
+      "date": "2023-02-18",
+      "description": "",
+      "link": "http://sevangelatos.com/john-carmack-on/",
+      "uuid": "2f3c6ed19bdd4d76af80b53f152ab638"
+    }
+  ],
   "General": [
     {
       "alias": "Less is Exponentially More",
