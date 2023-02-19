@@ -1,6 +1,13 @@
 {
   "Compiler": [
     {
+      "alias": "Which Parsing Approach?",
+      "date": "2023-02-19",
+      "description": "",
+      "link": "https://tratt.net/laurie/blog/2020/which_parsing_approach.html",
+      "uuid": "1bacd643d218450fb0e519fa195fd8c0"
+    },
+    {
       "alias": "A BF JIT Compiler",
       "date": "2023-02-15",
       "description": "Implementation only / “this code is deep magic”",
