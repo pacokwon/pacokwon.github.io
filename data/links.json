@@ -1,6 +1,13 @@
 {
   "Compiler": [
     {
+      "alias": "Challenging LR Parsing",
+      "date": "2023-02-19",
+      "description": "A response to “Which Parsing Approach?” from the rust-analyzer blog",
+      "link": "https://rust-analyzer.github.io/blog/2020/09/16/challeging-LR-parsing.html",
+      "uuid": "a5a59027d1414917afa4cba9c053713b"
+    },
+    {
       "alias": "Which Parsing Approach?",
       "date": "2023-02-19",
       "description": "",
