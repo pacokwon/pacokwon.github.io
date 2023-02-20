@@ -1,6 +1,13 @@
 {
   "Compiler": [
     {
+      "alias": "Parser generators vs Handwritten parsers for Popular Languages",
+      "date": "2023-02-20",
+      "description": "",
+      "link": "https://notes.eatonphil.com/parser-generators-vs-handwritten-parsers-survey-2021.html",
+      "uuid": "7396a22181ed4e82b75df46b0f7387e9"
+    },
+    {
       "alias": "Challenging LR Parsing",
       "date": "2023-02-19",
       "description": "A response to “Which Parsing Approach?” from the rust-analyzer blog",
