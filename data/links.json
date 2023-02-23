@@ -1,6 +1,13 @@
 {
   "Compiler": [
     {
+      "alias": "Building a PEG Parser",
+      "date": "2023-02-23",
+      "description": "- by Guido van Rossum",
+      "link": "https://medium.com/@gvanrossum_83706/peg-parsing-series-de5d41b2ed60",
+      "uuid": "f59e41a5f91747a1ac39c056e5671436"
+    },
+    {
       "alias": "Parser generators vs Handwritten parsers for Popular Languages",
       "date": "2023-02-20",
       "description": "",
