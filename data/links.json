@@ -214,5 +214,14 @@
       "link": "https://thephd.dev/to-save-c-we-must-save-abi-fixing-c-function-abi",
       "uuid": "b92a38358738468ca3be54676c8687a2"
     }
+  ],
+  "Types": [
+    {
+      "alias": "Rank N Types",
+      "date": "2023-03-13",
+      "description": "",
+      "link": "https://opentutorials.org/course/2063/11681",
+      "uuid": "01014bfc8271479f9ab0a06cdad3be9b"
+    }
   ]
 }
