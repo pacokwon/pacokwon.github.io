@@ -223,5 +223,14 @@
       "link": "https://opentutorials.org/course/2063/11681",
       "uuid": "01014bfc8271479f9ab0a06cdad3be9b"
     }
+  ],
+  "Youtube": [
+    {
+      "alias": "Ants Are Everywhere",
+      "date": "2023-04-01",
+      "description": "An exploration of famous open source projects’ source code",
+      "link": "https://youtube.com/@ants_are_everywhere",
+      "uuid": "036e54ac713946758a9f6e066b882ddf"
+    }
   ]
 }
