@@ -101,7 +101,7 @@ const Post: React.FC<Props> = ({ post }) => {
     <>
       <Meta title={post.title} />
       <Container maxWidth="md">
-        <Paper variant="outlined">
+        <Paper elevation={0}>
           <PostContent>
             <h1>{post.title}</h1>
             <PostDate>{post.date}</PostDate>
