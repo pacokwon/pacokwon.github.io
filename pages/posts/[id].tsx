@@ -16,6 +16,7 @@ import rehypeReact from 'rehype-react';
 
 import Code from '@/components/Code';
 import Meta from '@/components/Meta';
+import UtterancesComments from '@/components/UtterancesComments';
 
 import { getPostIds, getPostData, PostCtx, PostId } from '@/lib/posts';
 import type { PostData } from '@/lib/posts';
@@ -113,6 +114,7 @@ const Post: React.FC<Props> = ({ post }) => {
             {processor.processSync(post.content).result}
           </PostContent>
         </Paper>
+        <UtterancesComments />
       </Container>
     </>
   );
