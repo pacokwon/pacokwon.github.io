@@ -14,6 +14,7 @@ import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeReact from 'rehype-react';
 
+import Anchor from '@/components/Anchor';
 import Code from '@/components/Code';
 import Meta from '@/components/Meta';
 import UtterancesComments from '@/components/UtterancesComments';
@@ -48,6 +49,7 @@ const processor = unified()
     createElement: React.createElement,
     components: {
       code: Code,
+      a: Anchor,
     },
   });
 
