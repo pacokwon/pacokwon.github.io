@@ -6,8 +6,9 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
 import Meta from '@/components/Meta';
-
+import { modeSensitive } from '@/lib/theme';
 import links from '@/data/links.json';
+import { useTheme } from '@mui/material/styles';
 
 type LinkProps = {
   alias: string;
@@ -19,6 +20,7 @@ type LinkProps = {
 
 // Named this way to avoid name conflict with mui Link
 const ExternalLink: React.FC<LinkProps> = ({ alias, description, link }) => {
+  const theme = useTheme();
   const descriptionExists = description !== '';
 
   return (
@@ -30,7 +32,7 @@ const ExternalLink: React.FC<LinkProps> = ({ alias, description, link }) => {
         target="_blank"
         rel="noreferrer"
         href={link}
-        color="#444"
+        color={modeSensitive(theme, '#444', theme.palette.text.primary)}
         sx={{ fontWeight: 'bold' }}
         underline="always"
       >
