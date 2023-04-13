@@ -1,8 +1,6 @@
 import React from 'react';
-import MuiChip from '@mui/material/Chip';
 import MuiContainer from '@mui/material/Container';
 import MuiPaper from '@mui/material/Paper';
-import { teal } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
 import type { GetStaticPathsResult, GetStaticPropsResult } from 'next';
@@ -15,6 +13,7 @@ import rehypeHighlight from 'rehype-highlight';
 import rehypeReact from 'rehype-react';
 
 import Anchor from '@/components/Anchor';
+import Chip from '@/components/Chip';
 import Code from '@/components/Code';
 import Meta from '@/components/Meta';
 import UtterancesComments from '@/components/UtterancesComments';
@@ -67,12 +66,6 @@ const Container = styled(MuiContainer)(({ theme }) => ({
     },
   },
 }));
-
-const Chip = styled(MuiChip)({
-  '&.MuiChip-colorPrimary': {
-    background: teal[200],
-  },
-});
 
 const PostContent = styled('div')(({ theme }) => ({
   '& h1, & h2, & h3': {

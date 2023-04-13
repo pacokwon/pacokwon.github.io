@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import NextLink from 'next/link';
+
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import MenuIcon from '@mui/icons-material/Menu';
 import MuiAppBar from '@mui/material/AppBar';
 import MuiLink from '@mui/material/Link';
 import MuiToolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import MenuIcon from '@mui/icons-material/Menu';
+
+import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import { teal } from '@mui/material/colors';
+
+import ColorModeContext from '@/lib/ColorModeContext';
+import { modeSensitive } from '@/lib/theme';
 
 type LinkProps = {
   href: string;
@@ -37,15 +46,18 @@ const Toolbar = styled(MuiToolbar)(({ theme }) => ({
   },
 }));
 
-const AppBar = styled(MuiAppBar)({
+const AppBar = styled(MuiAppBar)(({ theme }) => ({
   '&.MuiAppBar-colorPrimary': {
     boxShadow: 'none',
-    backgroundColor: 'white',
-    color: 'black',
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.primary,
   },
-});
+}));
 
 const NavBar: React.FC = () => {
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
+
   const isDev = process.env.NODE_ENV === 'development';
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -113,10 +125,11 @@ const NavBar: React.FC = () => {
           <NextLink href="/" passHref>
             <MuiLink
               sx={{
+                flexGrow: { xs: 1, sm: 0 },
                 marginRight: { sm: 4 },
                 marginLeft: { xs: 2 },
                 '&.MuiLink-root, &.MuiLink-underlineHover': {
-                  color: teal[400],
+                  color: modeSensitive(theme, teal[400], teal[300]),
                   fontWeight: 'bold',
                 },
               }}
@@ -142,6 +155,13 @@ const NavBar: React.FC = () => {
               </Link>
             )}
           </Box>
+          <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+            {theme.palette.mode === 'dark' ? (
+              <Brightness7Icon />
+            ) : (
+              <Brightness4Icon />
+            )}
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Root>

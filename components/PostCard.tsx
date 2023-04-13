@@ -1,11 +1,12 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { teal } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import MuiCardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
-import MuiChip from '@mui/material/Chip';
+
+import Chip from '@/components/Chip';
+
 import { PostData } from '@/lib/posts';
 
 const CardHeader = styled(MuiCardHeader)({
@@ -24,12 +25,6 @@ const PostTags = styled('div')(({ theme }) => ({
   gap: theme.spacing(1),
   marginTop: theme.spacing(1),
 }));
-
-const Chip = styled(MuiChip)({
-  '&.MuiChip-colorPrimary': {
-    background: teal[200],
-  },
-});
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
   post: PostData;

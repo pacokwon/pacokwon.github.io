@@ -1,6 +1,8 @@
-import { styled } from '@mui/material';
 import React from 'react';
 import { useEffect } from 'react';
+
+import { styled } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 const Div = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
@@ -17,21 +19,26 @@ const Div = styled('div')(({ theme }) => ({
 }));
 
 const Comments: React.FC = () => {
-  function injectScript() {
+  const theme = useTheme();
+
+  function injectScript(mode: string) {
     const script = document.createElement('script');
     const anchor = document.getElementById('utterances-comments');
     script.setAttribute('src', 'https://utteranc.es/client.js');
     script.setAttribute('repo', 'pacokwon/pacokwon.github.io');
     script.setAttribute('issue-term', 'title');
-    script.setAttribute('theme', 'github-light');
+    script.setAttribute(
+      'theme',
+      mode === 'light' ? 'github-light' : 'github-dark'
+    );
     script.setAttribute('crossorigin', 'anonymous');
     script.setAttribute('async', 'true');
-    anchor.appendChild(script);
+    anchor.replaceChildren(script);
   }
 
   useEffect(() => {
-    injectScript();
-  }, []);
+    injectScript(theme.palette.mode);
+  }, [theme.palette.mode]);
 
   return <Div id="utterances-comments" />;
 };

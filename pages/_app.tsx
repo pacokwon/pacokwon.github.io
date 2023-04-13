@@ -12,7 +12,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import Layout from '@/components/Layout';
 
 import createEmotionCache from '@/lib/createEmotionCache';
-import theme from '@/lib/theme';
+import { createBlogTheme } from '@/lib/theme';
+import ColorModeContext from '@/lib/ColorModeContext';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -21,8 +22,20 @@ interface Props extends AppProps {
 }
 
 const App: React.FC<Props> = props => {
+  const [mode, setMode] = React.useState<'light' | 'dark'>('dark');
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const router = useRouter();
+
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    []
+  );
+
+  const theme = React.useMemo(() => createBlogTheme(mode), [mode]);
 
   const handleRouteChange = (url: string) => {
     window.gtag('config', 'G-688XJFWYJL', {
@@ -46,12 +59,14 @@ const App: React.FC<Props> = props => {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
     </CacheProvider>
   );
 };

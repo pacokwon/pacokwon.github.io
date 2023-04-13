@@ -2,15 +2,17 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { teal } from '@mui/material/colors';
 
-const StyledAnchor = styled('a')({
-  color: 'black',
-  textDecoration: 'underline',
+import { modeSensitive } from '@/lib/theme';
+
+const StyledAnchor = styled('a')(({ theme }) => ({
+  color: modeSensitive(theme, theme.palette.text.primary, teal[300]),
+  textDecoration: modeSensitive(theme, 'underline', 'unset'),
   '&:hover': {
     cursor: 'pointer',
-    color: teal[600],
+    color: modeSensitive(theme, teal[600], teal[200]),
     fontWeight: 500,
   },
-});
+}));
 
 const Anchor: React.FC = ({ children }) => (
   <StyledAnchor>{children}</StyledAnchor>
