@@ -4,8 +4,8 @@ type Props = {
   toggleColorMode: () => void;
 };
 
-// eslint-disable-next-line
 const ColorModeContext = React.createContext<Props>({
+  // eslint-disable-next-line
   toggleColorMode: () => {},
 });
 
