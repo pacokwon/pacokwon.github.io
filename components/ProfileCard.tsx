@@ -8,9 +8,10 @@ import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import { teal } from '@mui/material/colors';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import background from '@/public/image/profile-background.png';
 import profile from '@/data/profile.json';
+import { modeSensitive } from '@/lib/theme';
 
 const Card = styled(MuiCard)({
   maxWidth: 900,
@@ -41,7 +42,12 @@ const Profile = styled('div')(({ theme }) => ({
   // we want padding, but we also want to keep the content height as it is
   boxSizing: 'content-box',
   // if we want colored borders, we can set the background color of this div
-  backgroundColor: 'white',
+  backgroundColor: theme.palette.background.default,
+  backgroundImage: modeSensitive(
+    theme,
+    'unset',
+    'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))'
+  ),
   padding: '5px',
   borderRadius: '50%',
   [theme.breakpoints.down('sm')]: {
@@ -71,6 +77,8 @@ const ProfileImg = styled('img')(({ theme }) => ({
 }));
 
 const ProfileCard: React.FC = () => {
+  const theme = useTheme();
+
   return (
     <Card>
       <Media>
@@ -111,7 +119,7 @@ const ProfileCard: React.FC = () => {
             color="primary"
             sx={{
               '&.MuiIconButton-colorPrimary': {
-                color: '#211F1F',
+                color: modeSensitive(theme, '#211F1F', 'white'),
               },
             }}
           >
