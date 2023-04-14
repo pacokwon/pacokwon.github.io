@@ -11,7 +11,11 @@ export type PostCtx = { params: PostId };
 export async function getPostIds(limit?: number): Promise<string[]> {
   const all = await fs
     .readdir(postsPath)
-    .then(filenames => filenames.sort((a, b) => (a > b ? -1 : 1)));
+    .then(filenames =>
+      filenames
+        .sort((a, b) => (a > b ? -1 : 1))
+        .filter(filename => filename.endsWith('.md'))
+    );
 
   // filter if limit is imposed
   const filenames =
