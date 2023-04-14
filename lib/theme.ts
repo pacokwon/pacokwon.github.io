@@ -3,9 +3,19 @@ import { breakpoints } from '@/lib/breakpoints';
 import { Theme } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 
+import { Noto_Sans_KR } from 'next/font/google';
+
+const notoSansKr = Noto_Sans_KR({
+  subsets: ['latin'],
+  weight: '400',
+});
+
 export const createBlogTheme = (mode: PaletteMode): Theme =>
   responsiveFontSizes(
     createTheme({
+      typography: {
+        fontFamily: [notoSansKr.style.fontFamily, 'Roboto'].join(','),
+      },
       palette: {
         mode,
       },
@@ -23,6 +33,7 @@ export const createBlogTheme = (mode: PaletteMode): Theme =>
             body: {
               overflowX: 'hidden',
               position: 'relative',
+              lineHeight: 1.6,
             },
             ':root': {
               '--fs-800': '3rem',
