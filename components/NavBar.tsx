@@ -66,6 +66,9 @@ const Toolbar = styled(MuiToolbar)(({ theme }) => ({
 }));
 
 const AppBar = styled(MuiAppBar)(({ theme }) => ({
+  '&.MuiAppBar-root': {
+    backgroundImage: 'unset',
+  },
   '&.MuiAppBar-colorPrimary': {
     boxShadow: 'none',
     backgroundColor: theme.palette.background.default,
@@ -92,7 +95,7 @@ const NavBar: React.FC = () => {
 
   return (
     <Root>
-      <AppBar position="static" color="primary">
+      <AppBar color="primary">
         <Toolbar disableGutters={true}>
           <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
             <IconButton
