@@ -18,8 +18,12 @@ const StyledMasonry = styled(Masonry)(({ theme }) => ({
   },
 }));
 
+type Props = {
+  children: React.ReactNode;
+};
+
 // referred to from: https://github.com/mui-org/material-ui/issues/17000#issuecomment-639319327
-const BreakpointMasonry: React.FC = ({ children }) => {
+const BreakpointMasonry: React.FC<Props> = ({ children }) => {
   const theme = useTheme();
   const { xl, lg, md, sm, xs } = theme.breakpoints.values;
 

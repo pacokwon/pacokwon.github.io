@@ -14,7 +14,11 @@ const StyledAnchor = styled('a')(({ theme }) => ({
   },
 }));
 
-const Anchor: React.FC = ({ children }) => (
+type Props = {
+  children: React.ReactNode;
+};
+
+const Anchor: React.FC<Props> = ({ children }) => (
   <StyledAnchor>{children}</StyledAnchor>
 );
 
