@@ -2,7 +2,11 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import NavBar from './NavBar';
 
-const Layout: React.FC = ({ children }) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const Layout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <NavBar />

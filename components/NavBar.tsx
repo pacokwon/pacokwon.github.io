@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import NextLink from 'next/link';
 
+import { LinkProps as MuiLinkProps } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MuiAppBar from '@mui/material/AppBar';
-import MuiLink from '@mui/material/Link';
+import { Link as MuiLink } from '@mui/material';
 import MuiToolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
@@ -21,16 +22,34 @@ import { teal } from '@mui/material/colors';
 import ColorModeContext from '@/lib/ColorModeContext';
 import { modeSensitive } from '@/lib/theme';
 
-type LinkProps = {
-  href: string;
-};
-const Link: React.FC<LinkProps> = ({ children, href }) => (
-  <NextLink href={href} passHref>
-    <MuiLink sx={{ mr: 2 }} underline="hover" color="inherit">
-      {children}
-    </MuiLink>
-  </NextLink>
+const Link: React.FC<MuiLinkProps> = props => (
+  <MuiLink component={NextLink} {...props} />
 );
+
+type SectionLinkProps = {
+  href: string;
+  children: React.ReactNode;
+};
+const SectionLink: React.FC<SectionLinkProps> = ({ href, children }) => {
+  const theme = useTheme();
+
+  return (
+    <MuiLink
+      sx={{
+        marginRight: theme.spacing(2),
+        textDecoration: 'none',
+        color: theme.palette.text.primary,
+        '&:hover': {
+          textDecoration: 'underline',
+        },
+      }}
+      component={NextLink}
+      href={href}
+    >
+      <Typography variant="body1">{children}</Typography>
+    </MuiLink>
+  );
+};
 
 const Root = styled('div')(({ theme }) => ({
   flexGrow: 1,
@@ -122,38 +141,28 @@ const NavBar: React.FC = () => {
             </Menu>
           </Box>
 
-          <NextLink href="/" passHref>
-            <MuiLink
-              sx={{
-                flexGrow: { xs: 1, sm: 0 },
-                marginRight: { sm: 4 },
-                marginLeft: { xs: 2 },
-                '&.MuiLink-root, &.MuiLink-underlineHover': {
-                  color: modeSensitive(theme, teal[400], teal[300]),
-                  fontWeight: 'bold',
-                },
-              }}
-              underline="hover"
-              variant="h5"
-            >
-              Paco Kwon
-            </MuiLink>
-          </NextLink>
+          <MuiLink
+            sx={{
+              flexGrow: { xs: 1, sm: 0 },
+              marginRight: { sm: 4 },
+              marginLeft: { xs: 2 },
+              '&.MuiLink-root, &.MuiLink-underlineHover': {
+                color: modeSensitive(theme, teal[400], teal[300]),
+                fontWeight: 'bold',
+              },
+            }}
+            underline="hover"
+            variant="h5"
+            href="/"
+            component={NextLink}
+          >
+            Paco Kwon
+          </MuiLink>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
-            <Link href="/bio">
-              <Typography variant="body1">Bio</Typography>
-            </Link>
-            <Link href="/posts">
-              <Typography variant="body1">Posts</Typography>
-            </Link>
-            <Link href="/links">
-              <Typography variant="body1">Links</Typography>
-            </Link>
-            {isDev && (
-              <Link href="/editor">
-                <Typography variant="body1">Editor</Typography>
-              </Link>
-            )}
+            <SectionLink href="/bio">Bio</SectionLink>
+            <SectionLink href="/posts">Posts</SectionLink>
+            <SectionLink href="/links">Links</SectionLink>
+            {isDev && <SectionLink href="/editor">Editor</SectionLink>}
           </Box>
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
             {theme.palette.mode === 'dark' ? (
