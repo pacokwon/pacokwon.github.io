@@ -5,11 +5,9 @@ tags:
   - en
 ---
 
-(This post will be in english. I haven't used english properly in a long time, I might as well start using it in posts like this)
-
 In this post I'll be briefly going through how I built my blog with Next.js and some difficulties that I've faced. This will only be a personal reflection, not a tutorial.
 
-So one day, I decided to build a personal blog. Nothing fancy but a rather simple blog to put my personal info with posting capability. Yes, you can use a given template, but I personally have this innate avoidance for templates. I wish to have complete control of what I use and build, and thus I decided to use a SSG/SSR framework called Next.js.
+So one day, I decided to build a personal blog. Nothing fancy but a rather simple blog to put my personal info with posting capability. Yes, you can use a given template, but I personally have this avoidance for templates. I wish to have complete control of what I use and build, and thus I decided to use a SSG/SSR framework called Next.js.
 
 And so, here are the main tools/packages that I've used to build my blog:
 
@@ -33,7 +31,7 @@ What I really liked about this package is that it allows users to use their own 
 
 ## Material UI React
 
-This one's a banger. The Material UI component library provides many useful components that follow the Material UI design. _I like pretty things. I don't like CSS._ This library is for me. The familiarity helps as well. Most (if not all) google products use this guideline. The documentation is top notch as well. It also allows easy custom styling. This one's a must have.
+Material UI component library provides many useful components that follow the Material UI design. _I like pretty things, but I don't like CSS._ This library is for me. The familiarity helps as well. Most (if not all) google products use this guideline. The documentation is top notch as well. It also allows easy custom styling.
 
 ## GitHub Pages & Workflow
 
