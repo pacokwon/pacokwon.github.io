@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const withOptimizedImages = require('next-optimized-images');
+const withImages = require('next-images');
 
 // const isProd = process.env.NODE_ENV === 'production';
 
-module.exports = withOptimizedImages({
+module.exports = withImages({
   images: {
     domains: ['github.com'],
     disableStaticImages: true,
   },
-  handleImages: ['jpeg', 'png', 'svg'],
+  webpack(config, _options) {
+    return config;
+  },
 });
