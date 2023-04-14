@@ -176,6 +176,7 @@ const NavBar: React.FC = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
+      <Toolbar />
     </Root>
   );
 };
