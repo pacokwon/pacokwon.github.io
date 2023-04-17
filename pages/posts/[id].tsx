@@ -69,11 +69,11 @@ const Container = styled(MuiContainer)(({ theme }) => ({
 
 const PostContent = styled('div')(({ theme }) => ({
   '& h1, & h2, & h3': {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(4),
     marginBottom: theme.spacing(1),
   },
   '& p': {
-    margin: theme.spacing(1, 0),
+    marginBottom: theme.spacing(1.5),
     fontSize: 'var(--fs-300)',
   },
   '& ul, & li': {
