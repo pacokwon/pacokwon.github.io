@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+ 
+  <url>
+    <loc>https://www.pacokwon.org/posts/20230415-after-navy-software-developer</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20230108-linkwaiter</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20210920-devenv-neovim</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20210914-chip8-emulator-in-rust</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20210913-neovim-users-perspective</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20210913-destructuring-refs-in-rust</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20210911-simple-state-monad</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20210903-building-a-blog</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20210831-navy-software-developer</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20210829-genesis</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20200711-esModuleInterop-in-tsconfig</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
+    <loc>https://www.pacokwon.org/posts/20200605-spellchecking-in-vim</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+</urlset>
+ 
