@@ -143,3 +143,4 @@ dist
 .vscode-test
 
 .obsidian
+public/sitemap.xml

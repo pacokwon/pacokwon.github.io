@@ -8,7 +8,22 @@ module.exports = withImages({
     domains: ['github.com'],
     disableStaticImages: true,
   },
-  webpack(config, _options) {
+  async headers() {
+    return [
+      {
+        source: '/sitemap.xml',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/xml',
+          },
+        ],
+      },
+    ];
+  },
+  webpack(config, { isServer }) {
+    if (isServer) require('./scripts/generate-sitemap');
+
     return config;
   },
 });
