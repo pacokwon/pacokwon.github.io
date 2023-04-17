@@ -127,19 +127,13 @@ const NavBar: React.FC = () => {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link href="/bio">
-                  <Typography textAlign="center">Bio</Typography>
-                </Link>
+                <SectionLink href="/bio">Bio</SectionLink>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link href="/posts">
-                  <Typography textAlign="center">Posts</Typography>
-                </Link>
+                <SectionLink href="/posts">Posts</SectionLink>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link href="/links">
-                  <Typography textAlign="center">Links</Typography>
-                </Link>
+                <SectionLink href="/links">Links</SectionLink>
               </MenuItem>
             </Menu>
           </Box>
