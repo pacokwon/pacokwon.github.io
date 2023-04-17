@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import NextLink from 'next/link';
 
-import { LinkProps as MuiLinkProps } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
@@ -21,10 +20,6 @@ import { teal } from '@mui/material/colors';
 
 import ColorModeContext from '@/lib/ColorModeContext';
 import { modeSensitive } from '@/lib/theme';
-
-const Link: React.FC<MuiLinkProps> = props => (
-  <MuiLink component={NextLink} {...props} />
-);
 
 type SectionLinkProps = {
   href: string;
