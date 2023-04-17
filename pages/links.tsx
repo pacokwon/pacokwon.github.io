@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import { teal } from '@mui/material/colors';
 
 import Meta from '@/components/Meta';
 import { modeSensitive } from '@/lib/theme';
@@ -32,9 +33,9 @@ const ExternalLink: React.FC<LinkProps> = ({ alias, description, link }) => {
         target="_blank"
         rel="noreferrer"
         href={link}
-        color={modeSensitive(theme, '#444', theme.palette.text.primary)}
+        color={modeSensitive(theme, '#444', teal[200])}
         sx={{ fontWeight: 'bold' }}
-        underline="always"
+        underline={modeSensitive(theme, 'always', 'hover')}
       >
         {alias}
       </Link>
