@@ -13,6 +13,7 @@ const StyledCode = styled('code')<StyledCodeProps>(({ theme, type }) =>
     ? {
         borderRadius: '8px',
         fontWeight: 600,
+        marginBottom: theme.spacing(1.5),
       }
     : {
         color: teal[400],
