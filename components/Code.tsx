@@ -16,6 +16,12 @@ const StyledCode = styled('code')(({ theme }) => ({
   fontWeight: 'bold',
 }));
 
+const CopyButton = styled(IconButton)(({ theme }) => ({
+  '&.MuiIconButton-colorPrimary': {
+    color: modeSensitive(theme, grey[500], grey[600]),
+  },
+}));
+
 type Props = React.HTMLAttributes<HTMLElement>;
 
 // https://www.roboleary.net/2022/01/13/copy-code-to-clipboard-blog.html
@@ -48,9 +54,13 @@ const CodeBlock: React.FC<Props> = ({ children, className }) => {
     <code ref={codeRef} className={className}>
       {hasClipboard && (
         <Tooltip title="Copied!" open={isOpen}>
-          <IconButton onClick={handleCopy} onMouseLeave={handleHide}>
-            <ContentCopyIcon />
-          </IconButton>
+          <CopyButton
+            color="primary"
+            onClick={handleCopy}
+            onMouseLeave={handleHide}
+          >
+            <ContentCopyIcon fontSize="small" />
+          </CopyButton>
         </Tooltip>
       )}
       {children}
