@@ -29,7 +29,19 @@ const App: React.FC<Props> = props => {
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+        document.querySelector('#hljs-dark');
+        setMode(prevMode => {
+          const nextMode = prevMode === 'light' ? 'dark' : 'light';
+
+          document
+            .querySelector(`#hljs-${prevMode}`)
+            .setAttribute('disabled', 'disabled');
+          document
+            .querySelector(`#hljs-${nextMode}`)
+            .removeAttribute('disabled');
+
+          return nextMode;
+        });
       },
     }),
     []

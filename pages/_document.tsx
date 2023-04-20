@@ -3,6 +3,12 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '@/lib/createEmotionCache';
 
+declare module 'react' {
+  interface LinkHTMLAttributes<T> extends HTMLAttributes<T> {
+    disabled?: boolean;
+  }
+}
+
 export default class MyDocument extends Document {
   render(): JSX.Element {
     return (
@@ -14,8 +20,15 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
           <link
+            id="hljs-dark"
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css"
+          />
+          <link
+            id="hljs-light"
+            rel="alternative stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"
+            disabled
           />
           <script
             async
