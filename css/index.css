@@ -1,0 +1,11 @@
+html[data-theme='dark'] {
+  --background-color: #121212;
+}
+
+html[data-theme='light'] {
+  --background-color: #fff;
+}
+
+code.hljs {
+  background: var(--background-color);
+}

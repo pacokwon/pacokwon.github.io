@@ -15,6 +15,8 @@ import createEmotionCache from '@/lib/createEmotionCache';
 import { createBlogTheme } from '@/lib/theme';
 import ColorModeContext from '@/lib/ColorModeContext';
 
+import '@/css/index.css';
+
 const clientSideEmotionCache = createEmotionCache();
 
 interface Props extends AppProps {
@@ -32,14 +34,6 @@ const App: React.FC<Props> = props => {
         document.querySelector('#hljs-dark');
         setMode(prevMode => {
           const nextMode = prevMode === 'light' ? 'dark' : 'light';
-
-          document
-            .querySelector(`#hljs-${prevMode}`)
-            .setAttribute('disabled', 'disabled');
-          document
-            .querySelector(`#hljs-${nextMode}`)
-            .removeAttribute('disabled');
-
           return nextMode;
         });
       },
@@ -54,6 +48,18 @@ const App: React.FC<Props> = props => {
       page_path: url,
     });
   };
+
+  useEffect(() => {
+    const opposite = mode === 'dark' ? 'light' : 'dark';
+
+    document
+      .querySelector(`#hljs-${opposite}`)
+      .setAttribute('disabled', 'disabled');
+
+    document.querySelector(`#hljs-${mode}`).removeAttribute('disabled');
+
+    document.documentElement.setAttribute('data-theme', mode);
+  }, [mode]);
 
   useEffect(() => {
     router.events.on('routeChangeComplete', handleRouteChange);
