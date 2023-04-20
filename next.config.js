@@ -15,7 +15,7 @@ module.exports = withImages({
         headers: [
           {
             key: 'Content-Type',
-            value: 'application/xml',
+            value: 'text/xml',
           },
         ],
       },
