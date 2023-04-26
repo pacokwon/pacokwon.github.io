@@ -185,6 +185,13 @@
   ],
   "Public Books": [
     {
+      "alias": "Build Your Own Lisp",
+      "date": "2023-04-26",
+      "description": "",
+      "link": "https://buildyourownlisp.com/",
+      "uuid": "75b27f0f39a34e96841014bee6dd7842"
+    },
+    {
       "alias": "Crafting Interpreters",
       "date": "2023-02-08",
       "description": "",
