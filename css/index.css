@@ -5,7 +5,3 @@ html[data-theme='dark'] {
 html[data-theme='light'] {
   --background-color: #fff;
 }
-
-code.hljs {
-  background: var(--background-color);
-}

@@ -51,7 +51,10 @@ const CodeBlock: React.FC<Props> = ({ children, className }) => {
   }, []);
 
   return (
-    <code ref={codeRef} className={className}>
+    <CodeBlockWrapper>
+      <code ref={codeRef} className={className}>
+        {children}
+      </code>
       {hasClipboard && (
         <Tooltip title="Copied!" open={isOpen}>
           <CopyButton
@@ -63,14 +66,13 @@ const CodeBlock: React.FC<Props> = ({ children, className }) => {
           </CopyButton>
         </Tooltip>
       )}
-      {children}
-    </code>
+    </CodeBlockWrapper>
   );
 };
 
-const StyledCodeBlock = styled(CodeBlock)(({ theme }) => ({
+const CodeBlockWrapper = styled('div')(({ theme }) => ({
   borderRadius: '8px',
-  fontWeight: 600,
+  fontWeight: 400,
   marginBottom: theme.spacing(1.5),
   border: `1px solid ${modeSensitive(theme, grey[200], grey[900])}`,
   position: 'relative',
@@ -78,6 +80,9 @@ const StyledCodeBlock = styled(CodeBlock)(({ theme }) => ({
     position: 'absolute',
     top: '5px',
     right: '5px',
+  },
+  '& code.hljs': {
+    background: 'var(--background-color)',
   },
 }));
 
@@ -87,7 +92,7 @@ const Code: React.FC<Props> = ({ children, className }) => {
   const isCodeBlock = className?.includes('hljs') ?? false;
 
   if (isCodeBlock)
-    return <StyledCodeBlock className={className}>{children}</StyledCodeBlock>;
+    return <CodeBlock className={className}>{children}</CodeBlock>;
 
   return <StyledCode className={className}>{children}</StyledCode>;
 };
