@@ -28,6 +28,13 @@ const PostTags = styled('div')(({ theme }) => ({
 
 const BlockLink = styled(NextLink)({
   display: 'block',
+  // disable underline for links
+  '&:link': {
+    textDecoration: 'none',
+  },
+  '&:visited': {
+    textDecoration: 'none',
+  },
 });
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
