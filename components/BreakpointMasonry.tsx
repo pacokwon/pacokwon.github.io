@@ -12,7 +12,7 @@ const StyledMasonry = styled(Masonry)(({ theme }) => ({
   [`&.${classes.masonryGrid}`]: {
     display: 'flex',
   },
-  [`& .${classes.masonryItem} > div`]: {
+  [`& .${classes.masonryItem} > a`]: {
     marginBottom: theme.spacing(1),
     marginRight: theme.spacing(1),
   },

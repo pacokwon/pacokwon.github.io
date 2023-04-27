@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouter } from 'next/router';
+import NextLink from 'next/link';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import MuiCardHeader from '@mui/material/CardHeader';
@@ -26,28 +26,31 @@ const PostTags = styled('div')(({ theme }) => ({
   marginTop: theme.spacing(1),
 }));
 
+const BlockLink = styled(NextLink)({
+  display: 'block',
+});
+
 interface Props extends React.HTMLAttributes<HTMLElement> {
   post: PostData;
 }
 
 const PostCard: React.FC<Props> = ({ post, className }) => {
-  const router = useRouter();
-
   const path = `/posts/${post.id}`;
-  const navigate = () => router.push(path);
 
   return (
-    <Card className={className} sx={{ cursor: 'pointer' }} onClick={navigate}>
-      <CardHeader title={post.title} />
-      <CardContent sx={{ paddingTop: 0 }}>
-        <PostDate>{post.date}</PostDate>
-        <PostTags>
-          {post.tags.map(tag => (
-            <Chip key={tag} color="primary" label={tag} size="small" />
-          ))}
-        </PostTags>
-      </CardContent>
-    </Card>
+    <BlockLink href={path}>
+      <Card className={className} sx={{ cursor: 'pointer' }}>
+        <CardHeader title={post.title} />
+        <CardContent sx={{ paddingTop: 0 }}>
+          <PostDate>{post.date}</PostDate>
+          <PostTags>
+            {post.tags.map(tag => (
+              <Chip key={tag} color="primary" label={tag} size="small" />
+            ))}
+          </PostTags>
+        </CardContent>
+      </Card>
+    </BlockLink>
   );
 };
 
