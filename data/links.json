@@ -155,6 +155,13 @@
   ],
   "Programming Languages": [
     {
+      "alias": "Modern C++ Won’t Save Us",
+      "date": "2023-04-29",
+      "description": "",
+      "link": "https://alexgaynor.net/2019/apr/21/modern-c++-wont-save-us/",
+      "uuid": "e4fc1883634e4ea4a450503e776d871e"
+    },
+    {
       "alias": "A practitioner’s guide to reading programming languages papers",
       "date": "2023-02-10",
       "description": "",
