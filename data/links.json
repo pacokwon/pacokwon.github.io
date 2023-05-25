@@ -144,6 +144,15 @@
       "uuid": "df084352b4184a16b0b6e9cb23ab9c03"
     }
   ],
+  "Linux": [
+    {
+      "alias": "The Tragedy of Systemd",
+      "date": "2023-05-25",
+      "description": "",
+      "link": "https://youtu.be/o_AIw9bGogo",
+      "uuid": "e4335244a62c415ca97d94a311da7906"
+    }
+  ],
   "Lisp": [
     {
       "alias": "A History of Lisp Parentheses",
