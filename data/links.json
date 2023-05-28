@@ -256,6 +256,13 @@
   ],
   "Youtube": [
     {
+      "alias": "Maze-Solving, and Robotic Mice",
+      "date": "2023-05-28",
+      "description": "",
+      "link": "https://youtu.be/ZMQbHMgK2rw",
+      "uuid": "036966b49d3343409a5f4249bf82fd77"
+    },
+    {
       "alias": "Ants Are Everywhere",
       "date": "2023-04-01",
       "description": "An exploration of famous open source projects’ source code",
