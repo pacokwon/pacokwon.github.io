@@ -38,9 +38,16 @@
     {
       "duration": {
         "start": "2021.10",
-        "end": "Current"
+        "end": "2023.06"
       },
       "description": "Software Developer at Republic of Korea Navy"
+    },
+    {
+      "duration": {
+        "start": "2023.08",
+        "end": "Current (2025.08)"
+      },
+      "description": "Missionary of The Church of Jesus Christ Latter-Day Saints (NYC Mission)"
     }
   ]
 }
