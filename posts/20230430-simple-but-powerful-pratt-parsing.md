@@ -2,6 +2,7 @@
 title: 'Simple but Powerful Pratt Parsing'
 tags:
   - parsing
+  - ko
 ---
 
 아래 글은 [matklad](https://github.com/matklad)의 [Simple but Powerful Pratt Parsing](https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html)의 번역 포스팅입니다. 제 스스로의 이해를 돕기 위함이 목적이지만, 유익한 글인 것 같아 블로그에 소개하고도 싶었습니다.
