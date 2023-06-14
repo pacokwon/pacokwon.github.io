@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  
   <url>
+    <loc>https://www.pacokwon.org/posts/20230604-mission</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+    
+  <url>
     <loc>https://www.pacokwon.org/posts/20230430-simple-but-powerful-pratt-parsing</loc>
     <changefreq>monthly</changefreq>
   </url>
