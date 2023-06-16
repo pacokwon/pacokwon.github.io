@@ -21,6 +21,8 @@ import UtterancesComments from '@/components/UtterancesComments';
 import { getPostIds, getPostData, PostCtx, PostId } from '@/lib/posts';
 import type { PostData } from '@/lib/posts';
 import { options } from '@/lib/languages';
+import { teal } from '@mui/material/colors';
+import { modeSensitive } from '@/lib/theme';
 
 type Props = {
   post: PostData;
@@ -78,6 +80,13 @@ const PostContent = styled('div')(({ theme }) => ({
   },
   '& ul, & li': {
     listStylePosition: 'inside',
+  },
+  '& blockquote': {
+    borderLeftWidth: '1px',
+    borderLeftStyle: 'solid',
+    borderLeftColor: modeSensitive(theme, teal[600], teal[400]),
+    paddingLeft: theme.spacing(2),
+    fontStyle: 'italic',
   },
 }));
 
