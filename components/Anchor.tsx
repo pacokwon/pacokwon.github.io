@@ -18,8 +18,8 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Anchor: React.FC<Props> = ({ children }) => (
-  <StyledAnchor>{children}</StyledAnchor>
+const Anchor: React.FC<Props> = ({ children, ...rest }) => (
+  <StyledAnchor {...rest}>{children}</StyledAnchor>
 );
 
 export default Anchor;
