@@ -80,8 +80,11 @@ const PostContent = styled('div')(({ theme }) => ({
     marginBottom: theme.spacing(1.5),
     fontSize: 'var(--fs-300)',
   },
-  '& ul, & li': {
+  '& li': {
     listStylePosition: 'inside',
+  },
+  '& ul': {
+    paddingLeft: theme.spacing(2),
   },
   '& blockquote': {
     borderLeftWidth: '1px',
