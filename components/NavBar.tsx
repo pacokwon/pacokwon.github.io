@@ -46,11 +46,6 @@ const SectionLink: React.FC<SectionLinkProps> = ({ href, children }) => {
   );
 };
 
-const Root = styled('div')(({ theme }) => ({
-  flexGrow: 1,
-  marginBottom: theme.spacing(4),
-}));
-
 const Toolbar = styled(MuiToolbar)(({ theme }) => ({
   '&.MuiToolbar-root': {
     padding: theme.spacing(0, 4),
@@ -89,84 +84,81 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <Root>
-      <AppBar color="primary">
-        <Toolbar disableGutters={true}>
-          <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', sm: 'none' },
-              }}
-            >
-              <MenuItem onClick={handleCloseNavMenu}>
-                <SectionLink href="/bio">Bio</SectionLink>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <SectionLink href="/posts">Posts</SectionLink>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <SectionLink href="/links">Links</SectionLink>
-              </MenuItem>
-            </Menu>
-          </Box>
-
-          <MuiLink
-            sx={{
-              flexGrow: { xs: 1, sm: 0 },
-              marginRight: { sm: 4 },
-              marginLeft: { xs: 2 },
-              '&.MuiLink-root, &.MuiLink-underlineHover': {
-                color: modeSensitive(theme, teal[400], teal[300]),
-                fontWeight: 'bold',
-              },
-            }}
-            underline="hover"
-            variant="h5"
-            href="/"
-            component={NextLink}
+    <AppBar position="static" color="primary">
+      <Toolbar disableGutters={true}>
+        <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleOpenNavMenu}
+            color="inherit"
           >
-            Paco Kwon
-          </MuiLink>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
-            <SectionLink href="/bio">Bio</SectionLink>
-            <SectionLink href="/posts">Posts</SectionLink>
-            <SectionLink href="/links">Links</SectionLink>
-            {isDev && <SectionLink href="/editor">Editor</SectionLink>}
-          </Box>
-          <IconButton onClick={colorMode.toggleColorMode} color="inherit">
-            {theme.palette.mode === 'dark' ? (
-              <Brightness7Icon />
-            ) : (
-              <Brightness4Icon />
-            )}
+            <MenuIcon />
           </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Toolbar />
-    </Root>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorElNav}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
+            sx={{
+              display: { xs: 'block', sm: 'none' },
+            }}
+          >
+            <MenuItem onClick={handleCloseNavMenu}>
+              <SectionLink href="/bio">Bio</SectionLink>
+            </MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <SectionLink href="/posts">Posts</SectionLink>
+            </MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <SectionLink href="/links">Links</SectionLink>
+            </MenuItem>
+          </Menu>
+        </Box>
+
+        <MuiLink
+          sx={{
+            flexGrow: { xs: 1, sm: 0 },
+            marginRight: { sm: 4 },
+            marginLeft: { xs: 2 },
+            '&.MuiLink-root, &.MuiLink-underlineHover': {
+              color: modeSensitive(theme, teal[400], teal[300]),
+              fontWeight: 'bold',
+            },
+          }}
+          underline="hover"
+          variant="h5"
+          href="/"
+          component={NextLink}
+        >
+          Paco Kwon
+        </MuiLink>
+        <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
+          <SectionLink href="/bio">Bio</SectionLink>
+          <SectionLink href="/posts">Posts</SectionLink>
+          <SectionLink href="/links">Links</SectionLink>
+          {isDev && <SectionLink href="/editor">Editor</SectionLink>}
+        </Box>
+        <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+          {theme.palette.mode === 'dark' ? (
+            <Brightness7Icon />
+          ) : (
+            <Brightness4Icon />
+          )}
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   );
 };
 

@@ -11,6 +11,7 @@ import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeReact from 'rehype-react';
+import rehypeSlug from 'rehype-slug';
 
 import Anchor from '@/components/Anchor';
 import Chip from '@/components/Chip';
@@ -45,6 +46,7 @@ const processor = unified()
   .use(remarkParse)
   .use(remarkGfm)
   .use(remarkRehype)
+  .use(rehypeSlug)
   .use(rehypeHighlight, options)
   .use(rehypeReact, {
     createElement: React.createElement,
