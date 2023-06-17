@@ -7,6 +7,7 @@ module.exports = withImages({
   images: {
     domains: ['github.com'],
     disableStaticImages: true,
+    unoptimized: true,
   },
   async headers() {
     return [
