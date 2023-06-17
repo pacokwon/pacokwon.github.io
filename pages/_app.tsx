@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 
 import { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import CssBaseline from '@mui/material/CssBaseline';
@@ -26,7 +25,6 @@ interface Props extends AppProps {
 const App: React.FC<Props> = props => {
   const [mode, setMode] = React.useState<'light' | 'dark'>('dark');
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  const router = useRouter();
 
   const colorMode = React.useMemo(
     () => ({
@@ -43,12 +41,6 @@ const App: React.FC<Props> = props => {
 
   const theme = React.useMemo(() => createBlogTheme(mode), [mode]);
 
-  const handleRouteChange = (url: string) => {
-    window.gtag('config', 'G-688XJFWYJL', {
-      page_path: url,
-    });
-  };
-
   useEffect(() => {
     const opposite = mode === 'dark' ? 'light' : 'dark';
 
@@ -60,13 +52,6 @@ const App: React.FC<Props> = props => {
 
     document.documentElement.setAttribute('data-theme', mode);
   }, [mode]);
-
-  useEffect(() => {
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
 
   return (
     <CacheProvider value={emotionCache}>
