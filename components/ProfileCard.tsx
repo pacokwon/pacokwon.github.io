@@ -12,6 +12,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import background from '@/public/image/profile-background.png';
 import profile from '@/data/profile.json';
 import { modeSensitive } from '@/lib/theme';
+import ImageWithFallback from './ImageWithFallback';
 
 const Card = styled(MuiCard)({
   maxWidth: 900,
@@ -64,15 +65,17 @@ const Profile = styled('div')(({ theme }) => ({
   },
 }));
 
-const ProfileImg = styled('img')(({ theme }) => ({
+const ProfileImg = styled(ImageWithFallback)(({ theme }) => ({
   borderRadius: '50%',
   [theme.breakpoints.down('sm')]: {
     // image width and height are 60px here
     height: '120px',
+    width: '120px',
   },
   [theme.breakpoints.up('sm')]: {
     // image width and height are 160px here
     height: '160px',
+    width: '160px',
   },
 }));
 
@@ -84,7 +87,13 @@ const ProfileCard: React.FC = () => {
       <Media>
         <BackgroundImg src={background} alt="Profile Background" />
         <Profile>
-          <ProfileImg src={profile.image} alt="Profile Image" />
+          <ProfileImg
+            src={profile.image}
+            fallback="/image/profile-fallback.png"
+            alt="Profile Image"
+            width={160}
+            height={160}
+          />
         </Profile>
       </Media>
       <CardContent>
