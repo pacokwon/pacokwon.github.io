@@ -27,7 +27,7 @@ tags:
 
 이 포스트에서는 이전 포스트들처럼 언어를 확장하는 과정을 처음부터 끝까지 소개하기보다는, 어떤 기능들이 추가되었는지, 구현하며 내부적으로 어떤 부분이 흥미로웠는지 소개하겠다.
 
-### 파일 단위 실행
+## 파일 단위 실행
 
 [2부 - 평가](20230618-lisp-eval) 포스트에서 코드를 직접 실행할 수 있는 REPL을 만들어 인터프리터의 엔트리포인트로 만들었었다. 확장한 이후에는 `python`처럼 REPL을 실행할수도, 파일을 실행할수도 있다.
 
@@ -67,7 +67,7 @@ $ stack run whisper-exe -- -i examples/def.lisp
 
 이 기능은 Lisp 코드를 수정하지 않고 여러 값을 넣어 함수 호출을 해보고 싶을 때 유용하다.
 
-### `Boolean`과 조건 표현식
+## `Boolean`과 조건 표현식
 
 `if` 함수를 이용해 조건 분기를 할 수 있다. 이를 위해 `boolean`타입의 값과 표현식을 추가했다.
 
@@ -82,7 +82,7 @@ false
 5
 ```
 
-### 다양한 네이티브 함수
+## 다양한 네이티브 함수
 
 기존에 있던 산술연산자 외에 비교연산자와 논리연산자를 구현했다.
 
@@ -105,7 +105,7 @@ False
 3
 ```
 
-### `define`을 이용한 전역변수 및 사용자 정의 함수 선언
+## `define`을 이용한 전역변수 및 사용자 정의 함수 선언
 
 `define` 함수를 이용하면 다음과 같이 변수를 사용할 수 있다.
 
@@ -124,7 +124,7 @@ global            ; 3
 (add-two 42 3)    ; 45
 ```
 
-### 재귀함수 지원
+## 재귀함수 지원
 
 이 언어에는 반복문이 없다.
 
@@ -142,7 +142,7 @@ global            ; 3
 (add-range 1 10) ; 55
 ```
 
-### Functions as Values
+## Functions as Values
 
 네이티브 함수와 사용자 정의 함수는 값으로 취급되어 다음과 같이 다른 함수의 인자에 전달할 수도 있다.
 
@@ -156,9 +156,9 @@ global            ; 3
 (apply-f-to-x add-two 3)   ; 5
 ```
 
-### `StateT`와 `Either` 타입을 이용한 환경 조작 및 에러 처리
+## `StateT`와 `Either` 타입을 이용한 환경 조작 및 에러 처리
 
-이번 프로젝트를 하며 가장 큰 의의는 monad transformer를 실제로 사용해봤다는 것이다. 기존에는 환경(Environment)를 `State` 모나드로 처리하고 있었다. 표현식을 평가하는 함수라면 항상 환경을 필요로 할 것이었고, 새로운 바인딩이 추가되면 환경을 수정해야 했기 때문이었다.
+이번 프로젝트를 하며 가장 큰 의의는 모나드 트랜스포머(monad transformer)를 실제로 사용해봤다는 것이다. 기존에는 환경(Environment)를 `State` 모나드로 처리하고 있었다. 표현식을 평가하는 함수라면 항상 환경을 필요로 할 것이었고, 새로운 바인딩이 추가되면 환경을 수정해야 했기 때문이었다.
 
 이를 `StateT`로 바꿔야겠다고 생각했던 이유는 에러처리 때문이었다. 기존에는 에러처리를 하스켈의 `error` 함수로 했었다. 이 때문에 `error` 함수가 있는 경로로 코드가 실행되면 그냥 프로그램이 죽어버렸다. 이를 처리하기 위해 평가 결과 타입을 단순히 `Value`를 사용하기보다 `Either String Value`를 사용하면 되겠다고 생각을 했다. 그러려면 `State` 모나드의 타입이 대략 이렇게 생겨야 한다:
 
@@ -203,6 +203,8 @@ extendWithDecls :: Sexpr -> ExecState ()
 이걸 처음 도입하려고 하면서 꽤나 머릿속이 복잡했었는데, 그래도 조금씩 이해하며 그 가치를 느낄 수 있었다. 사실 아직은 조금 마법같다. 아래는 이에 대한 [하스켈 위키](https://wiki.haskell.org/Monad_Transformers_Explained)의 설명 중 하나다:
 
 > Monad transformers are like onions. At first, they make you cry but then you learn to appreciate them. Like onions, they're also made of layers. Each layer is the functionality of a new monad, you lift monadic functions to get into the inner monads and you have transformerised functions to unwrap each layer.
+
+모나드 트랜스포머를 처음 봐도 눈물을 터뜨리지 않도록 조심하자.
 
 ## 마무리
 
