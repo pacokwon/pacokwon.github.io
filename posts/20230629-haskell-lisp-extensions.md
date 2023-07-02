@@ -1,6 +1,6 @@
 ---
 title: '하스켈로 간단한 Lisp 만들기 - 확장판'
-tags
+tags:
   - ko
   - haskell
 ---
