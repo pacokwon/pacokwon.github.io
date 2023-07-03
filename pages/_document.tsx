@@ -30,6 +30,7 @@ export default class MyDocument extends Document {
             href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"
             disabled
           />
+          <link rel="shortcut icon" href="static/favicon-16x16.png" />
         </Head>
         <body>
           <Main />
