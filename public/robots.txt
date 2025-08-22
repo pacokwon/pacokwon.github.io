@@ -1,3 +1,0 @@
-User-Agent: *
-Allow: /
-Sitemap: https://www.pacokwon.org/sitemap.xml
