@@ -1,5 +1,34 @@
-<script src="https://giscus.app/client.js" data-repo="pacokwon/pacokwon.github.io"
-    data-repo-id="MDEwOlJlcG9zaXRvcnkzMDE5NjEzMTE=" data-category="Comments" data-category-id="DIC_kwDOEf-QX84CugNx"
-    data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0"
-    data-input-position="bottom" data-theme="gruvbox_dark" data-lang="en" crossorigin="anonymous" async>
-    </script>
+<script>
+    let currentTheme = localStorage.getItem("theme-storage");
+    if (!currentTheme) {
+        if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+            currentTheme = "dark";
+        } else {
+            currentTheme = "light";
+        }
+    }
+
+    let giscusAttributes = {
+        "src": "https://giscus.app/client.js",
+        "data-repo": "pacokwon/pacokwon.github.io",
+        "data-repo-id": "MDEwOlJlcG9zaXRvcnkzMDE5NjEzMTE=",
+        "data-category": "Comments",
+        "data-category-id": "DIC_kwDOEf-QX84CugNx",
+        "data-mapping": "pathname",
+        "data-strict": "0",
+        "data-reactions-enabled": "1",
+        "data-emit-metadata": "0",
+        "data-input-position": "bottom",
+        "data-theme": currentTheme,
+        "data-lang": "en",
+        "crossorigin": "anonymous",
+        "async": "",
+    };
+
+    let giscusScript = document.createElement("script");
+    Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+    document.body.appendChild(giscusScript);
+</script>
