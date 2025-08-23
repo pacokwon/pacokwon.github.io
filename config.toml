@@ -26,12 +26,20 @@ highlight_theme_css = [
 [extra]
 toc = true
 theme = "toggle"
+
 socials = [
     { name = "github", url = "https://github.com/pacokwon/", icon = "github" },
 ]
+
 menu = [
   { name = "Posts", url = "/posts", weight = 1 },
 ]
+
 mathjax = true
 mathjax_dollar_inline_enable = true
+
 dynamic_note = true
+
+stylesheets = [
+    "posts.css"
+]
