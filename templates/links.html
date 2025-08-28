@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% macro link_entry(link_data) %}
+{% endmacro link_entry %}
+
+{% macro link_category(category_name, category_links) %}
+    <h1>{{ category_name | safe }}</h1>
+    <ul>
+        {% for link_json in category_links %}
+            <li class="link">
+                <a href={{ link_json.link }}>
+                    {{ link_json.alias | safe }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro link_category %}
+
+{% macro link_page(data) %}
+    {% for category_name, category_links in data %}
+        {{ self::link_category(category_name=category_name, category_links=category_links) }}
+    {% endfor %}
+{% endmacro link_page %}
+
+{% macro links_page(page) %}
+    <main>
+        <article>
+            {{ post_macros::page_header(title=page.title) }}
+            <div>
+                Personal collection of links with interesting content!
+            </div>
+            <section class="body">
+                {% set links_data = load_data(path="data/links.json", format="json") %}
+                {{ self::link_page(data=links_data) }}
+            </section>
+        </article>
+    </main>
+{% endmacro links_page %}
+
+{% block main_content %}
+    <style>
+    li.link {
+        margin-top: .5rem;
+    }
+    </style>
+    {{ self::links_page(page=page) }}
+{% endblock main_content %}
