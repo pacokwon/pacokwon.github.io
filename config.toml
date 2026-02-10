@@ -32,8 +32,7 @@ socials = [
 ]
 
 menu = [
-  { name = "Posts", url = "/posts", weight = 1 },
-  { name = "Links", url = "/links", weight = 2 },
+  { name = "Links", url = "/links", weight = 1 },
 ]
 
 mathjax = true
