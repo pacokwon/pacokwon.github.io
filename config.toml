@@ -14,11 +14,9 @@ compile_sass = true
 build_search_index = true
 
 [markdown.highlighting]
-theme = "css"
-themes_css = [
-  { theme = "ayu-dark", filename = "syntax-theme-dark.css" },
-  { theme = "ayu-light", filename = "syntax-theme-light.css" },
-]
+style = "class"
+light_theme = "catppuccin-latte"
+dark_theme = "catppuccin-mocha"
 
 [extra]
 toc = true
