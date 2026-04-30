@@ -1,5 +1,5 @@
 +++
-title = 'Understanding the esModuleInterop option in tsconfig.json'
+title = '해군 SW 개발병 면접 후기'
 date = "2021-08-31"
 
 [taxonomies]
@@ -8,8 +8,6 @@ tags=["military", "ko"]
 [extra]
 comment = true
 +++
-
-블하 (블로그 하이라는 뜻)
 
 아무 생각 없이 대학교를 다니다가 보니 시간이 참 빨리 지나갔다. 고등학교 동기들 중에서는 군대가는 친구들을 여럿 보았는데, 입대를 3학년 이후로 생각하고 있던 이유는 많았다.
 

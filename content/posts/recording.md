@@ -1,6 +1,7 @@
 +++
 title = "거울 프로그래밍"
 date = "2023-07-03"
+draft = true
 
 [taxonomies]
 tags=["general", "ko"]

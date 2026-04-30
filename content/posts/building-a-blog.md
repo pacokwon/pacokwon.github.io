@@ -1,6 +1,7 @@
 +++
 title = "Building a Personal Blog in Next.js"
 date = "2021-09-03"
+draft = true
 
 [taxonomies]
 tags=["javascript", "nextjs", "en"]

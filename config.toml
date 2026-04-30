@@ -23,10 +23,11 @@ toc = true
 theme = "toggle"
 
 socials = [
-    { name = "github", url = "https://github.com/pacokwon/", icon = "github" },
+    { name = "github", url = "https://avatars.githubusercontent.com/u/31656049", icon = "github" },
 ]
 
 menu = [
+  { name = "Posts", url = "/posts", weight = 2 },
   { name = "Links", url = "/links", weight = 1 },
 ]
 

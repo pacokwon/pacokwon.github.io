@@ -1,6 +1,7 @@
 +++
 title = "블로그 개업!"
 date = "2021-08-29"
+draft = true
 
 [taxonomies]
 tags=["general", "ko"]
