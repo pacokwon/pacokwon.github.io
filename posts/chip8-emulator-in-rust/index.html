@@ -1,0 +1,40 @@
+<!doctype html><html class="dark light" lang=en><head><meta charset=UTF-8><meta content="IE=edge" http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://pacokwon.org name=base><title>
+            
+                Building a Chip-8 Emulator in Rust
+            
+        </title><meta content="Building a Chip-8 Emulator in Rust" property=og:title><link href=https://pacokwon.org/fonts.css rel=stylesheet><link media="(prefers-color-scheme: dark)" href=/giallo-dark.css rel=stylesheet><link media="(prefers-color-scheme: light)" href=/giallo-light.css rel=stylesheet><script defer src=https://pacokwon.org/js/toc.js></script><script src=https://pacokwon.org/js/note.js></script><script>MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };</script><script async id=MathJax-script src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><link title="Haechan Kwon" href=https://pacokwon.org/atom.xml rel=alternate type=application/atom+xml><link href=https://pacokwon.org/theme/light.css rel=stylesheet><link href=https://pacokwon.org/theme/dark.css id=darkModeStyle rel=stylesheet><script src=https://pacokwon.org/js/themetoggle.js></script><script>setTheme(getSavedTheme());</script><link href=https://pacokwon.org/main.css media=screen rel=stylesheet><link href=https://pacokwon.org/posts.css rel=stylesheet><script src="https://pacokwon.org/search_index.en.js?h=3cad0d2ca3fd6eef5c03" defer></script><script src="https://pacokwon.org/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e" defer></script><body><div class=left-content></div><div class=content><nav><div class=left-nav><a href=https://pacokwon.org>Haechan Kwon</a><div class=socials><a class=social href=https://avatars.githubusercontent.com/u/31656049 rel=me> <img alt=github src=https://pacokwon.org/icons/social/github.svg> </a></div></div><div class=right-nav><a href=https://pacokwon.org/posts style=margin-right:.5em>Posts</a><a href=https://pacokwon.org/links style=margin-right:.5em>Links</a><button title="$SHORTCUT to open search" class=search-button id=search-button><img alt=Search class=search-icon src=https://pacokwon.org/icons/search.svg></button><div class="search-modal js" aria-labelledby=modalTitle id=searchModal role=dialog><div id=modal-content><h1 class=page-header id=modalTitle>Search</h1><div id=searchBar><input aria-controls=results-container aria-expanded=false autocomplete=off id=searchInput placeholder=Search... role=combobox spellcheck=false><button title="Clear search" class=clear-button id=clear-search><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button></div><div id=results-container><div id=results-info><span id=zero_results style=display:none>No results</span><span id=one_result style=display:none>1 result</span><span id=many_results style=display:none>$NUMBER results</span></div><div id=results role=listbox></div></div></div></div><a onclick="toggleTheme(); event.preventDefault();" href=# id=dark-mode-toggle> <img alt=Light id=sun-icon src=https://pacokwon.org/icons/sun.svg style=filter:invert()> <img alt=Dark id=moon-icon src=https://pacokwon.org/icons/moon.svg> </a><script>updateItemToggleTheme()</script></div></nav><div data-selector="main article p" class=visible-element-observer-root><main><article><div class=title><div class=page-header>Building a Chip-8 Emulator in Rust</div><div class=meta>Posted on <time>2021-09-14</time><span class=tags-label> :: </span><span class=tags> <a class=post-tag href=https://pacokwon.org/tags/rust/>rust</a> <a class=post-tag href=https://pacokwon.org/tags/emulator/>emulator</a> <a class=post-tag href=https://pacokwon.org/tags/ko/>ko</a> </span></div></div><section class=body><p>Rust로 뭔가는 만들어보고 싶은데 마침 에뮬레이터도 만들어보고 싶어서 입문용 프로젝트로 많이 한다는 Chip-8 에뮬레이터를 작성해보려고 한다. 아직 시작도 안했기 때문에 여기 적을 내용은 많지 않다. 이 포스트를 업데이트해가며 짜려고 한다.<h3 id=update><a aria-label="Anchor link for: update" class=zola-anchor href=#update>Update</a></h3><p>생각보다 instruction 개수가 적고 구조도 단순한 편이라 구현이 이틀 정도만에 완성되었다. 좀 생소했던 부분들은 크게 두 가지였는데, 첫 번째는 opcode 구현 시 명세가 인터넷에 있는 참고자료마다 다른 경우가 있었다는 거다. 그래서 뇌피셜 + 다수의 의견을 따라 구현을 했다. 두 번째는 SDL2 사용인데, <a href=https://github.com/Rust-SDL2/rust-sdl2 rel=external>SDL2 binding for Rust</a> 의 문서화가 꽤 잘 돼있어서 데모 코드를 참고하니 생각보다 수월했다.<p>아주 제대로 된 테스팅은 진행하지 않았지만 <a href=https://github.com/corax89/chip8-test-rom rel=external>테스트 ROM</a> 형태로 아주 손쉽게 테스팅해볼 수 있는 방법이 있어서 이 ROM을 실행해보긴 했다. 이 ROM을 통해 잡은 버그는 Rust에서 정수 연산 오버플로우가 자동으로 되지 않는다는 점이었다. 그래서 거의 모든 연산 부분을 그냥 오버플로우가 되도록 수정했다. <code>Wrapping</code>이라는 타입으로 해야 하던데 퍼포먼스 저하는 없는 것으로 알고 있다. 그냥 코드가 조금 더 verbose해질 뿐..<p>오디오 구현은 안(못)했는데 큰 관점에서 중요도가 떨어지는 반면 trivial한 해결 방법이 없어 그냥 냅둔 상태이다. <code>'\a'</code> 코드처럼 삑 소리만 나도 충분할 것 같던데 오래된 규약이다 보니 기기마다 <code>'\a'</code> 가 작동하지 않는 경우도 C 프로그래밍을 할 때 종종 보았는데 Rust에서는 그냥 지원이 안 되는 것 같았다. 뭔가 내가 모르는 쉬운 방법을 찾거나 아주 미니멀한 오디오 라이브러리를 사용하면 될 것 같다.<p>이 작은 프로젝트를 통해 에뮬레이터를 조금 더 자세히 이해할 수 있었던 것 같다. 그 다음 단계는 NES나 Gameboy 에뮬레이터 구현일텐데, 난이도 상승 폭이 조금 큰 것으로 보인다.<h2 id=repository><a aria-label="Anchor link for: repository" class=zola-anchor href=#repository>Repository</a></h2><p><a href=https://github.com/pacokwon/scaters rel=external>https://github.com/pacokwon/scaters</a><h2 id=references><a aria-label="Anchor link for: references" class=zola-anchor href=#references>References</a></h2><p>참고자료들이다. 꽤 오래된 매뉴얼들인데 필요한 내용은 모두 담고 있고 상당히 도움이 많이 되었다.<ul><li><a href=http://www.cs.columbia.edu/~sedwards/classes/2016/4840-spring/designs/Chip8.pdf rel=external>http://www.cs.columbia.edu/~sedwards/classes/2016/4840-spring/designs/Chip8.pdf</a><li><a href=http://devernay.free.fr/hacks/chip8/C8TECH10.HTM rel=external>http://devernay.free.fr/hacks/chip8/C8TECH10.HTM</a></ul></section></article></main></div><div class=giscus></div><script>let currentTheme = localStorage.getItem("theme-storage");
+    if (!currentTheme) {
+        if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+            currentTheme = "dark";
+        } else {
+            currentTheme = "light";
+        }
+    }
+
+    let giscusAttributes = {
+        "src": "https://giscus.app/client.js",
+        "data-repo": "pacokwon/pacokwon.github.io",
+        "data-repo-id": "MDEwOlJlcG9zaXRvcnkzMDE5NjEzMTE=",
+        "data-category": "Comments",
+        "data-category-id": "DIC_kwDOEf-QX84CugNx",
+        "data-mapping": "pathname",
+        "data-strict": "0",
+        "data-reactions-enabled": "1",
+        "data-emit-metadata": "0",
+        "data-input-position": "bottom",
+        "data-theme": currentTheme,
+        "data-lang": "en",
+        "crossorigin": "anonymous",
+        "async": "",
+    };
+
+    let giscusScript = document.createElement("script");
+    Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+    document.body.appendChild(giscusScript);</script></div><div class=right-content><div class=toc><div class=heading>Table of Contents</div><ul class=toc-list><li class=parent><a href=https://pacokwon.org/posts/chip8-emulator-in-rust/#update>Update</a><li class=parent><a href=https://pacokwon.org/posts/chip8-emulator-in-rust/#repository>Repository</a><li class=parent><a href=https://pacokwon.org/posts/chip8-emulator-in-rust/#references>References</a></ul></div></div>
