@@ -1,3 +1,4 @@
 public
 .direnv
 static/giallo-*.css
+.DS_Store
