@@ -38,3 +38,6 @@ dynamic_note = true
 stylesheets = [
     "posts.css"
 ]
+
+[extra.analytics]
+enabled = false

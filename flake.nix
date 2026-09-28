@@ -2,7 +2,7 @@
   description = "Dev shell for pacokwon.org";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/647371df145ef56cf62811c906fc794b91df2f8f";
+    nixpkgs.url = "github:NixOS/nixpkgs/3181085bfd08663b6b9e60bc7a8395c2aaa741bd";
   };
 
   outputs = { self, nixpkgs }:
