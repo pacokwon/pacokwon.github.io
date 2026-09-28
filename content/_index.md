@@ -48,6 +48,6 @@ h1.homepage-name::before {
     <p class="homepage-subtitle">
         Undergraduate student at KAIST CS
         <br />
-        Interested in Web, Programming Languages and Software Tooling
+        Interested in Programming Languages and Software Tooling
     </p>
 </div>
