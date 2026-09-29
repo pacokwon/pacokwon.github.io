@@ -46,7 +46,7 @@ h1.homepage-name::before {
     <h1 class="homepage-name">Haechan Kwon</h1>
     <p class="homepage-nickname">pacokwon</p>
     <p class="homepage-subtitle">
-        Undergraduate student at KAIST CS
+        Undergraduate student at KAIST SoC
         <br />
         Interested in Programming Languages and Software Tooling
     </p>
