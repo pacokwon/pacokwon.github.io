@@ -1,0 +1,12 @@
+main.post-list li.list-item {
+    margin-bottom: .8rem;
+}
+
+main.post-list li.list-item div.post-header h1.title {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+
+    &::before {
+        content: none;
+    }
+}
